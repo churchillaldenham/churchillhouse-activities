@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Games Night — Churchill House</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --cream: #FDFAF4;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+
+    /* Game colours */
+    --blackjack: #1B3A5C;
+    --poker: #2E6DA4;
+    --higher: #2E7D32;
+    --shutbox: #6A1B9A;
+    --crown: #BF360C;
+    --mexico: #E8A800;
+    --spin: #1A7A7A;
+    --jenga: #B71C1C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--teal);
+    padding: 48px 24px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    background: var(--mustard);
+    border-radius: 50%;
+    opacity: 0.18;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 160px; height: 160px;
+    background: var(--mustard);
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+
+  .hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--mustard);
+    margin-bottom: 10px;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(52px, 14vw, 80px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 0.9;
+    margin-bottom: 6px;
+  }
+
+  .hero h1 span {
+    color: var(--mustard);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(18px, 5vw, 26px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+
+  .hero-illustration {
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* ── HOW THE EVENING WORKS ── */
+  .intro-band {
+    background: var(--mustard);
+    padding: 32px 24px;
+    position: relative;
+  }
+
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 16px;
+  }
+
+  .intro-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .intro-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(255,255,255,0.35);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+
+  .step-num {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--teal-dark);
+    line-height: 1;
+    min-width: 32px;
+  }
+
+  .step-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--teal-dark);
+    font-weight: 500;
+  }
+
+  /* ── GAMES SECTION ── */
+  .games-section {
+    background: var(--cream);
+    padding: 32px 16px;
+  }
+
+  .section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  /* ── GAME CARD ── */
+  .game-card {
+    background: var(--white);
+    border-radius: 16px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+
+  .game-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+
+  .game-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .game-icon {
+    font-size: 32px;
+    line-height: 1;
+    min-width: 40px;
+    text-align: center;
+  }
+
+  .game-title-block { flex: 1; }
+
+  .game-name {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  .game-tagline {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    margin-top: 3px;
+    font-style: italic;
+  }
+
+  .game-meta {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+
+  .meta-pill {
+    font-size: 10px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.2);
+    color: var(--white);
+    border-radius: 20px;
+    padding: 2px 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .chevron {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  .game-card.open .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ── GAME BODY ── */
+  .game-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease;
+  }
+
+  .game-card.open .game-body {
+    max-height: 2000px;
+  }
+
+  .game-body-inner {
+    padding: 0 20px 20px;
+    border-top: 1px solid var(--light-border);
+    padding-top: 18px;
+  }
+
+  /* Steps */
+  .steps-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 10px;
+  }
+
+  .step-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .step-badge {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--dark);
+    flex: 1;
+  }
+
+  /* Win box */
+  .win-box {
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 16px 0;
+  }
+
+  .win-box-title {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .win-item {
+    font-size: 13px;
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .win-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* Tip box */
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--dark);
+    margin-top: 12px;
+  }
+
+  .tip-box strong {
+    color: var(--mustard-dark);
+    font-weight: 600;
+  }
+
+  /* Hand rankings table */
+  .rankings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 12.5px;
+  }
+
+  .rankings-table th {
+    background: var(--teal);
+    color: var(--white);
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  .rankings-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--light-border);
+    vertical-align: top;
+    line-height: 1.4;
+  }
+
+  .rankings-table tr:nth-child(even) td {
+    background: #f8f8f8;
+  }
+
+  .rank-badge {
+    font-size: 14px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--teal-dark);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--mustard);
+    margin-bottom: 6px;
+  }
+
+  .footer-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  .footer-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--mustard);
+    margin: 14px auto;
+    border-radius: 2px;
+  }
+
+  /* ── GAME COLOUR HEADERS ── */
+  .header-blackjack { background: var(--blackjack); }
+  .header-poker     { background: var(--poker); }
+  .header-higher    { background: var(--higher); }
+  .header-shutbox   { background: var(--shutbox); }
+  .header-crown     { background: var(--crown); }
+  .header-mexico    { background: #C48F00; }
+  .header-spin      { background: var(--spin); }
+  .header-jenga     { background: var(--jenga); }
+
+  .winbox-blackjack { background: #EDF2F7; }
+  .winbox-poker     { background: #EBF4FF; }
+  .winbox-higher    { background: #E8F5E9; }
+  .winbox-shutbox   { background: #F3E5F5; }
+  .winbox-crown     { background: #FBE9E7; }
+  .winbox-mexico    { background: #FFF8E1; }
+  .winbox-spin      { background: #E0F2F2; }
+  .winbox-jenga     { background: #FFEBEE; }
+
+  .badge-blackjack { background: var(--blackjack); }
+  .badge-poker     { background: var(--poker); }
+  .badge-higher    { background: var(--higher); }
+  .badge-shutbox   { background: var(--shutbox); }
+  .badge-crown     { background: var(--crown); }
+  .badge-mexico    { background: #C48F00; }
+  .badge-spin      { background: var(--spin); }
+  .badge-jenga     { background: var(--jenga); }
+
+  .dot-blackjack { background: var(--blackjack); }
+  .dot-poker     { background: var(--poker); }
+  .dot-higher    { background: var(--higher); }
+  .dot-shutbox   { background: var(--shutbox); }
+  .dot-crown     { background: var(--crown); }
+  .dot-mexico    { background: #C48F00; }
+  .dot-spin      { background: var(--spin); }
+  .dot-jenga     { background: var(--jenga); }
+
+  /* Stagger animation on load */
+  .game-card {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: cardIn 0.4s ease forwards;
+  }
+  .game-card:nth-child(1) { animation-delay: 0.05s; }
+  .game-card:nth-child(2) { animation-delay: 0.10s; }
+  .game-card:nth-child(3) { animation-delay: 0.15s; }
+  .game-card:nth-child(4) { animation-delay: 0.20s; }
+  .game-card:nth-child(5) { animation-delay: 0.25s; }
+  .game-card:nth-child(6) { animation-delay: 0.30s; }
+  .game-card:nth-child(7) { animation-delay: 0.35s; }
+  .game-card:nth-child(8) { animation-delay: 0.40s; }
+
+  @keyframes cardIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Prize banner */
+  .prize-banner {
+    background: var(--teal);
+    margin: 0 16px 20px;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 16px rgba(26,122,122,0.25);
+  }
+
+  .prize-icon { font-size: 44px; line-height: 1; }
+
+  .prize-text h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--mustard);
+    margin-bottom: 4px;
+  }
+
+  .prize-text p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+
+  /* Expand all button */
+  .expand-btn {
+    display: block;
+    margin: 0 auto 20px;
+    background: none;
+    border: 2px solid var(--teal);
+    color: var(--teal);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 100px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+  }
+
+  .expand-btn:hover, .expand-btn:active {
+    background: var(--teal);
+    color: var(--white);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Churchill House Summer Programme</div>
+  <div class="hero-illustration">🎲 🃏 🎰 🏆</div>
+  <h1>Games<br><span>Night</span></h1>
+  <p class="hero-sub">Your guide to every game</p>
+</div>
+
+<!-- HOW THE EVENING WORKS -->
+<div class="intro-band">
+  <h2>How the Evening Works</h2>
+  <div class="intro-steps">
+    <div class="intro-step">
+      <div class="step-num">1</div>
+      <div class="step-text">You start the evening with a set of chips. These are your currency for the night.</div>
+    </div>
+    <div class="intro-step">
+      <div class="step-num">2</div>
+      <div class="step-text">Move freely between the game stations and use your chips to play.</div>
+    </div>
+    <div class="intro-step">
+      <div class="step-num">3</div>
+      <div class="step-text">Each station has a member of staff who will explain the game and run each round. Not sure about anything? Just ask.</div>
+    </div>
+    <div class="intro-step">
+      <div class="step-num">4</div>
+      <div class="step-text">At the end of the evening, the three students with the most chips win a prize.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRIZE BANNER -->
+<div class="games-section">
+  <div class="prize-banner">
+    <div class="prize-icon">🏆</div>
+    <div class="prize-text">
+      <h3>Win a Prize</h3>
+      <p>The three students with the most chips at the end of the evening take home a prize. Play smart — and play often.</p>
+    </div>
+  </div>
+
+  <div class="section-label">Eight Stations</div>
+  <div class="section-title">Choose Your Game</div>
+
+  <button class="expand-btn" onclick="toggleAll()">Expand All Rules</button>
+
+  <!-- BLACKJACK -->
+  <div class="game-card" onclick="toggleCard(this)">
+    <div class="game-header header-blackjack">
+      <div class="game-icon">🃏</div>
+      <div class="game-title-block">
+        <div class="game-name">Blackjack</div>
+        <div class="game-tagline">Get closer to 21 than the dealer — without going over</div>
+        <div class="game-meta">
+          <span class="meta-pill">Up to 5 players</span>
+          <span class="meta-pill">2–4 min/round</span>
+        </div>
+      </div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="game-body">
+      <div class="game-body-inner">
+        <div class="steps-label">How to Play</div>
+        <div class="step-row"><div class="step-badge badge-blackjack">1</div><div class="step-desc">Place your bet (1–3 chips) before any cards are dealt.</div></div>
+        <div class="step-row"><div class="step-badge badge-blackjack">2</div><div class="step-desc">You are dealt 2 cards face up. The dealer gets 2 cards — one face up, one face down.</div></div>
+        <div class="step-row"><div class="step-badge badge-blackjack">3</div><div class="step-desc">Choose: <strong>TWIST</strong> (take another card) or <strong>STICK</strong> (stay with what you have).</div></div>
+        <div class="step-row"><div class="step-badge badge-blackjack">4</div><div class="step-desc">If you go over 21, you <strong>BUST</strong> and lose your bet immediately.</div></div>
+        <div class="step-row"><div class="step-badge badge-blackjack">5</div><div class="step-desc">When everyone has finished, the dealer reveals their hidden card.</div></div>
+        <div class="step-row"><div class="step-badge badge-blackjack">6</div><div class="step-desc">Closest to 21 without busting beats the dealer.</div></div>
+        <div class="win-box winbox-blackjack">
+          <div class="win-box-title">🏆 How to Win</div>
+          <div class="win-item"><div class="win-dot dot-blackjack"></div><div>Beat the dealer → win <strong>double</strong> your bet</div></div>
+          <div class="win-item"><div class="win-dot dot-blackjack"></div><div>Blackjack (Ace + picture card as first 2 cards) → win <strong>triple</strong> your bet</div></div>
+          <div class="win-item"><div class="win-dot dot-blackjack"></div><div>Tie with dealer → get your bet back</div></div>
+          <div class="win-item"><div class="win-dot dot-blackjack"></div><div>Bust (over 21) → lose your bet</div></div>
+        </div>
+        <div class="tip-box"><strong>💡 Tip:</strong> Ace can be 1 or 11 — your choice. Picture cards (J, Q, K) are worth 10.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THREE CARD POKER -->
+  <div class="game-card" onclick="toggleCard(this)">
+    <div class="game-header header-poker">
+      <div class="game-icon">♠️</div>
+      <div class="game-title-block">
+        <div class="game-name">Three Card Poker</div>
+        <div class="game-tagline">Get a better 3-card hand than the dealer</div>
+        <div class="game-meta">
+          <span class="meta-pill">4–6 players</span>
+          <span class="meta-pill">2–3 min/round</span>
+        </div>
+      </div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="game-body">
+      <div class="game-body-inner">
+        <div class="steps-label">How to Play</div>
+        <div class="step-row"><div class="step-badge badge-poker">1</div><div class="step-desc">Place your bet (1–3 chips) before any cards are dealt.</div></div>
+        <div class="step-row"><div class="step-badge badge-poker">2</div><div class="step-desc">You get 3 cards face down. The dealer gets 3 cards — one is face up so you can see it.</div></div>
+        <div class="step-row"><div class="step-badge badge-poker">3</div><div class="step-desc">Look at your cards. Decide: <strong>FOLD</strong> (give up your bet and sit out) or <strong>PLAY</strong> (put the same number of chips again and stay in).</div></div>
+        <div class="step-row"><div class="step-badge badge-poker">4</div><div class="step-desc">The dealer reveals their cards.</div></div>
+        <div class="step-row"><div class="step-badge badge-poker">5</div><div class="step-desc">Compare hands — best hand wins.</div></div>
+        <div class="win-box winbox-poker">
+          <div class="win-box-title">🏆 How to Win</div>
+          <div class="win-item"><div class="win-dot dot-poker"></div><div>Your hand beats the dealer → win equal to your total bet (both stacks)</div></div>
+          <div class="win-item"><div class="win-dot dot-poker"></div><div>Dealer beats you → dealer takes your chips</div></div>
+          <div class="win-item"><div class="win-dot dot-poker"></div><div>Tie → get your chips back</div></div>
+        </div>
+        <div class="steps-label" style="margin-top:14px;">Hand Rankings (best to worst)</div>
+        <table class="rankings-table">
+          <thead><tr><th>Hand</th><th>What it means</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><span class="rank-badge">🥇</span> Three of a Kind</td><td>Three cards the same</td><td>7♥ 7♦ 7♣</td></tr>
+            <tr><td>Straight Flush</td><td>Three in order, same suit</td><td>4♥ 5♥ 6♥</td></tr>
+            <tr><td>Straight</td><td>Three in order, any suit</td><td>4♥ 5♣ 6♦</td></tr>
+            <tr><td>Flush</td><td>Three same suit, any order</td><td>2♥ 7♥ J♥</td></tr>
+            <tr><td>Pair</td><td>Two cards the same</td><td>K♠ K♦ 9♣</td></tr>
+            <tr><td>High Card</td><td>None of the above</td><td>Highest card wins</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGHER OR LOWER -->
+  <div class="game-card" onclick="toggleCard(this)">
+    <div class="game-header header-higher">
+      <div class="game-icon">🔼</div>
+      <div class="game-title-block">
+        <div class="game-name">Higher or Lower</div>
+        <div class="game-tagline">Guess whether the next card will be higher or lower</div>
+        <div class="game-meta">
+          <span class="meta-pill">1 player</span>
+          <span class="meta-pill">30–60 sec/turn</span>
+        </div>
+      </div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="game-body">
+      <div class="game-body-inner">
+        <div class="steps-label">How to Play</div>
+        <div class="step-row"><div class="step-badge badge-higher">1</div><div class="step-desc">Place your bet (1–3 chips).</div></div>
+        <div class="step-row"><div class="step-badge badge-higher">2</div><div class="step-desc">Seven cards are placed face down in a row. The first card is turned over.</div></div>
+        <div class="step-row"><div class="step-badge badge-higher">3</div><div class="step-desc">Guess: will the next card be <strong>HIGHER</strong> or <strong>LOWER</strong>? The card is revealed.</div></div>
+        <div class="step-row"><div class="step-badge badge-higher">4</div><div class="step-desc">Correct → move to the next card. Wrong → you lose your bet immediately.</div></div>
+        <div class="step-row"><div class="step-badge badge-higher">5</div><div class="step-desc">Keep going until you are wrong or reach the end of all 7 cards.</div></div>
+        <div class="win-box winbox-higher">
+          <div class="win-box-title">🏆 How to Win</div>
+          <div class="win-item"><div class="win-dot dot-higher"></div><div>Get 5 correct → win <strong>double</strong> your bet</div></div>
+          <div class="win-item"><div class="win-dot dot-higher"></div><div>Get all 7 correct → win <strong>triple</strong> your bet</div></div>
+          <div class="win-item"><div class="win-dot dot-higher"></div><div>Wrong at any point → lose your bet</div></div>
+        </div>
+        <div class="tip-box"><strong>💡 Tip:</strong> Ace is the highest card. If the next card is the same value as the current one, it counts as wrong.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHUT THE BOX -->
+  <div class="game-card" onclick="toggleCard(this)">
+    <div class="game-header header-shutbox">
+      <div class="game-icon">🎲</div>
+      <div class="game-title-block">
+        <div class="game-name">Shut the Box</div>
+        <div class="game-tagline">Roll the dice and close the tiles. Lower score wins</div>
+        <div class="game-meta">
+          <span class="meta-pill">1–4 players</span>
+          <span class="meta-pill">2–3 min/player</span>
+        </div>
+      </div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="game-body">
+      <div class="game-body-inner">
+        <div class="steps-label">How to Play</div>
+        <div class="step-row"><div class="step-badge badge-shutbox">1</div><div class="step-desc">Pay 1 chip to play. All tiles (1–9) start open.</div></div>
+        <div class="step-row"><div class="step-badge badge-shutbox">2</div><div class="step-desc">Roll both dice. Add the two numbers together to get your total.</div></div>
+        <div class="step-row"><div class="step-badge badge-shutbox">3</div><div class="step-desc">Close one or more tiles that add up to your total. You choose which combination.</div></div>
+        <div class="step-row"><div class="step-badge badge-shutbox">4</div><div class="step-desc"><strong>Example:</strong> Roll a 7. You can close: 7 alone / 3+4 / 1+6 / 2+5 / 1+2+4.</div></div>
+        <div class="step-row"><div class="step-badge badge-shutbox">5</div><div class="step-desc">Keep rolling until no combination of open tiles matches your roll.</div></div>
+        <div class="step-row"><div class="step-badge badge-shutbox">6</div><div class="step-desc">Your score = the total of all tiles still open. Lower is better.</div></div>
+        <div class="win-box winbox-shutbox">
+          <div class="win-box-title">🏆 How to Win</div>
+          <div class="win-item"><div class="win-dot dot-shutbox"></div><div>Score over 10 → lose your chip</div></div>
+          <div class="win-item"><div class="win-dot dot-shutbox"></div><div>Score 10 or under → win <strong>2 chips</strong> back</div></div>
+          <div class="win-item"><div class="win-dot dot-shutbox"></div><div>Score 5 or under → win <strong>4 chips</strong> back</div></div>
+          <div class="win-item"><div class="win-dot dot-shutbox"></div><div>Score 0 (Shut the Box!) → win <strong>10 chips — JACKPOT!</strong> 🎉</div></div>
+        </div>
+        <div class="tip-box"><strong>💡 Tip:</strong> Think carefully about which tiles to close — keeping smaller tiles open gives you more options on future rolls.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CROWN AND ANCHOR -->
+  <div class="game-card" onclick="toggleCard(this)">
+    <div class="game-header header-crown">
+      <div class="game-icon">⚓</div>
+      <div class="game-title-block">
+        <div class="game-name">Crown and Anchor</div>
+        <div class="game-tagline">Pick a symbol. If the dice land on it, you win</div>
+        <div class="game-meta">
+          <span class="meta-pill">4–6 players</span>
+          <span class="meta-pill">Under 1 min/round</span>
+        </div>
+      </div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="game-body">
+      <div class="game-body-inner">
+        <div class="steps-label">How to Play</div>
+        <div class="step-row"><div class="step-badge badge-crown">1</div><div class="step-desc">Place 1–3 chips on any symbol on the mat: Crown, Anchor, Heart, Diamond, Club or Spade. You can bet on more than one symbol.</div></div>
+        <div class="step-row"><div class="step-badge badge-crown">2</div><div class="step-desc">The dealer rolls three dice.</div></div>
+        <div class="step-row"><div class="step-badge badge-crown">3</div><div class="step-desc">For every die that shows your symbol, you win that many chips — plus your stake back.</div></div>
+        <div class="step-row"><div class="step-badge badge-crown">4</div><div class="step-desc">No dice show your symbol → you lose your stake.</div></div>
+        <div class="win-box winbox-crown">
+          <div class="win-box-title">🏆 How to Win</div>
+          <div class="win-item"><div class="win-dot dot-crown"></div><div>1 die matches → win 1 chip per chip bet, plus stake back</div></div>
+          <div class="win-item"><div class="win-dot dot-crown"></div><div>2 dice match → win 2 chips per chip bet, plus stake back</div></div>
+          <div class="win-item"><div class="win-dot dot-crown"></div><div>3 dice match → win 3 chips per chip bet, plus stake back</div></div>
+          <div class="win-item"><div class="win-dot dot-crown"></div><div>No match → lose your stake</div></div>
+        </div>
+        <div class="tip-box"><strong>💡 Example:</strong> Bet 2 chips on Crown. Two dice show Crown → win 4 chips plus your 2 back. Total: 6 chips.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEXICO -->
+  <div class="game-card" onclick="toggleCard(this)">
+    <div class="game-header header-mexico">
+      <div class="game-icon">🎯</div>
+      <div class="game-title-block">
+        <div class="game-name">Mexico</div>
+        <div class="game-tagline">Roll the highest number. Last player standing wins the pot</div>
+        <div class="game-meta">
+          <span class="meta-pill">4–6 players</span>
+          <span class="meta-pill">5–10 min/game</span>
+        </div>
+      </div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="game-body">
+      <div class="game-body-inner">
+        <div class="steps-label">How to Play</div>
+        <div class="step-row"><div class="step-badge badge-mexico">1</div><div class="step-desc">Everyone puts 1 chip into the pot.</div></div>
+        <div class="step-row"><div class="step-badge badge-mexico">2</div><div class="step-desc">Roll two dice. Read them as a two-digit number — highest digit first. Example: roll 5 and 2 = 52. Roll 6 and 1 = 61.</div></div>
+        <div class="step-row"><div class="step-badge badge-mexico">3</div><div class="step-desc">After your roll, you can re-roll both dice once if you want. Your second roll stands — you cannot go back.</div></div>
+        <div class="step-row"><div class="step-badge badge-mexico">4</div><div class="step-desc">Once everyone has rolled, the player with the <strong>lowest</strong> score is eliminated.</div></div>
+        <div class="step-row"><div class="step-badge badge-mexico">5</div><div class="step-desc">Everyone still in puts another chip into the pot. Play the next round.</div></div>
+        <div class="step-row"><div class="step-badge badge-mexico">6</div><div class="step-desc">Keep going until one player remains — they win the whole pot.</div></div>
+        <div class="win-box winbox-mexico">
+          <div class="win-box-title">🏆 How to Win</div>
+          <div class="win-item"><div class="win-dot dot-mexico"></div><div><strong>Mexico (2+1 = 21)</strong> → beats everything — highest possible score</div></div>
+          <div class="win-item"><div class="win-dot dot-mexico"></div><div>Doubles beat any non-double of a higher value (e.g. 33 beats 65)</div></div>
+          <div class="win-item"><div class="win-dot dot-mexico"></div><div>Doubles ranking: 66 > 55 > 44 > 33 > 22 > 11</div></div>
+          <div class="win-item"><div class="win-dot dot-mexico"></div><div>Lowest score each round → eliminated</div></div>
+          <div class="win-item"><div class="win-dot dot-mexico"></div><div>Last player remaining → wins the pot</div></div>
+        </div>
+        <div class="tip-box"><strong>💡 Tip:</strong> You don't have to re-roll. If you roll a high number, stick with it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPIN THE WHEEL -->
+  <div class="game-card" onclick="toggleCard(this)">
+    <div class="game-header header-spin">
+      <div class="game-icon">🎡</div>
+      <div class="game-title-block">
+        <div class="game-name">Spin the Wheel</div>
+        <div class="game-tagline">Predict the wheel. Land on a Dare — and the real fun begins</div>
+        <div class="game-meta">
+          <span class="meta-pill">1 player</span>
+          <span class="meta-pill">1–2 min/turn</span>
+        </div>
+      </div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="game-body">
+      <div class="game-body-inner">
+        <div class="steps-label">How to Play</div>
+        <div class="step-row"><div class="step-badge badge-spin">1</div><div class="step-desc">Place your bet (1–3 chips) and call <strong>ODD</strong> or <strong>EVEN</strong> before the wheel is spun.</div></div>
+        <div class="step-row"><div class="step-badge badge-spin">2</div><div class="step-desc">The wheel is spun.</div></div>
+        <div class="step-row"><div class="step-badge badge-spin">3</div><div class="step-desc"><strong>Odd or Even</strong> — if your call matches, you win equal to your bet. Wrong call → lose your bet.</div></div>
+        <div class="step-row"><div class="step-badge badge-spin">4</div><div class="step-desc"><strong>Banker</strong> — lose 3 chips, no matter what you called.</div></div>
+        <div class="step-row"><div class="step-badge badge-spin">5</div><div class="step-desc"><strong>Dare</strong> — pick a Dare card. Complete the dare to win triple your bet. Refuse or fail → lose your bet.</div></div>
+        <div class="win-box winbox-spin">
+          <div class="win-box-title">🏆 How to Win</div>
+          <div class="win-item"><div class="win-dot dot-spin"></div><div>Correct call (Odd or Even) → win equal to your bet</div></div>
+          <div class="win-item"><div class="win-dot dot-spin"></div><div>Wrong call → lose your bet</div></div>
+          <div class="win-item"><div class="win-dot dot-spin"></div><div>Banker → lose 3 chips</div></div>
+          <div class="win-item"><div class="win-dot dot-spin"></div><div>Dare — complete it → win <strong>triple</strong> your bet</div></div>
+          <div class="win-item"><div class="win-dot dot-spin"></div><div>Dare — refuse or fail → lose your bet</div></div>
+        </div>
+        <div class="tip-box"><strong>💡 Tip:</strong> Dare challenges are decided by the staff member at the station. Their decision is final — no arguments!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JENGA FOR CHIPS -->
+  <div class="game-card" onclick="toggleCard(this)">
+    <div class="game-header header-jenga">
+      <div class="game-icon">🏗️</div>
+      <div class="game-title-block">
+        <div class="game-name">Jenga for Chips</div>
+        <div class="game-tagline">Pull a block. Complete the challenge. Don't knock the tower</div>
+        <div class="game-meta">
+          <span class="meta-pill">2–6 players</span>
+          <span class="meta-pill">10–15 min/game</span>
+        </div>
+      </div>
+      <div class="chevron">▾</div>
+    </div>
+    <div class="game-body">
+      <div class="game-body-inner">
+        <div class="steps-label">How to Play</div>
+        <div class="step-row"><div class="step-badge badge-jenga">1</div><div class="step-desc">Everyone puts 1 chip into the pot at the start.</div></div>
+        <div class="step-row"><div class="step-badge badge-jenga">2</div><div class="step-desc">On your turn, pull one block from the tower using one hand only. You cannot touch the top layer. You have 20 seconds.</div></div>
+        <div class="step-row"><div class="step-badge badge-jenga">3</div><div class="step-desc">Place the block on top of the tower, then read what is written on it.</div></div>
+        <div class="step-row"><div class="step-badge badge-jenga">4</div><div class="step-desc"><strong>Challenge block:</strong> attempt the challenge in 20 seconds. Success → win double your starting bet from the pot. Refuse or fail → pay 1 chip into the pot.</div></div>
+        <div class="step-row"><div class="step-badge badge-jenga">5</div><div class="step-desc"><strong>Multiplier block</strong> (2x, 3x, 5x): win that multiple of your starting bet from the pot.</div></div>
+        <div class="step-row"><div class="step-badge badge-jenga">6</div><div class="step-desc"><strong>Lose block:</strong> pay 1 chip into the pot.</div></div>
+        <div class="step-row"><div class="step-badge badge-jenga">7</div><div class="step-desc"><strong>Other blocks:</strong> follow the instruction.</div></div>
+        <div class="win-box winbox-jenga">
+          <div class="win-box-title">🏆 How to Win</div>
+          <div class="win-item"><div class="win-dot dot-jenga"></div><div>Complete a challenge → win double your starting bet from the pot</div></div>
+          <div class="win-item"><div class="win-dot dot-jenga"></div><div>Hit a 2x, 3x or 5x block → win that multiple of your starting bet</div></div>
+          <div class="win-item"><div class="win-dot dot-jenga"></div><div>Knock the tower over → pay 3 chips into the pot — and the last successful player wins the pot</div></div>
+          <div class="win-item"><div class="win-dot dot-jenga"></div><div>Refuse a challenge → pay 1 chip into the pot</div></div>
+        </div>
+        <div class="tip-box"><strong>💡 Tip:</strong> If you hesitate more than 5 seconds before starting a challenge, it counts as a refusal.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /games-section -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Games Night &nbsp;·&nbsp; Summer Programme<br>Good luck — and enjoy the evening!</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  let allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    document.querySelectorAll('.game-card').forEach(c => {
+      c.classList.toggle('open', allOpen);
+    });
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All Rules';
+  }
+</script>
+
+</body>
+</html>
