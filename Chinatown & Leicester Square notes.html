@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chinatown &amp; Leicester Square — Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --cream: #FDFAF4;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 9vw, 64px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.95; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(15px, 4vw, 22px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">⛩️ 🎬 🍜</div>
+  <h1>Chinatown &amp; Leicester Square</h1>
+  <div class="hero-sub"></div>
+  <div class="hero-badges">
+    <span class="hero-badge">Music History</span>
+    <span class="hero-badge">Film Culture</span>
+    <span class="hero-badge">Food</span>
+    <span class="hero-badge">Hidden Details</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Links &amp; Information</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=10ySrRY-XpNvhvMGfyRkH5bh-oF8BZjk&amp;usp=sharing" target="_blank">Chinatown &amp; Leicester Square map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1EzKfHm-CUOIbxH2HVmEDq0YFBkej7dt1Kcx3fLR2YR4/edit?tab=t.0" target="_blank">Chinatown &amp; Leicester Square guide with photos</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">Free public toilets are located in Leicester Square</span></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>The centre of London’s entertainment world</h2>
+  <p>Leicester Square feels like the flashing, chaotic living room of central London. Film premieres roll out red carpets here with crowds pressed against barriers hoping to spot Hollywood actors, while giant cinemas, street performers, tourists and neon lights create an atmosphere that feels closer to Times Square than historic Britain.</p>
+  <p>Just a few streets away, Chinatown feels like stepping through an invisible portal into another city entirely. Red lanterns hang above the streets, Chinese bakeries spill sweet smells onto the pavement, and brightly coloured shop signs compete for attention in every direction.</p>
+</div>
+</div>
+
+<!-- BIG PICTURE -->
+<div class="section">
+  <div class="section-label">Big Picture</div>
+  <div class="section-title">Overarching Story Frames</div>
+  <p class="section-intro"></p>
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">🌍</span>
+    <h3>The Innovation Thread</h3>
+    <p>Leicester Square has always been a testing ground for new ideas — a place where technology, entertainment, and imagination collide. From early optical toys and magic‑lantern shows to the first major cinema premieres, this neighbourhood has repeatedly been where the “next big thing” first appeared. Chinatown adds another layer: the arrival of new foods, new ingredients, and new ways of cooking that changed how London eats. Together they form a route about how cities absorb innovation — whether it’s film technology, global cuisine, or the constant reinvention of public space.</p>
+  </div>
+
+  
+
+  
+
+  
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <h3>The Golden Rule for This Route</h3>
+  <p>This route works best when guides lean into the contrast and unpredictability of central London. Within a few minutes, students move from royal landmarks and historic streets into areas filled with cinemas, crowds, street performers, neon lights and the smells and sounds of Chinatown. The tour should feel dynamic and constantly changing, not formal or scripted. Students respond far better when the tour feels conversational, interactive and connected to things they already recognise — films, celebrities, pop culture, social media, food, music and modern London life.</p>
+  
+</div>
+
+<!-- STOPS -->
+<div class="section">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Stop</div>
+  <p class="section-intro">Tap any stop to expand the hook, story and activity. Designed for quick reference on mobile during the tour. </p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 LEICESTER SQUARE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎬</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Leicester Square</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">From Residents to Red Carpets</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This was a fashionable residential square. Now it's where London unveils its biggest films to the world."</div>
+      <p class="body-text">Leicester Square has been an entertainment hub since the 1600s, evolving from a residential neighbourhood into a centre for theatres, music halls and cinemas. Most major UK film premieres happen here with red carpets, flashing cameras, and crowds pressed against the barriers. The Odeon's main screen is one of the largest in Europe. Harry Potter and the Philosopher's Stone premiered here in 2001; students can look for Harry Potter on his Nimbus 2000 among the statues now installed around the square.</p>
+      <p class="body-text">The statue trail installed from 2020 onwards sits alongside the Shakespeare statue that's been here since 1874. It's the only traditional statue in the square. Everything else is modern and deliberately playful: Mr Bean on a bench you can sit next to, Paddington with his suitcase, Bugs Bunny half-emerged from the ground.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🖐️ The Handprints</span>
+Outside the Odeon Luxe, famous actors have left their handprints in the pavement — a tradition borrowed from Hollywood's TCL Chinese Theatre. Point out the physical imprints of legends like Sir Michael Caine, who famously changed his name after seeing a movie poster in this very square, as well as international icons like Sylvester Stallone, Tom Cruise, and Dame Maggie Smith.</div>
+      
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)"><div class="stop-header">
+    <div class="stop-icon">🧱</div>
+    <div class="stop-title-block">
+      <div class="stop-name">Lego Store</div>
+      <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">World’s Biggest LEGO Adventure</span></div>
+    </div><div class="stop-chevron">▾</div></div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Step into a world built from millions of bricks, where London’s icons come to life in spectacular detail."</div>
+      <p class="body-text">Dominating the corner of Leicester Square is the largest LEGO Store on the planet, a two-floor powerhouse of creativity that serves as an essential stop for any student group. The scale of the builds is staggering, none more so than the massive replica of Big Ben. Constructed from over 200,000 bricks, this tower isn't just a static model; it actually chimes every hour and lights up. As groups move between levels, they are overlooked by a giant LEGO dragon that winds its way through the staircase, providing one of the most popular photo opportunities in the building.</p>
+      <p class="body-text">Beyond the massive displays, the store offers a highly interactive experience that allows students to bring a piece of London home. A major highlight is the full-size LEGO Tube train, where visitors can sit inside for a photo. Even the "advertisements" on the carriage walls are meticulously crafted from bricks.</p>
+      <div class="tip-box"><span class="tip-label-inline">🎁 The Ultimate Souvenir</span>
+For those looking for a unique personal souvenir, the Minifigure Factory allows students to design and print a custom torso for their own character, while the Mosaic Maker can transform their portrait into a buildable LEGO kit. It is also a prime location for collectors, as the shop frequently stocks exclusive sets that cannot be found anywhere else.</div>
+    </div></div></div><div class="stop-card" onclick="toggleCard(this)"><div class="stop-header">
+    <div class="stop-icon">🍬</div>
+    <div class="stop-title-block">
+      <div class="stop-name">M&amp;M’S London</div>
+      <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">Europe’s Sweetest Landmark</span></div>
+    </div><div class="stop-chevron">▾</div></div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Dive into a four-storey chocolate wonderland where iconic London style meets a massive rainbow of personalised treats."</div>
+      <p class="body-text">Just across from the LEGO store sits M&amp;M’S London, a vibrant four-floor experience that holds the title of the largest sweet shop in Europe. It is a hugely popular spot for student groups to explore, as the interior is packed with massive themed displays that blend British culture with a splash of colour.</p>
+      <p class="body-text">The ground floor features a life-sized, bright red double-decker London bus that serves as a magnet for group photos, while further inside, students can find a giant Union Jack flag painstakingly crafted from thousands of individual sweets. The highlight for many is the world-famous “Wall of Chocolate,” a towering rainbow of dispensers filled with dozens of unique colours and flavours that create a perfect backdrop for the shop’s energetic atmosphere.</p>
+      <div class="tip-box"><span class="tip-label-inline">🍫 Personalised Chocolate</span>
+For a truly unique souvenir, students can head to the personalisation station to print their own text, specific colours, or even a photo of their face directly onto the chocolate shells.</div>
+    </div></div></div>
+
+  <!-- 02 CHINESE GATES -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛩️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Chinese Gates (Paifang)</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">Built in Beijing, Rebuilt in London</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"These gates were carved and painted by specialist craftspeople in Beijing, shipped to London, and rebuilt here piece by piece."</div>
+      <p class="body-text">The Wardour Street gate is the largest traditional Chinese gate in Britain and one of the largest in Europe. It wasn't built in London — it was constructed in China using traditional craftsmanship, then dismantled, transported and reassembled on this site. The colours carry specific meaning: red for happiness and protection, gold for wealth, green for harmony and growth. The dragons on the roof are guardians and placed there to protect the community and ward off bad spirits. The gates are aligned according to feng shui principles to direct positive energy into the neighbourhood.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🌏 The Chinatown Location Detail</span>
+London's original Chinatown was in Limehouse in the East End, several miles from here. During World War II, the German bombing campaign targeted Limehouse and the surrounding streets with particular intensity and large parts of it were destroyed. Afterwards, a new concentration of Chinese-owned businesses gradually formed in Soho, drawn by cheaper rents and the proximity of the West End. By the 1970s, Gerrard Street had become the centre of a rebuilt community.
+
+Ask students: "Does your city have a neighbourhood like this; an area defined by a community that arrived from somewhere else? What's the same and what's different?"</div>
+    </div></div>
+  </div>
+
+  <!-- 03 GERRARD STREET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏮</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Gerrard Street</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">Writers to Roast Duck</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"In the 18th century, this was a literary hotspot where writers and artists lived here. Now it's the heart of London's Chinese community."</div>
+      <p class="body-text">Gerrard Street is the main pedestrian artery of Chinatown; the lantern canopy overhead, the roast duck hanging in restaurant windows, the competing smells of Cantonese, Sichuan and Taiwanese cooking. The street was a bohemian artists' quarter long before it became Chinatown, its character shifting entirely over the course of two centuries. The bilingual street signs are one of the most visible markers of how the neighbourhood has made itself at home in the city.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🍜 The Regional Food Detail</span>
+"London's Chinatown is technically named after one country and contains the culinary traditions of about many more. Point out that different restaurants specialise in different regional cuisines; Cantonese roast duck, Sichuan hotpot, Taiwanese snacks, Hong Kong-style bakeries. It also has a broader mix of East and Southeast Asian food, including Japanese, Vietnamese, Malaysian, Indonesian, and Korean options.</div>
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎭</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Shaftesbury Avenue</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">London's Broadway</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This street was built to solve a traffic jam in 1886. It accidentally became the heart of London's theatre district."</div>
+      <p class="body-text">Shaftesbury Avenue was designed as a major new road to ease congestion around Soho and Covent Garden. The theatres followed the road, not the other way around. The Lyric Theatre opened in 1888 and still retains much of its Victorian interior. The Apollo, Gielgud and Sondheim theatres have all hosted major productions over the decades. In 2013, part of the Apollo's ceiling collapsed during a performance — remarkably, the theatre reopened after repairs and continues to run.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 04 CARNABY STREET -->
+  
+
+  <!-- 05 IVOR ARBITER / DRUM CITY -->
+  
+
+  <!-- 06 OLD MARQUEE CLUB -->
+  
+
+  <!-- 07 TRIDENT STUDIOS -->
+  
+
+  <!-- 08 BERWICK STREET -->
+  
+
+  <!-- 09 RONNIE SCOTT'S -->
+  
+
+  <!-- 10 BLUE PLAQUES — FRITH STREET -->
+  
+
+  <!-- 11 SHAFTESBURY AVENUE -->
+  
+
+  <!-- 12 PICCADILLY CIRCUS -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Piccadilly Circus</div>
+        <div class="stop-meta-line"><span class="stop-num">15</span><span class="stop-tag">Not Eros. Not a Circus.</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The name has nothing to do with clowns. The famous statue isn't Eros. London seems to enjoy confusing visitors."</div>
+      <p class="body-text">"Piccadilly" comes from piccadills; a type of frilled collar sold in this area in the 1600s. "Circus" comes from circle. originally referring to circular or oval arenas in ancient Rome. The statue almost universally known as Eros is actually Anteros, the Greek god of selfless love, not romantic love. The advertising screens surrounding the junction never fully switch off and are among the most expensive advertising spaces in Europe.</p>
+      
+    </div></div>
+  </div>
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0">
+  <div class="section-label"></div>
+  <div class="section-title"></div>
+  <p class="section-intro"></p>
+
+  
+
+  
+
+  
+
+  
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Chinatown &amp; Leicester Square — Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+</body></html>

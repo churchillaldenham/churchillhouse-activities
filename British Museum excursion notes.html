@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>British Museum — Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 12vw, 80px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.9; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .fact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .fact-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border-top: 3px solid var(--teal);
+  }
+  .fact-card.gold { border-top-color: var(--mustard); }
+  .fact-number {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .fact-card.gold .fact-number { color: var(--mustard-dark); }
+  .fact-label {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.4;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .room-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 600;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    padding: 3px 10px; border-radius: 100px;
+    margin-bottom: 12px;
+    letter-spacing: 0.03em;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .map-link {
+    display: block;
+    background: var(--mustard);
+    color: var(--teal-dark);
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    max-width: 720px;
+    margin: 0 auto 0;
+  }
+  .map-link:hover { opacity: 0.9; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  @media (max-width: 480px) {
+    .fact-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">🏛️ 🗿 📜</div>
+  <h1>British Museum</h1>
+  <div class="hero-sub">8 million objects. One afternoon. Here's what not to miss.</div>
+  <div class="hero-badges">
+    <span class="hero-badge">Top 10</span>
+    <span class="hero-badge">60+ Galleries</span>
+    <span class="hero-badge">Every Continent</span>
+    <span class="hero-badge">Self-Guided</span>
+  </div>
+</div>
+</div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>The World Under One Roof</h2>
+  <p>The British Museum was the first national public museum in the world. When it opened in 1759, anyone could enter for free — a radical idea at a time when great collections were exclusively for the wealthy. That principle hasn't changed. Entry is still free, and the collection has grown to over 8 million objects from every culture and every era of human history.</p>
+  <p>Unlike most excursions, there is no guided tour. Students explore at their own pace across the 60 galleries, moving from ancient Egypt to the Americas to Japan in minutes. </p>
+  
+</div>
+</div>
+
+<!-- FAST FACTS -->
+<div class="section">
+  <div class="section-label">Fast Facts</div>
+  <div class="section-title">Before You Go In</div>
+  <p class="section-intro">A few things worth knowing before students head inside.</p>
+
+  <div class="fact-grid">
+    <div class="fact-card">
+      <div class="fact-number">8M</div>
+      <div class="fact-label">objects in the collection — only 1% on display at any one time</div>
+    </div>
+    <div class="fact-card gold">
+      <div class="fact-number">1759</div>
+      <div class="fact-label">year it opened — the world's first free national public museum</div>
+    </div>
+    <div class="fact-card gold">
+      <div class="fact-number">3,000+</div>
+      <div class="fact-label">panes of glass in the Great Court roof — no two exactly the same</div>
+    </div>
+    <div class="fact-card">
+      <div class="fact-number">60</div>
+      <div class="fact-label">free galleries covering every continent and every era of human history</div>
+    </div>
+  </div>
+
+  <div class="idea-card" style="margin-top:14px;">
+    <span class="idea-card-icon">📖</span>
+    <h3>The Round Reading Room</h3>
+    <p>Karl Marx wrote parts of Das Kapital here. Oscar Wilde and Arthur Conan Doyle used it as a workspace. It was once one of the most important reading rooms in Europe, tucked inside the Great Court before the glass roof was added in 2000. The Great Court itself is now the largest covered public square in Europe.</p>
+  </div>
+
+  
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">🗺️</span>
+    <h3>No Set Route</h3>
+    <p>Unlike many museums, the British Museum has no single recommended path. Students can explore like a maze, discovering unexpected objects along the way. The Enlightenment Gallery in Room 1 is a good starting point — it recreates the feel of an 18th-century collector's world and sets up the rest of the visit beautifully.</p>
+  </div>
+</div>
+
+<!-- MAP LINK -->
+<a class="map-link" href="https://www.britishmuseum.org/visit/museum-map" target="_blank">
+  🗺️ Open the Museum Map
+</a>
+
+<!-- BAND -->
+
+
+<!-- TOP 10 -->
+<div class="section">
+  <div class="section-label">Top 10 Things to See</div>
+  <div class="section-title">The Must-Finds</div>
+  <p class="section-intro">Tap any object to find out what makes it worth stopping for.</p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 ROSETTA STONE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🪨</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Rosetta Stone</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">Room 4 — Egyptian Sculpture</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Why It Matters</div>
+      <div class="hook-title">"For 1,400 years, nobody on Earth could read ancient Egyptian hieroglyphics. This stone changed that."</div>
+      <p class="body-text">The Rosetta Stone was carved in 196 BC and carries the same text written in three scripts: hieroglyphic, demotic and ancient Greek. Scholars could already read Greek. By comparing the three versions, they were able to decode hieroglyphics for the first time in over a millennium, unlocking the entire written history of ancient Egypt. It is one of the most significant archaeological discoveries ever made and is usually the most visited object in the museum.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 02 PARTHENON SCULPTURES -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏛️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Parthenon Sculptures</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">Room 18 — Greece: Athens</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Why It Matters</div>
+      <div class="hook-title">"These sculptures were carved in the 5th century BC. They are also at the centre of one of the most contested debates in the museum world today."</div>
+      <p class="body-text">The marble sculptures once decorated the Parthenon temple in Athens, created around 447 BC under the direction of the sculptor Pheidias. They show gods, heroes and scenes from Greek mythology with a level of detail and naturalism that was revolutionary at the time. The Greek government has requested their return for decades, arguing they belong in Athens alongside the rest of the temple's surviving decoration. The British Museum has so far refused. The debate about who owns ancient artefacts, and where they belong, is one of the most significant conversations in modern archaeology.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">💬 Talking Point</span>
+"Should these sculptures be here, or in Athens? They were created for a specific building in a specific city. Does it matter that they can be seen by more people in London? Does the fact that they've been here for over 200 years change anything?" </div>
+    </div></div>
+  </div>
+
+  <!-- 03 CROUCHING VENUS -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏺</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Crouching Venus</div>
+        <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">Room 15 — Roman Empire</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Why It Matters</div>
+      <div class="hook-title">"This statue is a Roman copy of a Greek original that no longer exists. The copy is over 1,800 years old."</div>
+      <p class="body-text">Dating from the 2nd century AD, this marble figure shows the goddess Aphrodite surprised at her bath — a pose that became enormously influential in European art over the following centuries. The original Greek sculpture it was based on has been lost entirely. Without copies like this one, we would have no idea what it looked like.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 04 BUST OF RAMESSES -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">👑</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Bust of Ramesses the Great</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">Room 4 — Egyptian Sculpture</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Why It Matters</div>
+      <div class="hook-title">"This head is over 3,000 years old. The man it depicts ruled Egypt for 66 years and built more monuments than any other pharaoh."</div>
+      <p class="body-text">Carved from two types of granite during the 19th Dynasty, around 1250 BC, the bust once formed part of a colossal seated statue of Ramesses II. The scale and quality of the carving reflects the power and ambition of one of Egypt's greatest rulers. The poet Shelley is thought to have been inspired by a description of this statue when he wrote Ozymandias; a poem about a long-forgotten ruler whose monument lies shattered in the desert. "Look on my works, ye Mighty, and despair."</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 05 MUMMY OF KATEBET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⚱️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Mummy of Katebet</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">Room 63 — Egyptian Mummies</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Why It Matters</div>
+      <div class="hook-title">"Katebet was a real person. She had a job title, a social role and a name that has survived 3,300 years."</div>
+      <p class="body-text">Katebet was a Chantress of Amun; a singer who performed religious music in the temple of the god Amun, and her mummy dates to around 1330 to 1250 BC. The wrappings are exceptionally well preserved and the funerary mask and golden hands visible on the outer casing reflect her high social status. The museum has used non-invasive scanning to learn more about her without unwrapping her. </p>
+      <div class="tip-box">
+        <span class="tip-label-inline">💬 Talking Point</span>
+"Most people who have ever lived are completely unknown to history. Katebet is known because her society believed strongly enough in the afterlife to preserve her this carefully. What does that tell us about what ancient Egyptians valued?" The mummy gallery is often where students spend the most time, and the question of what a culture chooses to preserve says a great deal about what it believes.</div>
+    </div></div>
+  </div>
+
+  <!-- 06 SAMURAI ARMOUR -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⚔️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Samurai Armour</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">Room 92 — Japan</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Why It Matters</div>
+      <div class="hook-title">"This armour was designed to be frightening, functional and beautiful simultaneously."</div>
+      <p class="body-text">This full suit of Edo period armour belonged to a member of the Mori family and dates from between the 17th and 19th centuries. The lacquered plates, silk cords and dramatic horned helmet reflect both the practical requirements of combat and the deep symbolism of samurai culture. Every element including the colours, the materials and proportions, carried specific meaning about the wearer's rank, clan and values.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 07 OXUS TREASURE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">✨</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Oxus Treasure</div>
+        <div class="stop-meta-line"><span class="stop-num">07</span><span class="stop-tag">Room 52 — Ancient Iran</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Why It Matters</div>
+      <div class="hook-title">"This collection of gold and silver objects was found by chance on a riverbank in the 1870s. It's one of the most important surviving collections from the ancient Persian Empire."</div>
+      <p class="body-text">The Oxus Treasure is one of the museum's less obvious highlights; a hoard of gold and silver objects from the Achaemenid Persian Empire, dating from the 5th to the 3rd centuries BC. It includes jewellery, votive plaques, model chariots and ceremonial pieces that reveal the wealth, craftsmanship and religious practices of an empire that once stretched from Greece to India. The collection was found near the Oxus River (now the Amu Darya), reportedly by merchants who were then robbed, with pieces gradually recovered and eventually reaching the British Museum. </p>
+      
+    </div></div>
+  </div>
+
+  <!-- 08 SUTTON HOO -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛵</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Sutton Hoo Ship Burial</div>
+        <div class="stop-meta-line"><span class="stop-num">08</span><span class="stop-tag">Room 41 — Sutton Hoo &amp; Europe</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Why It Matters</div>
+      <div class="hook-title">"In 1939, a woman digging in her garden in Suffolk discovered an entire royal burial ship buried underground — with the treasure still inside."</div>
+      <p class="body-text">Edith Pretty hired an archaeologist to investigate some mysterious mounds on her Suffolk estate in 1939. What they found was a 7th-century Anglo-Saxon royal ship burial, with the impression of the wooden vessel still visible in the soil and the treasure intact inside. Helmets, weapons, intricate gold jewellery, ceremonial objects and silver from Byzantium were all preserved together. It is one of the most important archaeological discoveries in British history. Edith Pretty donated the entire find to the nation, refusing any payment.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 09 HOA HAKANANAI'A -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🗿</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Hoa Hakananai'a</div>
+        <div class="stop-meta-line"><span class="stop-num">09</span><span class="stop-tag">Room 24 — Living &amp; Dying</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Why It Matters</div>
+      <div class="hook-title">"Easter Island is one of the most remote inhabited places on Earth. This statue was carved there between 1000 and 1200 AD and carried across the Pacific by a Royal Navy ship in 1868."</div>
+      <p class="body-text">Hoa Hakananai'a, whose name roughly translates as "stolen or hidden friend", is one of the most spiritually significant objects in the museum. The basalt figure represents an important ancestor in Rapa Nui culture and carries carved symbols on its back associated with the Birdman cult, a competitive ritual that determined the island's leader each year. The Rapa Nui people have formally requested its return. In 2018, the mayor of Easter Island came to London specifically to make that request in person at the museum. </p>
+      <div class="tip-box">
+        <span class="tip-label-inline">💬 Talking Point</span>
+"The debate about the Parthenon sculptures and the debate about Hoa Hakananai'a are the same debate. But the circumstances are different: one was removed by a British lord, one by the Royal Navy. Does that distinction matter? And does it make a difference that Easter Island is so remote that relatively few people would ever be able to see this object there?" </div>
+    </div></div>
+  </div>
+
+  <!-- 10 ROYAL GAME OF UR -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎲</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Royal Game of Ur</div>
+        <div class="stop-meta-line"><span class="stop-num">10</span><span class="stop-tag">Room 56 — Mesopotamia</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Why It Matters</div>
+      <div class="hook-title">"This is one of the world's oldest known board games, dating to around 2600 BC. We know the rules because they were written on a clay tablet."</div>
+      <p class="body-text">The Royal Game of Ur was found in the Royal Cemetery at Ur in modern-day Iraq and is approximately 4,600 years old. It's a two-player race game, and its rules were decoded from a cuneiform tablet dating to 177 BC, meaning the game was still being played, and its rules still being written down, nearly 2,500 years after this board was made. A British Museum curator famously played the game against an artificial intelligence system, demonstrating that rules deciphered from an ancient clay tablet could still produce a working game today.</p>
+      
+    </div></div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">British Museum — Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+</body></html>

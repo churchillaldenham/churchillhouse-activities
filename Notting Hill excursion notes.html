@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notting Hill — Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 12vw, 80px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.9; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .useful-links {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--light-border);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: var(--teal); font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">🎨 🛍️ 🎶</div>
+  <h1>Notting Hill</h1>
+  <div class="hero-sub">Film sets, reggae history and the world's largest antiques market</div>
+  <div class="hero-badges">
+    <span class="hero-badge">Film Locations</span>
+    <span class="hero-badge">Portobello Market</span>
+    <span class="hero-badge">Carnival Culture</span>
+    <span class="hero-badge">Hidden Mews</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Links &amp; Information</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=1snjumz_DbN9OmKu3fd28LK8TlQ2Jkr8&amp;usp=sharing" target="_blank">Notting Hill map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1WlEfkuxVyAlL_YnnKgd90OafXjb6geXiL8u9f5k5T_Q/edit?tab=t.0" target="_blank">Notting Hill guide with photos</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">Free public toilets are at the top end of Portobello Road Market.</span></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>London's Most Colourful Neighbourhood</h2>
+  <p>Notting Hill doesn't look like one place, it looks like several different cities layered on top of each other. The pastel townhouses and private garden squares of one of London's most expensive postcodes sit alongside the reggae-soundtracked legacy of the Caribbean community that settled here from the 1950s onwards. The world's largest antiques market runs down the same road that Hugh Grant and Julia Roberts strolled along in one of the most successful British films ever made.</p>
+  <p>The neighbourhood's identity was built by waves of people arriving and leaving, each one adding something that stayed. The Carnival, the colours, the market, the film tourism — none of it was planned. It accumulated. That's what makes it genuinely interesting.</p>
+  
+</div>
+</div>
+
+
+<!-- BAND -->
+<div class="band" style="margin-top:16px;">
+  <h3>The Golden Rule for This Route</h3>
+  <p>Notting Hill is one of the most photographed neighbourhoods in London — the colourful houses, the market, the bookshop doorway. The risk is that the whole visit becomes a photo hunt for things they've already seen in pictures.</p>
+  <p>The detail that cuts through is always the one that doesn't fit the postcard. The film's iconic blue door belongs to the man who wrote the screenplay. The bookshop in the film wasn't the real bookshop that inspired it. The colours on the famous street were never coordinated; individual homeowners just started painting, and nobody stopped them. Bob Marley recorded music a few streets from where tourists queue for antiques. One unexpected detail at each stop makes students look at the real place rather than the version they expected to find.</p>
+</div>
+
+<!-- BIG PICTURE -->
+<div class="section">
+  <div class="section-label">Big Picture</div>
+  <div class="section-title">Overarching Story Frames</div>
+  <p class="section-intro">Pick one thread and run it all afternoon.</p>
+
+  <div class="idea-card">
+    <span class="idea-card-icon">🎬</span>
+    <h3>Reality vs the Film</h3>
+    <p>Notting Hill the film and Notting Hill the neighbourhood have an unusual relationship; the film made the area world-famous, but it also created a version of it that doesn't quite match the real place. Run this as the frame: at every stop, find the gap between what the film shows and what actually happened or exists. The bookshop wasn't the real bookshop. The door was repainted. The interior was a set. The neighbourhood in the film is overwhelmingly white — the real Notting Hill is one of London's most multicultural areas. By the end of the walk, students have a much more interesting picture of the place than any film could give them.</p>
+  </div>
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">🌍</span>
+    <h3>Who Made This Place?</h3>
+    <p>Almost nothing about Notting Hill's current identity was planned. The Caribbean community arrived from the 1950s and brought the Carnival, the music and the sound-system culture. Artists and bohemians moved in because rents were cheap. The colours appeared one house at a time. The market grew by accident. The film arrived and reframed everything. At each stop, ask: who made this particular thing happen? The answers reveal a neighbourhood built by individuals and communities making small decisions that accumulated into something nobody designed.</p>
+  </div>
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">⏳</span>
+    <h3>Before and After</h3>
+    <p>Notting Hill has changed more dramatically in the last 70 years than almost any other London neighbourhood. It went from a largely run-down area with overcrowded housing and racial tensions in the 1950s to one of the most expensive postcodes in Britain. The Electric Cinema was a squat before it became a luxury venue. The mews streets were horse stables. The market started with local residents selling surplus vegetables. At each stop, one sentence about what it was before makes what it is now feel earned rather than inevitable.</p>
+  </div>
+</div>
+
+<!-- STOPS -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Stop</div>
+  <p class="section-intro">Tap any stop to expand the hook, story and activity. Designed for quick reference on mobile during the tour. </p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 PORTOBELLO ROAD MARKET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏺</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Portobello Road Market</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">The World's Largest Antiques Market</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It started as a quiet country lane. Nobody planned for it to become the world's largest antiques market. It just happened, stall by stall."</div>
+      <p class="body-text">Portobello Road began as a rural track through fields and farms before London expanded around it. Local residents started selling fruit and vegetables, antiques dealers slowly moved in, and the mix the market is famous for today evolved entirely by accident rather than design. More than a kilometre of stalls now stretches down the road, packed with curiosities, collectibles and odd treasures. Some traders have been here for generations, with market pitches passed down within families. Street musicians turn corners into impromptu concerts, often drawing bigger crowds than the stalls themselves.</p>
+      <p class="body-text">After the film Notting Hill was released in 1999, visitors began arriving specifically to walk the same streets Hugh Grant and Julia Roberts strolled through in the market scenes. The film boosted global tourism to the area overnight, and the market scenes helped shape the neighbourhood's modern image as London's most charming urban village.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 02 THE NOTTING HILL BOOKSHOP -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">📚</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Notting Hill Bookshop</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">The Film Used a Different Shop</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This is the bookshop everyone photographs from the film. The film wasn't actually shot here, and the shop that inspired it is around the corner."</div>
+      <p class="body-text">The Notting Hill Bookshop became famous because its blue frontage and general character were associated with the travel bookshop in the 1999 film. Fans arrive to take photos outside its door. The twist: the real inspiration for the film's bookshop was The Travel Bookshop on Blenheim Crescent, which actually specialised in travel writing and maps. The film used a different shopfront for the exterior shots.</p>
+      <p class="body-text">The shop has been part of the Notting Hill community since the 1970s, surviving the neighbourhood's transformation from quiet local streets to global tourist hotspot. Staff hand-pick titles and give personal recommendations. It still champions independent bookselling in a street increasingly shaped by its own fame.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 03 ELECTRIC CINEMA -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎞️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Electric Cinema</div>
+        <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">Over 100 Years Old.</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It opened in 1910. It has been a cinema, a squat and a venue for experimental theatre. It now has double beds in the front row and cashmere blankets on the seats."</div>
+      <p class="body-text">The Electric Cinema is one of the oldest working cinemas in the UK, having survived wars, redevelopment and a complete identity crisis in between. In the 1970s it became known for screening cult and alternative films that mainstream cinemas avoided. It then passed through years as a community space, a squat and an experimental theatre before being restored and reopened as a luxury cinema. Leather armchairs, footstools and cashmere blankets make it feel more like a lounge than a screen. The front-row double beds are now a cult feature — couples book them specifically for film nights.</p>
+      <p class="body-text">Its vintage façade and original neon sign appear in music videos, fashion shoots and films set in Notting Hill. The building's exterior is one of the most-used backdrops in the neighbourhood for anything requiring "authentic West London."</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 04 ST LUKE'S MEWS -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌸</div>
+      <div class="stop-title-block">
+        <div class="stop-name">St Luke's Mews</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">The Love Actually Cue Card Street</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The scene filmed outside number 27 turned this cobbled mews into a pilgrimage site for thousands of people who have never been to London."</div>
+      <p class="body-text">Mews streets like St Luke's were originally built as stable yards and coach houses for the grand townhouses on the main roads behind them. The horses and carriages are long gone, replaced by some of the most sought-after small houses in London. The cobblestones, low doorways and window boxes of St Luke's Mews make it look like a film set even on an ordinary day — which is presumably why Richard Curtis chose it for the cue card scene in Love Actually, filmed outside number 27.</p>
+      <p class="body-text">Fans of the film regularly make their way here specifically for that doorstep. The residents have accepted this with varying degrees of enthusiasm. The street's community feel — flowers, bikes, plants spilling from balconies and painted doors in different colours, persists despite the tourism.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📸 The Doorstep Photo</span>
+Number 27 is the filming location. Students who know Love Actually will recognise it immediately. For students who don't know the film, describe the scene briefly; a man silently holds up handwritten signs declaring his love to a woman through her own front door, knowing she'll never be with him.</div>
+    </div></div>
+  </div>
+
+  <!-- 05 BOB MARLEY BLUE PLAQUE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">💿</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Sarm Studios</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">A Church Turned Hit‑Machine</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The Notting Hill recording room that turned a crisis into the fastest‑selling single in UK history"</div>
+      <p class="body-text">Sarm Studios, a converted 19th‑century church, became a creative engine for some of the most important music of the last fifty years. It has hosted sessions for artists ranging from Led Zeppelin and Bob Marley to Frankie Goes to Hollywood, Seal and the Pet Shop Boys, contributing to more than a hundred UK number‑one singles.</p>
+      
+      
+    <div class="tip-box"><span class="tip-label-inline">🎙️ Chaos Became Anthem</span>
+On 25 November 1984, Band Aid assembled here to record “Do They Know It’s Christmas?” in a single, frantic, marathon session. It featured more than 40 of Britain’s biggest artists including Bono and George Michael to Sting, Boy George and Duran Duran. It became the fastest‑selling record in UK history at the time, shifting over a million copies in its first week and ultimately becoming the UK’s biggest‑selling single of the entire 1980s.</div></div></div>
+  </div>
+
+  <!-- 06 HOUSE OF COLOURS -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌈</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Notting Hill House of Colours</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">Nobody Planned This</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The colours were never coordinated. Individual homeowners started painting their houses bright shades in the 1970s and 80s."</div>
+      <p class="body-text">The bold rainbow row, red, orange, yellow, green, blue, purple, has become one of Notting Hill's defining images, reproduced on postcards, social media feeds and travel guides around the world. The colours were never part of a grand plan or a design brief. They appeared house by house, owner by owner, over the course of a decade or more, reflecting the artistic and multicultural identity of an area that had long been home to painters, musicians and the Caribbean community. The trend spread, nobody objected, and it stayed.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 07 NOTTING HILL FILM FRONT DOOR -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🚪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Notting Hill Film Front Door</div>
+        <div class="stop-meta-line"><span class="stop-num">07</span><span class="stop-tag">280 Westbourne Park Road</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The blue door was real and it belonged to the man who wrote the film. After it became famous, tourists kept turning up."</div>
+      <p class="body-text">The house at 280 Westbourne Park Road was owned by Richard Curtis, the screenwriter behind Notting Hill, Four Weddings and a Funeral, Love Actually and Bridget Jones's Diary. He based Hugh Grant's character's home on his own front door. After the film's release in 1999, fans began arriving constantly to photograph the doorway. The owners eventually repainted the door black to reduce the attention. It has since been repainted blue, though not the exact original shade. The interior in the film was never shot inside the real house — it was built as a set, because the actual building is too narrow to accommodate cameras, lighting and crew.</p>
+      
+    </div></div>
+  </div>
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+
+  
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">🎵</span>
+    <h3>Ten Seconds of Audio</h3>
+    <p>The Bob Marley plaque is the obvious audio moment, but the music thread runs wider than one stop. Notting Hill Carnival is one of the largest street festivals in the world, built around sound systems and Caribbean music traditions. Briefly describe the Carnival at an early stop; the scale, the sound systems, the two million people, and return to it at the Marley plaque. "The music that started on streets like this one became a global phenomenon. It also became the Carnival, which has been running here every August for over 50 years."</p>
+  </div>
+
+  
+
+  
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Notting Hill — Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+</body></html>

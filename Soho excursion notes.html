@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soho — Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --cream: #FDFAF4;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 12vw, 80px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.9; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">🎸 🎷 🎭</div>
+  <h1>Soho</h1>
+  <div class="hero-sub">London's creative heart for over 300 years</div>
+  <div class="hero-badges">
+    <span class="hero-badge">Music History</span>
+    <span class="hero-badge">Hidden Studios</span>
+    <span class="hero-badge">Street Culture</span>
+    <span class="hero-badge">Iconic Venues</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Links &amp; Information</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=1Xi1I-i_7-qhK_grgvX9X54kAocng0hU&amp;usp=sharing" target="_blank">Soho map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1SVB0KRsYlD246gFvhc__FRpznvznJbVRvrq3w8NUNEE/edit?tab=t.0" target="_blank">Soho guide with photos</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://www.toiletmap.org.uk/" target="_blank">Toilets map</a></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>The Square Mile That Made British Pop Culture</h2>
+  <p>Soho doesn't look like much from the outside. Narrow streets, anonymous doorways, the occasional neon sign. But behind almost every facade on this walk is a story that shaped the music, fashion and culture that the rest of the world spent decades copying. The Rolling Stones rehearsed here before anyone had heard of them. Queen recorded their first albums here in the dead of night. The Beatles' logo was sketched here for a fiver. Television was invented in an attic above a coffee bar.</p>
+  <p>The challenge on this walk is that almost nothing announces itself. The studios are long gone. The venues are now bars. The plaques are easy to miss. Students who know what they're looking at see one of the most significant square miles in British cultural history. The guide's job is to make them see it.</p>
+</div>
+</div>
+
+<!-- BIG PICTURE -->
+<div class="section">
+  <div class="section-label">Big Picture</div>
+  <div class="section-title">Overarching Story Frames</div>
+  <p class="section-intro">Pick one thread and run it all day.</p>
+
+  <div class="idea-card">
+    <span class="idea-card-icon">🎸</span>
+    <h3>The Music Timeline</h3>
+    <p>This route is a timeline of British music from the 1950s to the present. Jazz at Ronnie Scott's. Early rock at the Marquee. The Beatles' logo at Drum City. The Rolling Stones' first rehearsals around the corner. Bowie and Queen at Trident. Britpop on Berwick Street. Denmark Street through all of it. At each stop, one musical connection delivered as a story rather than a fact. By the end of the day students have walked from jazz to punk to Bohemian Rhapsody without leaving one neighbourhood.</p>
+  </div>
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">👤</span>
+    <h3>The One-Person Story</h3>
+    <p>Every stop on this route has a specific person attached to a specific moment. Ivor Arbiter sketching a logo in minutes for £5. Freddie Mercury refusing to cut a single second from Bohemian Rhapsody. Jimi Hendrix playing his last ever performance in a basement on Frith Street. John Logie Baird demonstrating television in an attic above a coffee bar. Tell the person first, the place second. The cumulative effect by the end of the walk is a portrait of a neighbourhood that kept producing extraordinary things, built by individuals making specific decisions in specific places.</p>
+  </div>
+
+  
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">⏳</span>
+    <h3>Before and After</h3>
+    <p>Soho was farmland. "Soho" was a hunting cry used in the fields here in the 1600s. The street that defined 1960s global fashion was a quiet backstreet of jazz clubs. The studio where Queen, Bowie and the Beatles recorded was a Victorian building in a Soho alleyway. At each stop, offer the "before" in one sentence before the current reality. Students who know what a place used to be look at what it is now completely differently.</p>
+  </div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <h3>The Golden Rule for This Route</h3>
+  <p>Almost everything here looks ordinary from the outside. Students who don't know what they're looking at see a busy London neighbourhood. Students who do know see one of the most historically significant square miles in British cultural history.</p>
+  
+</div>
+
+<!-- STOPS -->
+<div class="section">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Stop</div>
+  <p class="section-intro">Tap any stop to expand the hook, story and activity. Designed for quick reference on mobile during the tour. </p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 OUTERNET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">💡</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Outernet</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">The World's Largest Wrap-Around LED Venue</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The screens cover more than 2,000 square metres. They're powerful enough to simulate daylight, storms or space travel."</div>
+      <p class="body-text">The Now Building's interior screens make Outernet the world's largest wrap-around LED venue. It sits directly above Tottenham Court Road station, making it one of the most technically complex building projects in central London. The space is designed to reinvent itself daily. One visit might show floating jellyfish, the next a giant cosmic landscape. It hosts constantly changing digital art installations that use the full scale of the space rather than a single screen.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 02 DENMARK STREET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎸</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Denmark Street</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">London's Music Street</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">""This 100-metre alley is the birthplace of British Rock. The Rolling Stones recorded their first album here, and the Sex Pistols lived and rehearsed here."</div>
+      <p class="body-text">Denmark Street is 100 metres long and has more music history per square metre than anywhere else in the world. It was the place where music publishers gathered, where songwriters came to sell their work, and where studios produced the sound of British popular music. The Rolling Stones, Hendrix and The Eagles all recorded tracks at Regent Sound Studio at number 4. David Bowie lived in a flat above a music shop in the late 1960s and wrote songs here before he became globally known. The Sex Pistols' rehearsal room at number 6 still has original punk graffiti on the walls.</p>
+      <p class="body-text">When the Beatles were recording a track from Sgt Pepper's Lonely Hearts Club Band at Regent Studios,  a man claiming to be Jesus Christ appeared at the door. McCartney said "Well, you'd better come in then" — he thought it probably wasn't Jesus, but "if he is, I'm not going to be the one to turn him away". They gave him some tea and asked him to sit in the corner, "Shhh, don't say a word, just be Jesus"</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎹 Backstory - From Office Boy to Global Superstar</span>
+In 1965, a 16-year-old named Reginald Dwight got a job as a weekend errand boy for a music publisher on Denmark Street. He made tea, ran messages between offices and occasionally swept up. He had been playing piano since he was three and could play almost anything by ear, but he had no original songs, no contacts and no particular reason to believe any of that would change. One day, he answered an advert in the New Musical Express placed by a music publisher looking for songwriters. He was given a stack of lyrics written by a guy called Bernie Taupin, whom he had never met. He sat down and set them to music. The combination worked immediately. Over the next three years, Reginald Dwight changed his name, signed a record deal and released his first album. By 1973 he was one of the most famous musicians on earth. Elton John has sold over 300 million records. He has had at least one top-forty hit in every decade from the 1970s to the 2020s. His career began on this street, carrying tea between offices and doing odd-jobs.</div>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎸 Backstory - Where Metal Began</span>
+In October 1969, four young men from Birmingham arrived at Regent Sounds studio, right here on Denmark Street, and recorded an entire album in twelve hours. They played their live set straight through, added almost no overdubs, and went home. The album cost next to nothing to make. When Black Sabbath was released in February 1970, critics largely dismissed it as crude and unsophisticated. They weren't entirely wrong. It was also the first heavy metal record ever made. The opening title track alone, built on a single guitar chord tuned lower than anyone had bothered to go before, effectively invented doom metal in six minutes. Every band students have ever heard that plays loud, dark and slow, from Metallica to Nirvana to every metal subgenre that followed, traces a direct line back to one day's work in a small studio on this street.</div>
+    </div></div>
+  </div>
+
+  <!-- 03 SHAFTESBURY AVENUE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎭</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Shaftesbury Avenue</div>
+        <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">London's Broadway</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This street was built to solve a traffic jam in 1886. It accidentally became the heart of London's theatre district."</div>
+      <p class="body-text">Shaftesbury Avenue was designed as a major new road to ease congestion around Soho and Covent Garden. The theatres followed the road, not the other way around. The Lyric Theatre opened in 1888 and still retains much of its Victorian interior. The Apollo, Gielgud and Sondheim theatres have all hosted major productions over the decades. In 2013, part of the Apollo's ceiling collapsed during a performance — remarkably, the theatre reopened after repairs and continues to run.</p>
+    </div></div>
+  </div>
+
+  <!-- 04 DRUM CITY -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🥁</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Drum City And The Beatles Logo</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">£5 for the Most Famous Logo in Music</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"One of the most recognisable logos in the world was designed in minutes, in a shop on this street, for the price of a cup of coffee."</div>
+      <p class="body-text">Ringo Starr needed a new drum kit. The band's road manager came to Drum City — the place where London's drummers bought their equipment — and asked for a logo to go on the bass drum skin. Arbiter sketched the now-iconic "drop-T" Beatles lettering on the spot. He charged £5. That first bass drum skin, used on the band's early TV appearances, is now considered one of the most valuable pieces of Beatles memorabilia in existence.</p>
+      <p class="body-text">Global companies spend fortunes developing logos, commissioning research and hiring branding experts. The BBC spent £1.5 million just for their new logo. The Beatles' logo began as a quick sketch for a drum head in a London music shop.</p>
+    </div></div>
+  </div>
+
+  <!-- 05 OLD MARQUEE CLUB -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎸</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Old Marquee Club</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">Legendary Music Venue</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Most visitors walk straight past it. It's marked only by a blue plaque dedicated to Keith Moon."</div>
+      <p class="body-text">The Marquee Club is the most important music venue most people have never heard of. It launched more careers than any record label of its era. From the 1960s to the 1990s, the Marquee was the venue where bands had to prove themselves. The Who smashed guitars and blew up amplifiers here while developing their live act. The Rolling Stones played some of their first London shows here before they were famous. David Bowie debuted his Ziggy Stardust persona here, testing it on an audience before committing to it. Jimi Hendrix played one of his first UK shows here, leaving musicians in the crowd speechless. Led Zeppelin performed under the name "The New Yardbirds" before officially becoming Led Zeppelin. The Sex Pistols, The Clash, Siouxsie and the Banshees and countless others all played gigs here.</p>
+      <p class="body-text">"Almost every major act in British rock history stood on that stage at the beginning. The building is gone. The blue plaque is the only thing left." The gap between the venue's significance and its current invisibility is the point — most of British music history is hiding in plain sight like this.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎵 Secret Insider</span>
+        Few people know about the club and the blue plaque is dedicated to the wild man of rock, Keith Moon. This is because English Heritage, the body that manages London's official blue plaques, typically commemorates notable individuals or specific historic events rather than commercial venues or businesses. Students love having insider information that most tourists, and indeed locals, don't know about.
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 06 TRIDENT STUDIOS -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎙️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Trident Studios</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">The Hidden Birthplace of Legends</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Tucked away in a quiet Soho alleyway, this secret studio is where some of the greatest albums in history were brought to life."</div>
+      <p class="body-text">The studio's greatest claim to fame involves a moment of musical history that shifted the trajectory of the world's biggest band. In 1968, The Beatles grew frustrated with the technical limitations of their usual home at Abbey Road and moved to Trident to record a new, experimental track. Under these Soho roofbeams, they recorded the soaring, anthemic "Hey Jude". It was a golden era of innovation that felt like it would last forever, with the world's most famous musicians constantly slipping in and out of the narrow alleyway. David Bowie recorded "Space Oddity," "Life on Mars?" and parts of the Ziggy Stardust album here. Elton John recorded numerous albums here as well as the single "Your Song".</p>
+      <p class="body-text">In 1971, four broke and unknown musicians were looking for somewhere to record an album. Norman Sheffield, who ran Trident Studios in St Anne's Court, agreed to let them record in the dead hours of the night, after the paying clients had gone home. Sheffield sensed they had something special. He became their manager and funded them through their early days. They went on to record 15 albums and sold 300 million records. The band was Queen.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📺 The First Music Video</span>
+        In 1975, Queen's record company told them Bohemian Rhapsody was unreleasable. It was nearly six minutes long at a time when radio stations refused to play anything over three. It had no chorus, shifted between three entirely different musical styles and included an operatic section that made no commercial sense. Freddie Mercury recorded the piano parts on Trident's Bechstein, insisted the band record the operatic section by overdubbing their voices 180 times, and refused to cut a single second. The story of how it got played on radio anyway, became the fastest-selling single in British history and stayed in the charts for over a year is one of the better arguments for ignoring professional advice. The promotional video, with the band in silhouette against a black background, was filmed in Elstree Studios, located about 3km from where we stay at Aldenham School. The editing was done at Trident. It is widely considered one of the first true music videos, predating MTV by years.
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 07 BERWICK STREET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">💿</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Berwick Street</div>
+        <div class="stop-meta-line"><span class="stop-num">07</span><span class="stop-tag">Rare finds, loud history</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"London's legendary vinyl street — where indie record shops still rule."</div>
+      <p class="body-text">Berwick Street has long been one of London's best streets for independent record shops. Several are still running, Sister Ray and Reckless Records among them, specialising in second-hand vinyl, limited editions, imports and niche genres. "For decades, DJs and collectors have come to this street specifically to find things they couldn't find anywhere else."</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📸 Britpop's Defining Frame</span>
+        In 1995, Britpop was taking over the airwaves. Bands like Blur, Pulp, and Oasis were leading a music revolution that celebrated the British music scene. Oasis were poised to become the biggest band in the world with their album, (What's the Story) Morning Glory?, spawning hit singles such as Wonderwall and Don't Look Back in Anger. The photo for the album cover was shot at 5am when the streets were quiet. The two figures on the cover are not Liam and Noel — they were supposed to be, but the Gallaghers didn't show up, likely due to being too hungover. Instead, it features the album's art director and a friend who happened to survive the previous night's drinking session. The cover has become one of the most iconic images in British music history. The record shop visible on the left, Select-A-Disc, later became Sister Ray, which still operates today and often displays the album cover in its window with a "You Are Here" note — a nod to its legendary status. Students can recreate the exact same album cover shot.
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 08 SOUNDS OF THE UNIVERSE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">💋</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Sounds of the Universe Record Shop</div>
+        <div class="stop-meta-line"><span class="stop-num">08</span><span class="stop-tag">Where the Stones First Rolled</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"From the Rolling Stones' first riffs to some of the rarest vinyl on earth."</div>
+      <p class="body-text">In 1962, when the building was still a pub, a group of young, ambitious musicians gathered to hold their first ever rehearsals. They were obsessed with American blues and R&amp;B — the same genres that fill the shelves of Sounds of the Universe today. That group of friends eventually called themselves The Rolling Stones, and it was in these narrow Soho streets that they forged the raw, gritty sound that would define rock and roll for the next sixty years.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📀 Home of Soul Jazz Records</span>
+        This world-renowned record shop is more than just a store; it is a global hub for rare soul, jazz, and underground sounds. It's packed with limited editions, coloured vinyl, reissues, imports and rare pressings — the kind of stuff you don't find in big chains.
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 09 RONNIE SCOTT'S -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎷</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Ronnie Scott's Jazz Club</div>
+        <div class="stop-meta-line"><span class="stop-num">09</span><span class="stop-tag">Jimi Hendrix's Last Show.</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Amy Winehouse, Miles Davis and Nina Simone all played this stage. So did Prince and Lady Gaga, unannounced."</div>
+      <p class="body-text">Ronnie Scott's has been running continuously since 1959, when saxophonists Ronnie Scott and Pete King opened it because they wanted a proper venue for London jazz musicians to perform. It became one of the most important jazz clubs in the world almost immediately, attracting every major name in the genre over the following decades. Amy Winehouse was a regular, sometimes performing surprise late-night sets, sometimes just coming to listen. The red neon sign on Frith Street is one of the most recognised landmarks in Soho even among people who've never been inside.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎸 Backstory — The Guitar Genius Who Inspired Generations</span>
+In the mid-1960s, a young American named Jimi Hendrix arrived in London and fundamentally changed how the guitar was played. Before him, the instrument was often played with clean, melodic precision, but Hendrix treated it like a living, breathing force of nature. He used feedback, distortion, and sheer volume to create sounds that no one had ever heard before, playing with his teeth, behind his back, or even setting his guitar on fire. He wasn't just a musician; he was a sonic architect who inspired every rock legend that followed, from Prince to Slash. For students today, his influence is everywhere — every time they hear a distorted guitar riff or a soaring solo, they are hearing the DNA of a man who many still consider the greatest guitarist to ever live.
+
+        On a rainy September night in 1970, a small, expectant crowd gathered at Ronnie Scott's Jazz Club in Soho. They weren't there to see a headline show by the superstar, but rather a late-night jam session where Hendrix unexpectedly stepped on stage to support his friends. Though he appeared tired, the moment he struck the strings, the room was electrified by his signature genius. He traded solos with the saxophone and lost himself in the music, unaware that this intimate, smoky basement performance would be his final appearance on any stage. 48 hours later, at the age of just 27 he was dead, making that impromptu session at Ronnie Scott's the unexpected and haunting final chapter of a career that redefined music forever.</div>
+    </div></div>
+  </div>
+
+  <!-- 10 FRITH STREET BLUE PLAQUES -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🔵</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Frith Street Blue Plaques</div>
+        <div class="stop-meta-line"><span class="stop-num">10</span><span class="stop-tag">Mozart at No. 20. Television at No. 22.</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Famous homes: a child prodigy who changed music forever, and the invention that changed everything else."</div>
+      <p class="body-text">In 1764, a young Mozart arrived at 20 Frith Street, a modest house that would briefly become the creative laboratory for one of history's greatest musical minds. Only eight years old at the time, the boy genius spent his days here performing daily recitals and composing his early sonatas while his father sold the sheet music from their lodgings.</p>
+      <p class="body-text">In a cramped attic room above what is now Bar Italia, a Scottish inventor named John Logie Baird gave the world's first public demonstration of a working television. Using a makeshift machine held together with bicycle light lenses, sealing wax, and darning needles, he successfully transmitted a flickering image of a ventriloquist's dummy to a stunned group of scientists. Every television, smartphone, tablet and streaming service can trace part of its history back to this room.</p>
+    </div></div>
+  </div>
+
+  <!-- 11 CARNABY STREET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🕺</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Carnaby Street</div>
+        <div class="stop-meta-line"><span class="stop-num">11</span><span class="stop-tag">Where the 1960s Happened</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"In the early 1960s this was a quiet backstreet of jazz clubs and small shops. Within five years it was the most fashionable street in the world."</div>
+      <p class="body-text">Before the fashion boom, Carnaby Street had basements packed with jazz, R&amp;B and early rock venues. Then the boutiques arrived and within a few years the street had become the centre of Mod fashion and Swinging London. The Beatles, the Rolling Stones and Jimi Hendrix all came here for clothes. The look that defined the decade globally — bold colours, miniskirts, sharp suits — started in these few hundred metres. The Kinks' 1966 track "Dedicated Follower of Fashion" was directly inspired by the Carnaby scene.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🤔 Discussion Question</span>
+        "Carnaby Street changed global fashion in about four years — with no social media, no influencers, no algorithms. Just a cluster of small shops and the right people wearing the right things at the right moment. Is there a place in your country that's had the same kind of cultural impact? What made it spread?" The answers are always interesting and often surprising.
+      </div>
+    </div></div>
+  </div>
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0">
+  <div class="section-label">Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+  <p class="section-intro">Soho's history is almost entirely invisible from the street. These approaches help students see past the surface.</p>
+
+  <div class="idea-card">
+    <span class="idea-card-icon">🎵</span>
+    <h3>Ten Seconds of Audio</h3>
+    <p>This route responds to audio better than almost any other on the programme. The piano introduction to Hey Jude outside Trident Studios. "My Generation" at the Marquee site. "Don't Look Back in Anger" on Berwick Street. Ten seconds of the right track at the right location connects a sound students already know to a specific place. Students who don't know the music become curious; students who do know it are immediately transported somewhere else entirely.</p>
+  </div>
+
+  
+
+  
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">🌍</span>
+    <h3>The Comparison Question</h3>
+    <p>This route is particularly well-suited to cross-cultural comparison because everything here arrived from somewhere else or was built by people who came from elsewhere. The jazz that filled the Marquee came from America and was transformed into British rock. Television was invented by a Scotsman working above a shop. Mozart was an Austrian child on a European tour. Ask: "Does your country have an equivalent — a place, a venue, a street — where something like this happened?" </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Soho — Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+</body></html>

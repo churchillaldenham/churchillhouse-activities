@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambridge — Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 12vw, 80px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.9; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .fact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .fact-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border-top: 3px solid var(--teal);
+  }
+  .fact-card.gold { border-top-color: var(--mustard); }
+  .fact-number {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .fact-card.gold .fact-number { color: var(--mustard-dark); }
+  .fact-label {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.4;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">🎓 ⚛️ ⚽</div>
+  <h1>Cambridge</h1>
+  <div class="hero-sub">Where DNA was cracked, the rules of football were written and modern computing was born</div>
+  <div class="hero-badges">
+    <span class="hero-badge">120+ Nobel Laureates</span>
+    <span class="hero-badge">31 Colleges</span>
+    <span class="hero-badge">Punting on the Cam</span>
+    <span class="hero-badge">800 Years of History</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Links &amp; Info</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/edit?mid=1nq5cW8rYdzLoyifdyfdLQNXcZTSgnm4&amp;usp=drive_link" target="_blank">Walking Tour Map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/16tu8L88YUKUfjjk4ebPLQ0YAoyoBBnGz7vN_ZkSSngE/edit?tab=t.0" target="_blank">Cambridge guide with photos</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">Free public toilets are located at Lions Yard shopping centre</span></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>The Place That Keeps Accidentally Changing the World</h2>
+  <p>Cambridge has a habit of producing things that turn out to matter enormously. The structure of DNA was announced in a pub. The rules of football were written on a park. The world’s first practical, working, stored‑program computer was developed. The jet engine, IVF, the webcam: all Cambridge breakthroughs. Over 120 Nobel Prize winners have passed through here, which is more than most countries can claim.</p>
+  <p>The challenge for students is that Cambridge looks almost too perfect — like a film set for what a great university should look like. The job of the guide is to get behind the architecture and into the stories: the argument that created the university by accident, the clock that deliberately tells the wrong time, the college whose toilet is named the Gate of Necessity, and the park where eleven rules changed sport forever.</p>
+</div>
+</div>
+
+<!-- FAST FACTS -->
+<div class="section">
+  <div class="section-label">Fast Facts</div>
+  <div class="section-title">Numbers Worth Knowing</div>
+
+  <div class="fact-grid">
+    
+    <div class="fact-card gold">
+      <div class="fact-number">£8bn</div>
+      <div class="fact-label">approximate combined wealth of the university in endowments, land and investments</div>
+    </div>
+    <div class="fact-card">
+      <div class="fact-number">1209</div>
+      <div class="fact-label">year the university was founded — by scholars who fled Oxford after a dispute</div>
+    </div>
+  </div>
+
+  <div class="idea-card">
+    <span class="idea-card-icon">💰</span>
+    <h3>The Trinity Empire</h3>
+    <p>Trinity’s wealth isn’t just large — it’s sprawling. Beyond its billion‑pound endowment, the college owns vast tracts of land across the country, including commercial sites at Felixstowe and long‑term strategic holdings that once included the 999‑year lease on the O2 Arena. Its estate ranges from farmland to major retail properties, generating a steady flow of income that keeps Trinity operating on a financial scale more like a small town than a college.</p>
+  </div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <h3>The Golden Rule for Cambridge</h3>
+  <p>Cambridge shares the same problem as Oxford: Students arrive expecting remarkable but boring old buildings and a polite walk through history. The risk is that the reality feels exactly as flat as the stereotype.</p>
+  <p>The solution is always to go behind the postcard image. The college that was founded by accident. The pub where the secret of life was announced over a pint. The clock that lies to you on purpose. The lab where the first webcam watched a coffee pot. Cambridge is full of things that look like set dressing and turn out to be genuinely extraordinary — but only if someone stops to explain why. Lead with the strange detail. Let the famous buildings be the backdrop.</p>
+</div>
+
+<!-- STOPS -->
+<div class="section">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Stop</div>
+  <p class="section-intro">Tap any stop to expand. Stops follow the route order for the day.</p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 PARKER'S PIECE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🚣</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Backs and Punting on the Cam</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">The View You Can't Get From the city</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The Backs is where you can stand on a public footpath and look straight into the private gardens of the richest colleges in Europe."</div>
+      <p class="body-text">The Backs is one of the most photographed landscapes in the city, and also one of those rare places where the postcard version is matched by the reality. From the river or the banks, you can see behind the famous college façades to the gardens, bridges and lawns that make Cambridge feel like nowhere else. On sunny days, students revise on the grass, punt badly and occasionally fall in. The Cam is only about a metre deep in most places, which makes falling in more embarrassing than dangerous.</p>
+      <p class="body-text">Tourists often punt with the pole the wrong way round which then gets stuck in the riverbed. On busy days the river backs up under bridges in what amounts to a floating traffic jam. The Bridge of Sighs, the covered bridge at St John's College, is the worst bottleneck and one of the most photographed spots on the water.</p>
+      
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏛️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Senate House</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">A Car on the Roof and 300 Years of Ceremony</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Since the 1730s, this has been where students graduate, where Cambridge makes its formal announcements, and where, in 1958, engineering students placed a car on the roof overnight."</div>
+      <p class="body-text">Senate House is the university's ceremonial headquarters, used for graduations, formal announcements and major academic events. Graduation ceremonies here follow rituals that have barely changed in centuries: students are presented in Latin, hold a finger of their college Praelector and bow to the Vice-Chancellor. The building's lawn has long served as the symbolic boundary between the university and the city around it.</p>
+      <p class="body-text">The 1958 Austin car prank is one of the most celebrated student stunts in Cambridge history. Engineering students disassembled a car, carried it up to the roof in pieces and reassembled it overnight. By morning it was sitting on the roof, inexplicably, facing the street. The university was not entirely amused. The students were not entirely sorry.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎓 The Graduation Detail</span>
+Students here graduate by placing a hand on the finger of the person presenting them — a leftover from medieval times when you had to be physically “handed over” to prove you were the right student, and the university has kept the gesture long after the original purpose disappeared.</div>
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🚪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Gonville and Caius College</div>
+        <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">The College With a Gate for Everything</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It's spelled Caius and pronounced Keys. And it has a gate for humility, a gate for virtue, a gate for honour, and a gate of necessity that leads to the toilets."</div>
+      <p class="body-text">Gonville and Caius was founded in 1348 and has a reputation for medicine and science matched by almost no other college. Its three ceremonial gates represent the journey through university life: you enter through the Gate of Humility, move through the Gate of Virtue during your studies, and graduate through the Gate of Honour. The fourth gate, the Gate of Necessity, is a later addition. It leads to the lavatories. The college's sense of humour about itself is one of its more appealing qualities.</p>
+      <p class="body-text">Stephen Hawking spent most of his academic career here, making Caius one of the most scientifically significant colleges in Cambridge. The college has produced more Fellows of the Royal Society than any other. Students are not permitted to walk on certain lawns; a rule that applies to everyone until they become a Fellow, at which point the grass changes from a rule to a privilege.</p>
+      
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">👑</div>
+      <div class="stop-title-block">
+        <div class="stop-name">King's College</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">The View on Every Postcard, Biscuit Tin and Calendar</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"King’s College began as a royal vanity project that nearly bankrupted Henry VI before it was even half‑built."</div>
+      <p class="body-text">King’s College began as Henry VI’s grand plan to outshine Eton, but the project spiralled so badly that the chapel took nearly a century to finish and ended up funded with money seized after a rebellion. The result is a building that jumps from medieval foundations to Tudor fan vaulting without pretending to match, because five different reigns left their fingerprints on it. Step inside and you’re looking at the most ambitious stone ceiling ever attempted, built by craftsmen who knew they were making something no one else would dare copy.</p>
+      <p class="body-text">King's College Chapel is one of the most photographed buildings in England. The sweeping lawn down to the River Cam appears on postcards, calendars and biscuit tins around the world. For King's students, it's simply where they live. The chapel's choir is internationally renowned — the Festival of Nine Lessons and Carols, broadcast on Christmas Eve, is heard by millions of people worldwide who have no idea they're listening to a Cambridge college choir.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📚 From Elite to Radical</span>
+In the 20th century King's developed a reputation as the most radical and intellectually independent college in Cambridge and a counterpoint to the traditionalism of colleges like Trinity. Economists, artists and political thinkers gathered here. The college that for centuries only admitted Eton boys became one of the most progressive institutions in the university.</div>
+    <div class="tip-box"><span class="tip-label-inline">🖥️ Foundations Of Computing</span>
+King's wasn’t just where Alan Turing studied — it was the intellectual engine room behind the mathematics, the machines, and the wartime breakthroughs that changed the world. It was here that he wrote On Computable Numbers (1936), the theoretical blueprint for every modern computer. He later powered his codebreaking at Bletchley Park, where he played a central role in cracking the Enigma cipher, shortening the war and saving countless lives.</div></div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🕰️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Corpus Clock</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">No Hands. No Numbers. Deliberately Wrong.</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"A £1‑million clock powered by a creature that deliberately tells the wrong time."</div>
+      <p class="body-text">The Corpus Clock was created by inventor John C. Taylor and unveiled in 2008. The gold face is covered in 24-carat gold beaten into ripples to represent the Big Bang and has no numbers or hands. Instead, LEDs sweep around the rim to show the time. The Chronophage on top is animatronic: its mouth opens and closes as it "eats" each second, and its eyes flicker. It is designed to be unsettling, a reminder that time is unstoppable and relentless. Taylor wanted it to show that our perception of time is unreliable.</p>
+      
+      <div class="tip-box">
+        <span class="tip-label-inline">⏱️ Time Behaving Badly</span>
+The clock deliberately runs fast, slow and sometimes not at all, before correcting itself every five minutes. It cost over £1 million and uses John Harrison’s grasshopper escapement, the 18th‑century invention that solved the longitude problem. A modern Cambridge landmark powered by the same mechanism that once guided ships around the world.</div>
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🧬</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Eagle Pub</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">Where DNA Was Announced Over a Pint</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The pub where two scientists walked in, announced they’d cracked DNA, and ordered lunch."</div>
+      <p class="body-text">On 28 February 1953, James Watson and Francis Crick came to The Eagle at lunchtime and told anyone who would listen that they had worked out the double helix structure of DNA. It is one of the most significant scientific discoveries in history, announced informally in a pub over lunch. A plaque inside marks the spot. </p>
+      <p class="body-text">The building itself is also a piece of Second World War history: American airmen stationed near Cambridge burned their names, squadron numbers and messages into the ceiling of the back room using candles and Zippo lighters. The "RAF Bar" ceiling has been preserved exactly as they left it.</p><div class="tip-box">
+        <span class="tip-label-inline">💬 The Announcement Detail</span>
+One of the most important scientific discoveries in history was not announced at a press conference or in a journal. It was announced to whoever happened to be in a pub at lunchtime. The gap between the scale of the discovery and the informality of the announcement is striking. Ask: "Where would you go to tell someone you'd just changed the world?"</div>
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛪︎</div>
+      <div class="stop-title-block">
+        <div class="stop-name">St Bene't's Church</div>
+        <div class="stop-meta-line"><span class="stop-num">07</span><span class="stop-tag">The Oldest Surviving Building in Cambridge</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Parts of this building date to around 1020 — before the Norman Conquest, before the university, before almost everything else in Cambridge."</div>
+      <p class="body-text">St Bene't's is the oldest surviving building in Cambridge. The Anglo-Saxon tower, with its thick walls, narrow windows and distinctive long-and-short stonework, is one of the finest examples of pre-Norman architecture in England. The interior is low, stone and atmospheric in a way the grand college chapels rarely manage. The church is named after St Benedict, the patron saint of students, which makes it an appropriate neighbour for Corpus Christi College next door.</p>
+      
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🧺</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Market Square</div>
+        <div class="stop-meta-line"><span class="stop-num">08</span><span class="stop-tag">Trading Here Since Before the University Existed</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Traders have been selling goods here since the early Middle Ages — long before the university arrived. </div>
+      <p class="body-text">Cambridge Market Square has been running for nearly 1,000 years and is open seven days a week, all year round. The mix of stalls is eclectic: fresh fruit, vintage clothes, vinyl records, handmade jewellery, hot food, books and bike repairs sit alongside each other. Students use it as a cheap lunch stop between lectures. Beneath the paving stones are old cellars and storage rooms from long-gone shops and taverns.</p>
+      <p class="body-text">The Guildhall on one side of the square was completed in 1939 and is practically new by Cambridge standards. It houses the city council and a large assembly hall used for everything from exams to comedy nights. Many Cambridge students sit their first-year papers inside it. </p>
+      
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🔔</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Great St Mary's</div>
+        <div class="stop-meta-line"><span class="stop-num">09</span><span class="stop-tag">The University Church That Sparked a Reformation</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"In the 1520s, reformers preached here and challenged the Catholic Church. What started in this building helped trigger the English Reformation."</div>
+      <p class="body-text">Great St Mary's has been the official University Church since the 1200s. Before Senate House was built, scholars gathered here to vote, argue and make decisions about how the university should run. Its bells have rung for royal visits, graduations, wartime alerts and major university events across eight centuries.</p>
+      
+      
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎓</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Trinity College</div>
+        <div class="stop-meta-line"><span class="stop-num">10</span><span class="stop-tag">More Nobel Prizes Than Most Countries</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The college that shaped more of Britain’s history than most governments."</div>
+      <p class="body-text">Trinity is the largest and richest college in Cambridge, founded by Henry VIII and built on the land and assets he seized from monasteries. Its alumni list reads like a cross‑section of British power: prime ministers, spies, poets, mathematicians, Nobel Prize winners and Isaac Newton himself, who lived and worked in rooms overlooking Great Court. Inside the college, the Wren Library holds Newton's own notebooks, the original manuscript of A.A. Milne's Winnie-the-Pooh and some of the earliest printed books in Europe. The place feels less like a college and more like a machine for producing people who go on to shape the country, which is why its influence stretches far beyond its gates.</p>
+      <p class="body-text">Great Court hosts one of Cambridge's most famous traditions: students attempt to run around the entire court in the 43 seconds it takes the clock to strike twelve. It was made famous by the film Chariots of Fire, though the race depicted in the film was actually shot at Eton because Trinity refused permission to film the real thing.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🍎 The Apple Truth</span>
+Isaac Newton lived and worked here; his rooms overlooked Great Court, and the famous apple tree visible in the college grounds is a graft taken from the original tree at Newton's home in Woolsthorpe Manor, where he watched the apple fall. It's the same variety: a Flower of Kent cooking apple. The apple-hitting-Newton-on-the-head story is a myth — he simply watched it fall and began thinking about why it went downward rather than sideways.</div>
+      
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Round Church</div>
+        <div class="stop-meta-line"><span class="stop-num">11</span><span class="stop-tag">One of Only Four Round Churches in England</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This church was built around 1130 when Cambridge was just a market town. The scholars were still decades away."</div>
+      <p class="body-text">The Church of the Holy Sepulchre is one of only four surviving round churches in England. Its unusual shape was directly inspired by the Church of the Holy Sepulchre in Jerusalem, designed so that medieval pilgrims would immediately recognise its significance. The Normans built it to show off — thick stone walls, solid arches, distinctive craftsmanship.</p>
+      
+      <div class="tip-box">
+        <span class="tip-label-inline">🏗️ Guess the Age</span>
+Ask students to guess when the church was built before revealing it. Then: "The university was founded nearly 100 years after this building. Most of the famous colleges came 200 or 300 years after that. Cambridge didn't start as a university city — it became one." </div>
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)"><div class="stop-header">
+    <div class="stop-icon">📯</div>
+    <div class="stop-title-block">
+      <div class="stop-name">Green Street and Rose Crescent</div>
+      <div class="stop-meta-line"><span class="stop-num">12</span><span class="stop-tag">Cambridge’s Hidden Streets</span></div>
+    </div><div class="stop-chevron">▾</div></div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The two medieval backstreets where Cambridge still feels handmade, intimate, and centuries deep."</div>
+      <p class="body-text">Green Street and Rose Crescent sit at the heart of old Cambridge, two narrow medieval lanes that still feel handmade rather than planned. Green Street runs straight and tight, a mix of centuries‑old plots, hidden courtyards and independent shops that survived the city’s shift to big brands. Rose Crescent curves gently between Trinity Street and the market, a 14th‑century bend lined with jewellers, cafés and small workshops that once supplied scholars. Together they’re a reminder that the city’s most atmospheric corners aren’t its grand courts but these little passages where the medieval street plan still shapes how people move.</p>
+      
+      
+    </div></div></div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⚽</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Parker's Piece</div>
+        <div class="stop-meta-line"><span class="stop-num">13</span><span class="stop-tag">The Birthplace of Modern Football</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The open field where students turned chaos into the rules that shaped global football."</div>
+      <p class="body-text">The Cambridge Rules were drawn up in 1848 by students from different schools who needed a common set of rules to play each other. They banned hacking, tripping and carrying the ball. When the Football Association met in 1863 to unify the sport nationally, they used the Cambridge Rules as their blueprint. Eleven simple points. No VAR, no offside diagrams, no 200-page rulebook. The monument on the park marks the spot and carries the inscription "the birthplace of the rules of football."</p>
+      
+      
+    <div class="tip-box"><span class="tip-label-inline">💡 The Overlooked Beginning</span>
+It is often the most surprising part of the entire Cambridge visit, particularly for international students who follow football but have never connected the sport to a small park in a university city. Despite its role in shaping the modern game, Parker’s Piece remains oddly invisible, a landmark that even experienced Cambridge guides often treat as just another patch of grass.</div></div></div>
+  </div>
+
+  <!-- 02 THE ROUND CHURCH -->
+  
+
+  <!-- 03 TRINITY COLLEGE -->
+  
+
+  <!-- 04 GONVILLE AND CAIUS -->
+  
+
+  <!-- 05 SENATE HOUSE -->
+  
+
+  <!-- 06 KING'S COLLEGE -->
+  
+
+  <!-- 07 GREAT ST MARY'S -->
+  
+
+  <!-- 08 CORPUS CLOCK -->
+  
+
+  <!-- 09 THE EAGLE PUB -->
+  
+
+  <!-- 10 ST BENE'T'S CHURCH -->
+  
+
+  <!-- 11 MARKET SQUARE -->
+  
+
+  <!-- 12 THE BACKS & PUNTING -->
+  
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+
+  
+
+  <div class="idea-card"><div class="card-accent accent-navy"></div>
+      <span class="idea-card-icon">🖥️</span>
+      <h3>Cambridge’s Computing Legacy</h3>
+      <p>Computing isn’t just something Cambridge is good at — it’s something Cambridge helped create. This is the place where Alan Turing laid the foundations of the modern computer and where Maurice Wilkes built EDSAC, one of the world’s first practical stored‑program machines.</p>
+      <p>The world’s first webcam began in Cambridge in 1991, when researchers at the University of Cambridge Computer Laboratory pointed a camera at a coffee pot so they could see if it was full without walking across the building. Known as the Trojan Room Webcam, it became the first live camera feed on the internet in 1993. What started as a small, practical joke ended up shaping the future of livestreaming, video calls, and the way we use cameras online today.</p></div><div class="idea-card gold">
+    <span class="idea-card-icon">👤</span>
+    <h3>The One-Person Story</h3>
+    <p>Cambridge is unusually rich in specific individuals doing specific things in specific places. Watson and Crick in The Eagle at lunchtime. Taylor creating a clock designed to make people anxious about time. Hawking spending decades at Caius. People remembered by name are more memorable than institutions described by reputation. Tell the person first, the place second.</p>
+  </div>
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">🌍</span>
+    <h3>The Comparison Question</h3>
+    <p>Cambridge prompts natural cross-cultural comparison at almost every stop. Does your country have a university this old that's still running? Is university teaching in your country more formal or more relaxed than Cambridge? Does it have strange traditions dating back hundred of years? Is your city more modern, or does it have old streets like Cambridge?</p>
+  </div>
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">🔍</span>
+    <h3>The Wrong Detail</h3>
+    <p>Cambridge has an unusual number of things that aren't quite what they appear to be. The clock that tells the wrong time on purpose. The college pronounced nothing like it's spelled. The famous apple tree story that isn't true. The Chariots of Fire scene that wasn't filmed at Trinity. The graduation ceremony partly conducted in a language nobody speaks. At each stop, lead with the wrong version and then correct it.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Cambridge — Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+
+</body></html>

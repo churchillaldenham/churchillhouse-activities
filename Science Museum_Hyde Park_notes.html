@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Museum &amp; Hyde Park — Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 9vw, 64px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.95; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(15px, 4vw, 22px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">🚀 🚂🌿 </div>
+  <h1>Science Museum &amp; Hyde Park</h1>
+  <div class="hero-sub"></div>
+  <div class="hero-badges">
+    <span class="hero-badge">Inventions</span>
+    <span class="hero-badge">Concert Hall</span>
+    <span class="hero-badge">Free Speech</span>
+    <span class="hero-badge">Parks</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Links &amp; Information</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=1c_GScMkJ-J-c-UUeTuvZCTIPGRboOj0&amp;usp=sharing" target="_blank">Science Museum &amp; Hyde Park map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1pSPwN4oXlSwO7IpoVACflwqU5k2XtV_oSGQjZGlT02A/edit?tab=t.0" target="_blank">Science Museum &amp; Hyde Park guide with photos</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">Public toilets located in the museum. Make sure students use them before leaving.</span></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>Invention, Grief and 350 Acres of Fresh Air</h2>
+  <p>This excursion connects two very different kinds of London. The Science Museum holds objects that changed the world; the first jet engine, the Apollo 10 capsule, the oldest surviving steam locomotive. A short walk away, Hyde Park has been a royal hunting ground, a public protest space, a concert venue and a place to simply stop in the middle of a city and relax.</p>
+  <p>The thread connecting everything on this route is Prince Albert. The museum grew out of his vision for the 1851 Great Exhibition. The Royal Albert Hall was built in his memory. The Albert Memorial stands opposite it. Kensington Palace was where Queen Victoria lived before she became Queen. "One man's ideas about science, culture and education shaped an entire corner of London, and we're taking a journey through all of it."</p>
+</div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <h3>The Golden Rule for This Trip</h3>
+  <p>The Science Museum can feel overwhelming with 300,000 objects and multiple floors. The risk is that students graze the surface and remember nothing specific.</p>
+  <p>Try to anchor each gallery to one object and one story. Not "there are a lot of important engines here", but "that locomotive is the oldest surviving steam engine in the world, and it changed how fast human beings could move for the first time in history." One object, one story, one moment of scale. It's more rewarding to slow down and look carefully at one thing than try to see everything.</p>
+</div>
+
+<!-- STOPS -->
+<div class="section">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Stop</div>
+  <p class="section-intro">Tap any stop to expand. </p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 SCIENCE MUSEUM -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🚀</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Science Museum</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">300,000 Objects. One Scorched Space Capsule.</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The Science Museum is basically a greatest hits album of human problem-solving. Every object in there exists because someone looked at something that didn't work and refused to leave it alone."</div>
+      <p class="body-text">The museum grew out of objects displayed at the 1851 Great Exhibition; Prince Albert's attempt to show the world what human ingenuity could produce. Over three million people visit each year. The collection includes Puffing Billy, the oldest surviving steam locomotive in the world; Stephenson's Rocket; the first jet engine; and a reconstruction of Crick and Watson's 1953 DNA double-helix model, built using the same materials as the original. Only a fraction of the 300,000 objects is on display and the rest sit in archives that include early computers, medical instruments and space technology.</p>
+      <p class="body-text">Wonderlab lets students try experiments hands-on — testing forces, playing with electricity, exploring science through interactive exhibits rather than glass cases. But the most powerful moments on this visit tend to come from the objects that carry physical evidence of what they did: the scorch marks on the Apollo 10 capsule, the worn surfaces on Puffing Billy, the specific weight and scale of things that exist in person in a way photographs never capture.</p>
+      
+      <p class="body-text">Everyone remembers Apollo 11 because it landed on the Moon. Apollo 10 is often forgotten, despite doing almost everything first. In May 1969, the crew travelled to the Moon, tested the lunar module, descended to within 15 kilometres of the surface and proved that a landing was possible. The capsule in the museum actually orbited the Moon and still carries the scorch marks from returning to Earth.</p><div class="tip-box">
+        <span class="tip-label-inline">🔭 The DNA Model</span>
+The reconstruction of Crick and Watson's double-helix model is easy to walk past without registering what it represents. "This shape, this specific spiral, is the structure of the molecule that carries the instructions for every living thing on Earth. Working it out took decades of science and one famous conversation. The model you're looking at was built using the same materials as the one they made in 1953." For students studying biology, it lands immediately. For students who aren't, the idea that something so fundamental looks like a twisted ladder is always striking.</div>
+    <div class="tip-box"><span class="tip-label-inline">📱 The Lost Digital Revolution</span>
+Charles Babbage was a man born a century too early. In the 1820s, he designed the Difference Engine; a machine that would eliminate human error from the mathematical tables used to navigate the globe. It was the world’s first true leap toward mechanical logic. Babbage had essentially drafted the blueprint for the modern computer, proving that a machine could be "programmed" to solve complex problems. Every smartphone, laptop, and AI system in existence today can trace its lineage back to the clatter of Babbage’s mechanical dreams. The British government however, pulled their support, leaving the machine unfinished and Babbage embittered. It stands as one of history's greatest "what ifs"— had the funding continued, the digital revolution might have ignited in the age of steam and top hats rather than the 1940s.</div></div></div>
+  </div>
+
+  <!-- 02 ROYAL ALBERT HALL -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎼</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Royal Albert Hall</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">The Echo Problem No One Admitted For Years</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"When it opened in 1871, the acoustics were so bad that performers said every note got two performances — one live, one as an echo. The problem wasn't fixed for nearly a century."</div>
+      <p class="body-text">The Royal Albert Hall was opened by Queen Victoria in memory of Prince Albert, who had dreamed of a place that celebrated music, science and culture together. The oval design, inspired by Roman amphitheatres, looks spectacular but created a notorious echo problem that plagued the building for decades. The large fibreglass discs hanging above the audience, which look like flying saucers, were added in the 1960s to finally solve it. "The most famous concert hall in London spent almost 90 years sounding terrible."</p>
+      <p class="body-text">The Hall hosts an extraordinary range of events: classical concerts, rock gigs, film screenings with live orchestra, ballet, comedy, boxing and tennis have all taken place here. Every summer it hosts the BBC Proms; the biggest classical music festival in the world, running for eight weeks with concerts almost every day. The exterior is ringed by a long mosaic frieze depicting the arts and sciences that Prince Albert wanted Britain to celebrate. Hidden beneath the building is a network of tunnels used by performers and equipment.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 03 ALBERT MEMORIAL -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">✨</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Albert Memorial</div>
+        <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">169 Famous People on One Monument</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Queen Victoria was so devastated by Albert's death that she wore black for the remaining 40 years of her life. This memorial took 11 years to complete."</div>
+      <p class="body-text">Prince Albert died in 1861. Queen Victoria commissioned the memorial immediately, and it was completed in 1872. The seated figure of Albert is covered in 23.5-carat gold leaf, restored in the early 2000s. He's shown holding the catalogue from the Great Exhibition, the project he considered his greatest achievement. Around the base, a marble frieze depicts 169 famous figures from the arts and sciences: Shakespeare, Newton, Beethoven, Michelangelo among them. At the four corners, sculptures represent Europe, Asia, Africa and the Americas, each depicted with animals, figures and clothing representing the region.</p>
+      
+      
+    <p class="body-text">When Prince Albert helped organise the Great Exhibition in 1851, many people thought it would fail. Instead, it attracted millions of visitors and generated a huge profit. Albert then used the money to help create an entire district dedicated to science, education and culture. The Science Museum, Royal Albert Hall and many surrounding institutions all trace their existence back to that decision.</p></div></div>
+  </div>
+
+  <!-- 04 HYDE PARK -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌿</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Hyde Park</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">Royal Hunting Ground to Free Speech Corner</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Henry VIII used this as a deer park for royal hunts. Karl Marx used it to practice public speaking. The Rolling Stones played to 250,000 people here."</div>
+      <p class="body-text">Hyde Park covers 350 acres and has been public since the 1600s. Before that it was a private royal hunting ground taken from the Church by Henry VIII. The Serpentine lake, which looks entirely natural, was artificially created in the 1730s. In summer it has a lido where you can swim. The park connects directly to Kensington Gardens but most visitors don't notice they've crossed from one into the other, because there's no clear boundary. "What looks like one enormous park is actually two, with a history that separates them by centuries."</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🦜 The Parakeets</span>
+The bright green ring-necked parakeets flying through Hyde Park's trees are not native to Britain. Various legends explain their presence; escaped film sets, deliberate releases, breeding from a handful of escapees over decades. "London has a wild population of tropical parrots. They've been here long enough that they're now considered a local species." Students are consistently surprised by how many there are and how loud they are.</div>
+    </div></div>
+  </div>
+
+  <!-- 05 SPEAKERS' CORNER -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🗣️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Speakers' Corner</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">Marx, Orwell and Anyone Else Who Turns Up</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Speakers' Corner, near Marble Arch, is the equivalent of the internet's comment section. Anyone can say almost anything. The audience argues back. Nobody is in charge."</div>
+      <p class="body-text">Speakers' Corner has operated at the northeast corner of Hyde Park since the mid-19th century, enshrined in law as a place of free public speech. No permit is required. No application is needed. You arrive, you speak. Hecklers are part of the tradition, the audience argues back, challenges the speaker, demands better arguments. Alongside several famous speakers there are complete unknowns, cranks, visionaries and religious preachers.</p>
+      <p class="body-text">Karl Marx used Speakers' Corner to develop the ideas that would eventually inspire revolutions across three continents. George Orwell used it to practise arguments he later put into books. Currently it is also home to a man who has been explaining, every Sunday for fifteen years, that the moon is not what we think it is.</p><div class="tip-box">
+        <span class="tip-label-inline">🤔 Discussion Question</span>
+"This corner exists because Parliament passed a law protecting it. Does your country have an equivalent  protected space where anyone can say almost anything publicly? If not, do you think it should?" </div>
+    </div></div>
+  </div>
+
+  <!-- 06 KENSINGTON PALACE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">👑</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Kensington Palace</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">Victoria Grew Up Here — and Hated It</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Queen Victoria was born here, grew up here under strict rules — and the first thing she did when she became Queen was insist on meeting her ministers alone."</div>
+      <p class="body-text">Kensington Palace has been a royal residence since the late 1600s, when William III and Mary II moved in because the air in this part of London was cleaner than at Whitehall. Victoria was born here in 1819 and raised under the "Kensington System" — a strict regime designed to control her access to almost everyone, including her own mother. When she was woken at 5am to be told she was Queen, one of her first acts was to ask for a moment alone. It was the first time in her life she had been permitted to be in a room without a supervisor. "She was 18 years old and had never once been alone in a meeting."</p>
+      
+      
+    <div class="tip-box"><span class="tip-label-inline">🧚 The Peter Pan Connection</span>
+Just a short walk away in the gardens is the famous Peter Pan statue; the author J.M. Barrie lived nearby and used these grounds as the inspiration for the Neverland stories. Barrie secretly commissioned the bronze Peter Pan statue and had it erected overnight on May Day in 1912, wanting children to believe it had simply appeared by magic.</div><div class="tip-box"><span class="tip-label-inline">👸🏻 Backstory</span>
+Diana, Princess of Wales lived at Kensington Palace from 1981 until her death in 1997. After her divorce from Prince Charles, it became entirely her own home, the place where she raised William and Harry, held private meetings, and continued the charitable work that had made her one of the most recognisable people on earth. On the 31st August 1997, she died in a car crash in Paris. She was 36. What happened next was unlike anything Britain had seen before. Within hours, people began leaving flowers at the gates of this palace. Within days, the pile stretched for hundreds of metres. By the end of the week, an estimated one million bouquets had been left here. The Royal Family, who had retreated to Balmoral in Scotland, did not initially return or make a public statement. The silence caused a crisis. Public anger built rapidly. Eventually, under significant pressure, the Queen returned to London, addressed the nation on television, and broke with protocol by bowing her head as Diana's coffin passed. The funeral was watched by 2.5 billion people worldwide. Historians now point to that week as a turning point in the relationship between the British public and the monarchy. It changed how the Royal Family communicates, how it handles grief publicly, and what the public expects from it.</div></div></div>
+  </div>
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0">
+  <div class="section-label">Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+
+  
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">👤</span>
+    <h3>The One-Person Story</h3>
+    <p>This route is unusually rich in individuals whose stories are specific and vivid. Victoria insisting on her first solo meeting. Albert holding the Great Exhibition catalogue on his memorial. The engineer who finally solved the Royal Albert Hall's echo in 1968 with a set of fibreglass discs. The detail of a single person making a single decision is always more memorable than a general historical summary — and on this route, the individual stories connect the grand buildings to recognisable human experiences.</p>
+  </div>
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">⚖️</span>
+    <h3>The Comparison Question</h3>
+    <p>Several stops on this route invite direct comparison with students' own countries. Does your country have a protected free-speech space like Speakers' Corner? Does your country have a museum that's free to enter? Is there a concert hall that is known by everyone and have you been to it?</p>
+  </div>
+
+  
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Science Museum &amp; Hyde Park — Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+</body></html>

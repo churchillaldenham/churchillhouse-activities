@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greenwich — Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 12vw, 80px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.9; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .useful-links {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--light-border);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a {
+    color: var(--teal); font-weight: 600;
+    text-decoration: none;
+  }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">⚓ 🔭 🚡</div>
+  <h1>Greenwich</h1>
+  <div class="hero-sub">History, science and the line that divides the world</div>
+  <div class="hero-badges">
+    <span class="hero-badge">UNESCO World Heritage</span>
+    <span class="hero-badge">Thames Cruise</span>
+    <span class="hero-badge">Prime Meridian</span>
+    <span class="hero-badge">Cable Car</span>
+  </div>
+</div>
+</div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>From Space and Time to the Open Sea</h2>
+  <p>Greenwich feels like stepping into a living postcard where London's history, science and river life all collide in one place. Students move from the modern cable car and the giant spaceship-like O2 to the Cutty Sark's golden hull and the grand symmetry of the Old Royal Naval College. The market adds colour and street-food energy, while the Maritime Museum and Royal Observatory bring in pirates, sea battles and the line that literally divides the world in two.</p>
+  <p>The day ends on the water — a Thames cruise back into central London, gliding past some of the city's most iconic sights before arriving at Embankment for free time at Covent Garden.</p>
+  
+</div>
+</div>
+
+<!-- USEFUL LINKS -->
+<div class="useful-links">
+  <h3>Useful Links</h3>
+  <div class="link-row">
+    <span class="link-icon">🔗</span>
+    <a href="https://www.google.com/maps/d/u/0/edit?mid=1X6V1AelKdSDnY--KxKQ_1rUB2g0tTvw&amp;usp=sharing" target="_blank">Greenwich Points of Interest Map</a>
+  </div>
+  <div class="link-row">
+    <span class="link-icon">🔗</span>
+    <a href="https://www.thamesclippers.com/plan-your-journey/timetable" target="_blank">Thames Clippers Timetable</a>
+  </div>
+<div class="link-row"><span class="link-icon">🔗</span><a href="https://www.toiletmap.org.uk/" target="_blank">Toilets map</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">Free public toilets are located in the Maritime Museum. Note that there aren’t any in Greenwich Market</span></div></div>
+
+<!-- BAND -->
+<div class="band" style="margin-top:16px;">
+  <h3>The Golden Rule for This Excursion</h3>
+  <p>Greenwich has more "biggest," "oldest" and "only" claims than almost anywhere else students will visit. The world's last surviving tea clipper. The largest maritime museum in the world. The line that every time zone on earth is measured from. London's only urban cable car.</p>
+  <p>The risk is that superlatives stop landing after the third or fourth one. The antidote is always the specific human detail. Not "this ship sailed a million miles" but "she was named after a witch in a Robert Burns poem and her figurehead is grabbing a horse's tail." Not "this is where time begins" but "GPS puts the real meridian 100 metres east of where you're standing." One unexpected detail at each stop resets attention for the next one.</p>
+</div>
+
+<!-- STOPS -->
+<div class="section">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Stop</div>
+  <p class="section-intro">Tap any stop to expand the hook, story and activity. Designed for quick reference on mobile during the tour. </p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 CABLE CAR -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🚡</div>
+      <div class="stop-title-block">
+        <div class="stop-name">IFS Cloud Cable Car</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">London's Only Urban Cable Car</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It travels 90 metres above the Thames. Cabins arrive every 30 seconds. And it gives you a view no bridge or ferry in London can match."</div>
+      <p class="body-text">The IFS Cloud Cable Car was built for the 2012 Olympics to connect the Greenwich Peninsula with the Royal Docks. It glides across the Thames at 90 metres, offering a panorama that takes in the O2, Canary Wharf, the Thames Barrier and, on a clear day, St Paul's Cathedral. It is London's only urban cable car and one of the most distinctive ways to arrive anywhere in the city.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📸 Photo Moment</span>
+The crossing takes about ten minutes each way. The best shots are looking west toward Canary Wharf with the Thames below. </div>
+    </div></div>
+  </div>
+
+  <!-- 02 THE O2 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The O2</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">The Arena That Encodes the Calendar</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The dome is 365 metres across. The roof walkway is 52 metres high. There are 12 yellow masts. The entire structure is a calendar built into a building."</div>
+      <p class="body-text">Opened in 2000 as the Millennium Dome, the structure was designed as a monument to time: 365 metres in diameter for the days of the year, 52 metres at the summit for the weeks, 12 yellow masts for the months. The site itself was heavily contaminated industrial land before construction began — one of the largest brownfield reclamation projects in Europe. It now regularly ranks as the world's most visited music arena, hosting more concerts each year than Madison Square Garden.</p>
+      <p class="body-text">The Millennium Dome cost £789 million to build and was the centrepiece of Britain's millennium celebrations. Within months it was a national embarrassment: attendance was far below projections, the content was widely mocked, and it became a byword for government waste and failed ambition. By the end of 2000, it had closed. Within a few years it had been converted into an arena, and is now one of the most visited entertainment venues on earth.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 03 CUTTY SARK -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛵</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Cutty Sark</div>
+        <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">Named After a Witch. Sailed a Million Miles.</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The Cutty Sark was the Formula One car of the 1870s. Designed for one purpose only: to be faster than everything else on the water. "</div>
+      <p class="body-text">Built in 1869, Cutty Sark was one of the fastest sailing ships ever made, built to race other clippers across the oceans carrying tea from China to Britain. Her name comes from "cutty sark," meaning a short nightdress worn by the witch Nannie Dee in Robert Burns' poem Tam o' Shanter. The figurehead reaching forward from the bow depicts Nannie grabbing the tail of Tam's horse — a direct reference to the poem. During her wool-trading years she set the record for the fastest voyage from Australia to Britain: 73 days.</p>
+      <p class="body-text">Cutty Sark was badly damaged by fires in 2007 and 2014, and both times restored through major conservation work. She now sits suspended three metres above the ground inside a glass-roofed dry dock, so visitors can walk directly underneath her golden hull. Across her working life she sailed more than one million miles.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 04 OLD ROYAL NAVAL COLLEGE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏛️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Old Royal Naval College</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">Britain's Sistine Chapel — and a Film Set</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Christopher Wren designed it. The Painted Hall ceiling took 19 years to complete. And you've almost certainly seen the courtyard in a film without knowing it."</div>
+      <p class="body-text">The Old Royal Naval College was designed by Sir Christopher Wren, the same architect behind St Paul's Cathedral, and originally built as a hospital for retired sailors. The Painted Hall is considered one of the finest painted interiors in Europe. Its ceiling is packed with dramatic scenes depicting William III, Mary II, and the triumph of peace and liberty over tyranny, all rendered at extraordinary scale. The hall is known as "Britain's Sistine Chapel," and the painter, Sir James Thornhill, was paid by the square yard, reportedly crawling across scaffolding in the dark with a candle to make sure no inch was left unpainted.</p>
+      <p class="body-text">The colonnades and courtyards have been used as filming locations for Pirates of the Caribbean, Thor: The Dark World, Les Misérables and Bridgerton, among many others. The buildings form part of the UNESCO World Heritage Site of Maritime Greenwich alongside the Queen's House and the Royal Observatory.</p>
+      
+      
+    </div></div>
+  </div>
+
+  <!-- 05 NELSON'S SHIP IN A BOTTLE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🍾</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Nelson's Ship in a Bottle</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">The Bottle Was Built Around the Ship</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The bottle is nearly three metres long. It was built around the ship, not the other way around. The rigging uses over 5,000 metres of thread."</div>
+      <p class="body-text">Artist Yinka Shonibare created this 1:30 scale replica of HMS Victory, Nelson's flagship at the Battle of Trafalgar, and set it inside a giant glass bottle. The sails are made from colourful African-inspired textiles rather than white canvas, a deliberate choice by Shonibare to reflect on global trade, empire and cultural exchange. The work sat on the Fourth Plinth in Trafalgar Square from 2010 to 2012, directly beside Nelson's Column, a connection between the admiral and his ship that most visitors didn't initially register.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 06 GREENWICH MARKET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🛍️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Greenwich Market</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">300 Years of Trading Inside a World Heritage Site</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This is London's only historic market inside a UNESCO World Heritage Site."</div>
+      <p class="body-text">Greenwich Market began in the early 1700s and has evolved from a small local trading spot into one of London's most creative markets. It is surrounded by the Old Royal Naval College, the Queen's House and Greenwich Park, and the glass roof means it stays dry regardless of weather. Visitors will find handmade jewellery, art prints, vintage clothing and crafts not available anywhere else in London. The food stalls offer a genuine global tasting tour, from Brazilian churros to Ethiopian stews and Taiwanese bao.</p>
+      
+      
+    </div></div>
+  </div>
+
+  <!-- 07 NATIONAL MARITIME MUSEUM -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⚓</div>
+      <div class="stop-title-block">
+        <div class="stop-name">National Maritime Museum</div>
+        <div class="stop-meta-line"><span class="stop-num">07</span><span class="stop-tag">Nelson's Jacket. The Bullet Hole Still Visible.</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This is the largest maritime museum in the world. It holds the coat Admiral Nelson was wearing when he was shot at the Battle of Trafalgar. The bullet hole is still there."</div>
+      <p class="body-text">The National Maritime Museum holds more than two million objects; ship models, sea charts, weapons, uniforms, figureheads and navigational instruments. It tells the story of Britain as a seafaring nation, from Arctic exploration and naval battles to pirates, trade routes and life at sea. The building stands on the grounds of the former Greenwich Palace, birthplace of both Henry VIII and Elizabeth I.</p>
+      <p class="body-text">Nelson's coat from Trafalgar is one of the museum's most visited exhibits. He was shot by a French sniper from the rigging of an enemy ship while standing on the quarterdeck of HMS Victory. The bullet entered through his left shoulder. He died three hours later, knowing the battle had been won. The damage to the coat's shoulder is clearly visible.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 08 PRIME MERIDIAN -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌍</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Prime Meridian</div>
+        <div class="stop-meta-line"><span class="stop-num">08</span><span class="stop-tag">Where East Meets West</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Step onto the Line Where Time Begins and the World Divides."</div>
+      <p class="body-text">At the top of the hill in Greenwich stands one of the most important lines on Earth: the Prime Meridian, 0° longitude. Every modern time zone on the planet is measured from this point. GPS systems, maps, navigation and global timekeeping all connect back to Greenwich. In 1884, 25 nations voted in Washington D.C. to make Greenwich the international standard, beating rival meridians in Paris and elsewhere. The line runs straight through the courtyard of the Royal Observatory, passing through the historic Airy Transit Circle telescope that was used to define its exact position.</p>
+      <p class="body-text">One foot in the Eastern Hemisphere, one in the Western. It is one of the most photographed moments of any Greenwich visit. There is just one problem; it's in the wrong place. Modern GPS satellites later revealed that the true Prime Meridian is actually about 100 metres east of the place marked by the famous line tourists visit today. In other words, millions of people have proudly photographed themselves standing in the wrong place. The original line was calculated using nineteenth-century instruments and astronomy. GPS uses far more precise measurements based on satellites and the Earth's centre of gravity.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 09 ROYAL OBSERVATORY -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🔭</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Royal Observatory Greenwich</div>
+        <div class="stop-meta-line"><span class="stop-num">09</span><span class="stop-tag">Built to Solve One of History's Greatest Problems</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Charles II founded this building in 1675 to solve a single problem: how to calculate longitude at sea. Ships were getting lost and sinking. He needed a scientific answer."</div>
+      <p class="body-text">Before accurate longitude calculation, navigators could determine their latitude (how far north or south they were) but not their longitude (how far east or west). Ships regularly miscalculated their position and ran aground. Charles II founded the Royal Observatory specifically to create more accurate star charts and timekeeping systems that would allow sailors to navigate safely. The Astronomer Royal and their assistants lived and worked inside the building, mapping the night sky through the same telescopes that helped define the Prime Meridian.</p>
+      <p class="body-text">The Octagon Room was designed by Christopher Wren and built to house the most advanced instruments of the 17th century. The view from the hill outside the Observatory is one of the best in London — a sweeping panorama over the Queen's House, the Old Royal Naval College and the towers of Canary Wharf that illustrates Greenwich's unique position between historic and modern London.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🕐 The Time Ball</span>
+The red ball on the roof of the Observatory drops every day at exactly 1pm — a tradition dating from 1833, when ships on the Thames would set their chronometers by it. "Every ship in the Thames on any given day in the 19th century was watching this ball to set their clocks before leaving port." It still drops at 1pm. If the timing works, it is worth waiting for.</div>
+    </div></div>
+  </div>
+
+  <!-- 10 THAMES CRUISE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🚢</div>
+      <div class="stop-title-block">
+        <div class="stop-name">River Thames Cruise</div>
+        <div class="stop-meta-line"><span class="stop-num">10</span><span class="stop-tag">Greenwich to Embankment</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"For most of London's history, the Thames was its main highway. This is the same route Londoners have used for centuries, and the view from the water is better than any walking tour."</div>
+      <p class="body-text">The cruise from Greenwich Pier to Embankment passes under Tower Bridge, London Bridge, Blackfriars, Waterloo and the Hungerford Bridges in sequence, with the Tower of London on the north bank and a constantly shifting skyline of glass towers, Victorian warehouses and historic churches on both sides. The view of the Tower of London from the river is significantly more dramatic than from the street — it's also the direction from which prisoners once arrived, brought by barge through Traitor's Gate. Seeing it from the water, as they would have, is considerably more affecting than the gift shop approach on the river bank.</p>
+      <p class="body-text">The skyline changes completely between Greenwich and central London. From the classical symmetry of the Naval College to the glass towers of Canary Wharf, through the Victorian railway bridges of London Bridge, to the dome of St Paul's and finally the South Bank arts complex. The cruise shows London's architectural history in the order it was built, west to east, older to newer.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 11 COVENT GARDEN -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎭</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Covent Garden</div>
+        <div class="stop-meta-line"><span class="stop-num">11</span><span class="stop-tag">Shopping &amp; Street Performers</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The name comes from 'Convent Garden'; this was the kitchen garden of Westminster Abbey. It became London's most famous fruit and veg market, then a red-light district, then one of the most visited tourist spots in the city."</div>
+      <p class="body-text">The Piazza is one of the most lively open spaces in central London — street performers, independent shops, restaurants and cafés spread across a covered market and the surrounding streets. Every performer in the Piazza has had to audition for their spot.</p>
+      <p class="body-text">The Apple Market inside the Piazza sells handmade crafts, art and jewellery. The surrounding streets include Neal's Yard, the Seven Dials shopping area and numerous independent food options. The Royal Opera House is a short walk away for students who want to look inside.</p>
+      
+    </div></div>
+  </div>
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+
+  <div class="idea-card">
+    <span class="idea-card-icon">📏</span>
+    <h3>The Scale Comparison</h3>
+    <p>Greenwich deals in numbers that need to be made physical. The O2 dome is 365 metres across — wider than the Eiffel Tower is tall. Cutty Sark sailed over one million miles — more than twice the distance from the Earth to the Moon. The Prime Meridian plaque is 100 metres from where GPS says it should be. At each stop, find the number that most needs a comparison and give it one. Numbers that are made physical are the ones students carry home.</p>
+  </div>
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">⏳</span>
+    <h3>The Before and After</h3>
+    <p>Greenwich has an unusually vivid "before" at almost every stop. The O2 site was contaminated industrial land. The Old Royal Naval College was a hospital for sailors. The Prime Meridian was chosen by a vote in Washington D.C. The market has been trading since the 1700s. One sentence at each stop — what it was before — makes what it is now feel earned rather than given.</p>
+  </div>
+
+  
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">🚢</span>
+    <h3>Use the Cruise Actively</h3>
+    <p>The Thames cruise is often treated as a rest stop between Greenwich and central London. It works better as an active stop with a specific challenge — the bridge countdown, identifying landmarks from the water, spotting buildings visited on other excursions. Students who are looking for something specific during the cruise see far more than students who are simply passengers. The Tower of London seen from the river, in particular, is worth pointing out specifically — it looks completely different from the water and makes the building feel newly discovered even by students who have already visited it.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Greenwich — Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+</body></html>

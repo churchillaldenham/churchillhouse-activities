@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brighton Excursion</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --cream: #FDFAF4;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background:#e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+ .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%;
+    opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--mustard);
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .hero-icon {
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 16px;
+    position: relative;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(52px, 14vw, 88px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 0.9;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .hero h1 span { }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px;
+    border-radius: 100px;
+  }
+
+  /* ── INTRO BAND ── */
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .intro-band-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--teal-dark);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 36px 16px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .section + .section {
+    padding-top: 0;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  /* ── IDEA CARDS (non-accordion sections) ── */
+  .idea-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 22px 22px 22px 26px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+    position: relative;
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.65;
+    margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  /* ── ACCORDION STOPS ── */
+  .stop-card {
+    background: var(--white);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+  .stop-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon {
+    font-size: 28px;
+    line-height: 1;
+    min-width: 36px;
+    text-align: center;
+  }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+  .stop-meta-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .stop-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--mustard);
+    letter-spacing: 0.04em;
+  }
+  .stop-tag {
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+  }
+  .stop-chevron {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+
+  /* Body */
+  .stop-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease;
+  }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner {
+    padding: 20px 20px 22px;
+    border-top: 1px solid var(--light-border);
+  }
+
+  /* Hook */
+  .hook-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--dark);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .body-text {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .body-text:last-child { margin-bottom: 0; }
+
+  /* Tip box */
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--dark);
+    margin-top: 14px;
+  }
+  .tip-box strong { color: var(--mustard-dark); font-weight: 600; }
+  .tip-label-inline {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* Expand All */
+  .expand-row {
+    text-align: right;
+    margin-bottom: 12px;
+  }
+  .expand-btn {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal);
+    background: none;
+    border: 1px solid var(--teal);
+    border-radius: 100px;
+    padding: 5px 14px;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  /* Divider band */
+  .band {
+    background: var(--teal-dark);
+    padding: 28px 24px;
+    color: white;
+    text-align: left;
+max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .band-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--mustard);
+    margin-bottom: 10px;
+  }
+  .band p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.82);
+    margin: 0 0 10px;
+  }
+  .band p:last-child { margin-bottom: 0; }
+
+  /* Footer */
+  .footer {
+    background: var(--teal-dark);
+    padding: 32px 24px;
+    text-align: center;
+    border-top: 2px solid var(--mustard);
+max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .footer-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--mustard);
+    margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px;
+    background: var(--mustard);
+    margin: 12px auto;
+    border-radius: 2px;
+  }
+  .footer-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">🌊 🎡 🕌</div>
+  <h1>Brighton</h1>
+  <div class="hero-sub"></div>
+  <div class="hero-badges">
+    <span class="hero-badge">Seaside &amp; Culture</span>
+    <span class="hero-badge">Storytelling Frames</span>
+    <span class="hero-badge">Pop Culture Hooks</span>
+    <span class="hero-badge">Student Activities</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Links &amp; Information</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=1jt_eR6KndC5dJ6vJlmJLTB4hXS9MZXo&amp;usp=sharing" target="_blank">Brighton walking tour map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1D92zwLlhOr6KnJwWfaDa4wUjMMi6L6oCzb8HknlFN68/edit?tab=t.0" target="_blank">Brighton guide with photos</a></div><div class="link-row"><span class="link-icon">🎧</span><a href="https://drive.google.com/file/d/1_OswcenF-1jibDdt5MyWOcKVQYqPXFiV/view?usp=drive_link" target="_blank">Brighton audio guide</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">Free public toilets are located in the shopping centre and pier. Make sure the students use them before returning to the coach.</span></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div class="intro-band-inner">
+  <h2>Brighton's Secret Weapon</h2>
+  <p>Brighton is genuinely strange: a city built on the whim of a party-loving prince, powered by counterculture, and proud of everything other British cities hide. It doesn’t just welcome difference, it thrives on it, mixing creativity, eccentricity and open‑mindedness into an atmosphere you won’t find anywhere else in the UK. That weirdness is the guide's best friend.</p>
+  
+</div>
+</div>
+
+<!-- BIG PICTURE -->
+<div class="section">
+  <div class="section-label">Big Picture</div>
+  <div class="section-title">Overarching Story Frames</div>
+  <p class="section-intro">Give the whole tour a spine — a single thread students can follow from the first stop to the last.</p>
+
+  
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">🎵</span>
+    <h3>"Brighton's Greatest Hits"</h3>
+    <p>Brighton's music history is fascinating: The Eurovision song contest was staged here: won by ABBA and propelling them to global success. The Beatles played the Dome in 1964. The Who filmed Quadrophenia on the beach. The Mods and Rockers riots happened on this seafront. Harry Styles filmed on the pier, and one free DJ gig turned Brighton’s seafront into music history. At each relevant site, reveal a musical connection and play 10 seconds of a track on a phone. See how many students recognise the songs.</p>
+    
+  </div>
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">🤯</span>
+    <h3>"The Capital of Weird"</h3>
+    <p>Brighton is the only city where "eccentric" is not an insult — it's a brand. It hosts naked bike rides, zombie walks, dog parades, and festivals that most cities would never permit. Use this as the lens for the whole tour: "Brighton has always done things its own way." At every stop, find the thing that's stranger than it looks; the King who built an Indian palace without visiting India, the oldest electric railway that still runs today, the pier that was deliberately broken to stop a Nazi landing.</p>
+    
+  </div>
+
+  
+</div>
+
+<!-- BAND -->
+<div class="band">
+<div class="band-inner">
+  <h3>The Most Important Question</h3>
+  <p>Brighton is arguably the UK's most famous seaside city.  And it got that way largely by ignoring what was expected of it. It's known  for being the most accepting, most eccentric, most liberal city in the UK.  "By the end of today, I want you to decide: what is it about this place that makes it so hard to copy? Does your home country: does it have an equivalent city?"</p>
+  
+</div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section">
+  <div class="section-label">Opening Overview</div>
+  <div class="section-title">Re-imagining the Intro</div>
+  <p class="section-intro">Here's how to open with maximum impact.</p>
+
+  <div class="idea-card">
+    <span class="idea-card-icon">🏥</span>
+    <h3>Lead With the Medical Madness</h3>
+    <p>Brighton exists because Georgian doctors told rich people that cold sea water would cure everything. That's the actual origin of the city as a resort. "Doctors in the 1700s prescribed sea-bathing for headaches, depression, joint pain — basically any illness. Wealthy people came here in their thousands to stand in freezing waves and feel better. The entire seafront you're about to walk along was built because of that idea." </p>
+  </div>
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">⚔️</span>
+    <h3>Open With the Mods and Rockers</h3>
+    <p>In 1964, two rival youth tribes descended on Brighton for one of the most famous clashes in British pop-culture history. Mods on scooters vs Rockers on motorbikes. The fighting on the beach that ended up in the newspapers worldwide and was later made into a film (Quadrophenia, starring a young Sting). "The beach you're about to walk on was a battlefield 60 years ago, and it started a national conversation about youth culture, identity and belonging that's still going on today."</p>
+  </div>
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">🦅</span>
+    <h3>The Seagull Warning... Done Properly</h3>
+    <p>Don't just mention seagulls. Dramatise them. "Brighton seagulls are not afraid of you. They are not afraid of anything. They have been stealing food from humans for 200 years and they have evolved to be very good at it. They will wait until you look away. They will work in teams. Keep your chips out of site." </p>
+  </div>
+</div>
+
+<!-- STOPS -->
+<div class="section" style="padding-top:0">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Landmark</div>
+  <p class="section-intro">Tap any stop to expand the hook, story and activity. Designed for quick reference on mobile during the tour.</p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 STEINE GARDENS -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌿</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Steine Gardens</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">01</span>
+          <span class="stop-tag">Before Brighton Was Brighton</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"Once a rugged workplace where fishermen dried their nets, they were then evicted to make room for wealthy aristocrats who wanted a place to promenade (basically just a fancy way to walk around and show off their expensive clothes)"</div>
+        <p class="body-text">Steine Gardens is the perfect "before and after" moment; the place that shows students what Brighton was before it became famous. It used to be open marshland, smelling of fish, with nets strung between posts. The name “Steine” comes from the Saxon word for “stone.”  It originally referred to a stone boundary marker, long before the area became a garden.</p>
+        <p class="body-text">The Victoria Fountain only exists because the council refused to fund it and a local surgeon crowdfunded it through donations and charity concerts.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🕌 Orientation Activity</span>
+From here you can see the Pavilion dome. Before explaining what it is, ask: "Imagine you arrived in Brighton in 1800, having never seen a building like that. What would you think it was?"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 ROYAL PAVILION -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🕌</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Royal Pavilion</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">02</span>
+          <span class="stop-tag">The King Who Built a Fantasy Palace</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"Welcome to the most extravagant, out-of-place building in England: a royal pleasure palace that looks like it was plucked from the streets of India and dropped into a British seaside town."</div>
+        <p class="body-text">The Royal Pavilion is what happens when the future King of England has unlimited money, no-one willing to say no, and a picture book about India. People are are still trying to decide whether he was a visionary or simply unhinged. John Nash, the architect, had never been to India. He designed the entire exterior from prints and illustrations. Together, they created a fantasy palace where the future king could indulge himself in an extravagant and unconventional lifestyle. The building was not intended to be historically accurate. It was designed to impress. George hosted lavish banquets, concerts and parties here, earning a reputation for being the party-king. He even constructed secret underground tunnels so he could come and go without being seen.</p>
+        <p class="body-text">George had essentially built his own theme park, 150 years before theme parks existed. However, it came at huge expense; in todays money, the construction  alone cost over £250 million. The decorations a further £80+ million. When he came in for criticism for his spending habits, he spent more. By the time he died, he owed hundreds of millions.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🏥 The World War I Twist</span>
+During World War I, the banqueting hall, with its dragon chandeliers and gilded ceilings, became a hospital ward for Indian soldiers fighting for the British Empire. "The most over-the-top room in Britain was converted into a medical ward. Indian soldiers sent to fight in a foreign war recuperated under Chinese dragons in an Indian palace on the English coast." The layers of strangeness in that sentence are worth dwelling on.</div>
+        <div class="tip-box">
+          <span class="tip-label-inline">👑 Queen Victoria's Opinion</span>
+Victoria hated the Pavilion. She found it too public, too flashy, too much of everything. She sold it to the town of Brighton. The building was rejected by the Royal Family, and is now owned by the people of Brighton. Locals vote on how it's run.  Ask: "The architect designed this building based on somewhere he had never visited. Does that make it less authentic, or does it not matter at all if the result is interesting?"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 BRIGHTON DOME -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🐎</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Brighton Dome</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">03</span>
+          <span class="stop-tag">Royal Stables → ABBA's Stage</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"George IV's horses lived in more luxury than most of the local people."</div>
+        <p class="body-text">The Dome was originally a royal stable — the Prince Regent's horses had underfloor heating, ornate ironwork and a riding school with a domed ceiling. The building that now hosts international artists was built so that one man's horses could exercise indoors in comfort.</p>
+        <p class="body-text">The Dome was also a military hospital in World War I.  Like the Pavilion, it treated wounded Indian soldiers. The stage became a ward, and the building was filled with beds instead of audiences.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🎶 Musical Legacy</span>
+ In April 1974, ABBA were a moderately successful Swedish pop group. They had the chance to perform at Eurovision that year but nearly pulled out as they considered it a risk to their credibility, as you would. However, they walked onto the stage of this building, performed Waterloo, and won. Within a year they were one of the most famous bands on earth. The Beatles played in 1964, causing Beatlemania scenes so intense that the streets outside had to be closed by police. Two of the most famous acts in music history, separated by a decade, in what used to be a luxury stable.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 NORTH LAINE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎨</div>
+      <div class="stop-title-block">
+        <div class="stop-name">North Laine</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">04</span>
+          <span class="stop-tag">Brighton's Creative Soul</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"Step into Brighton’s street-art capital; a neighbourhood that is basically an ever-changing open-air gallery where every corner is alive with vibrant murals and graffiti."</div>
+        <p class="body-text">North Laine is Brighton's counterculture heartland; the place that shaped the city's alternative identity in the 1970s and 80s, long before Brighton was internationally known for creativity. The name "Laine" means field in old Sussex dialect. You can find anything here: crystals, vinyl records, vegan doughnuts, retro clothes, handmade jewellery, Japanese snacks, antique cameras.</p>
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 THEATRE ROYAL -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎭</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Theatre Royal</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">05</span>
+          <span class="stop-tag">Ghosts &amp; Opening Nights</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"This theatre is where West End shows come before London."</div>
+        <p class="body-text">The Theatre Royal has been running since 1807. Major West End productions often test here first , which means Brighton audiences sometimes see shows before London does. Laurence Olivier, Judi Dench, Ian McKellen and John Gielgud have all performed on this stage. "Every great British actor of the last 200 years has stood somewhere on this street."</p>
+        <p class="body-text">It was saved in the 1850s by a woman called Ellen Elizabeth Nye Chart, with no previous theatre experience, who turned a failing venue into one of the most successful theatres in the country. It has a resident ghost, reportedly a former manager, that still walks the corridors.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🎪 The Try-Out Question</span>
+"If you were a playwright, would you want your show tested in Brighton before London? Brighton is famously eclectic, open-minded and hard to shock, which makes it a useful testing ground.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 THE LANES -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">💎</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Lanes</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">06</span>
+          <span class="stop-tag">Medieval Maze</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"The layout of these streets has not changed significantly in 300 years. Nobody planned them. They just grew"</div>
+        <p class="body-text">The Lanes were never planned. They grew organically around fishermen's cottages, gardens and pathways, which is why they're so twisty, tight and easy to get lost in. The tiny shops were originally small homes, often shared by large fishing families. Now they're jewellers, vintage boutiques and quirky cafés.</p>
+        <p class="body-text">The acoustics between the narrow walls make buskers sound incredible. Street musicians have known this for decades, which is why The Lanes have always attracted performers.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🎵 POP CULTURE ANCHOR</span>
+If your parents know the rock band The Who, they will know the film Quadrophenia . The narrow alleyway off East Street, now known as Quadrophenia Alley, was the scene of a famous chase sequence and has since become a shrine continuously covered in graffiti and tags from Mod fans worldwide.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 BRIGHTON BEACH -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌁</div>
+      <div class="stop-title-block">
+        <div class="stop-name">British Airways i360</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">07</span>
+          <span class="stop-tag">Tallest &amp; Thinnest</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"That tower is four metres wide. It is the thinnest tall structure in the world, and engineers had to invent new construction techniques to stop it snapping in the wind."</div>
+        <p class="body-text">The i360 was designed by the same architects who built the London Eye. They wanted to create what they called a ‘vertical pier’ and a tribute to the burnt-down West Pier. The glass pod rises to 138 metres, giving 360° views across Brighton, the South Downs and, on clear days, all the way to the Isle of Wight.</p>
+        <p class="body-text">The pod is basically a giant glass doughnut. It’s 18 metres wide, holds up to 175 people — the same capacity as a medium-sized aircraft. It’s powered by counterweights. The pod uses an energy‑efficient system similar to a lift, making the ride surprisingly smooth and quiet.</p>
+        
+      </div>
+    </div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌅</div>
+      <div class="stop-title-block">
+        <div class="stop-name">West Pier (Ruins)</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">08</span>
+          <span class="stop-tag">Beautiful Disaster</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"The haunting silhouette of the West Pier is a Grade I listed ruin - the greatest protection a building or monument can have. Many people see it as an important part of Brighton - the glamour of its past and the power of decay."</div>
+        <p class="body-text">It opened in 1866 and was Brighton's first great pleasure pier, and for a long time its grandest. It had a theatre, a concert hall, elegant promenades. While the Palace Pier was the funfair, this was the one that took itself seriously. It closed in 1975, and fell into disrepair. The council sold it for one hundred pounds. Then immediately told the buyers they needed to spend £800,000 on repairs before they could open it. That is one of the great property transactions in Brighton history.</p>
+        <p class="body-text">The pier suffered two major fires in 2003. Both happened mysteriously within months of each other, leaving only the metal frame. Storms finished what the fires started. They gradually broke the structure apart, leaving the fragments you see today.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🤔 The Preservation Question</span>
+"Should we preserve ruins? Some people want it demolished; others think the ruin is more beautiful and historically significant than the original pier would be now." Students from different countries often have very different instincts about it.</div>
+      </div>
+    </div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌊</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Brighton Beach</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">09</span>
+          <span class="stop-tag">Engineered by Storms</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"Brighton's beach has no sand and the city behind it was built on a medical theory that turned out to be mostly wrong. It is the most improbable seaside resort in Europe"</div>
+        <p class="body-text">Brighton's pebble beach was not entirely natural. In the 19th century, engineers added extra shingle to prevent the town from eroding into the sea. So what you are standing on is partly a Victorian infrastructure project. The water looks unusually blue on clear days because the seabed is chalk, which reflects light differently, giving it a quality that does not look remotely English.</p>
+        <p class="body-text">The beach has hosted Pride celebrations, music festivals, volleyball tournaments and protest marches. The promenade is full of hidden gems. Art studios, tiny cafés, craft shops and live performers line the lower promenade — easy to miss if you stay up on the main road.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🛵 When Tribes Collided</span>
+The Mods and Rockers clash on Brighton Beach in the 1960s was one of Britain’s most infamous youth‑culture showdowns. What began as a bank‑holiday weekend quickly spiralled into running battles along the seafront, with scooter‑riding Mods in sharp suits facing off against leather‑clad Rockers. Deckchairs were thrown, police charged in, and the newspapers went wild, turning a messy scuffle into a national disaster. Ask: "If you had to choose a side, which are you, and why?" The question translates easily across cultures because every generation has its version of the same tribal divide.</div>
+      <div class="tip-box"><span class="tip-label-inline">🎧 Legendary Quarter‑Million Party</span>
+In 2002, DJ  Fatboy Slim announced a free concert on the beach. The council expected 50,000 people. A quarter of a million arrived, roughly double Brighton’s population at the time.  Authorities were totally unprepared; the transport network collapsed. People were stranded on the seafront with no way in or out. Ambulances couldn't get through. The police lost control of the crowd management entirely. Remarkably, despite the scale of the event, serious injuries were relatively few. Fatboy Slim later described the concert as both amazing and terrifying. No similar free outdoor concert has been permitted in Britain since, however, Fatboy Slim played a ticket-only event on this same beach last month.</div></div>
+    </div>
+  </div>
+
+  <!-- 08 FISHING MUSEUM -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎣</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Brighton Fishing Museum</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">10</span>
+          <span class="stop-tag">The City Before the Tourists</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"This museum is free, takes about ten minutes, and contains one of the strangest inventions in Brighton's history."</div>
+        <p class="body-text">Brighton's fishing families launched boats directly from the beach — no harbour, no shelter, straight into the waves. They did this for centuries. The museum sits in the original Victorian arches where they stored their boats and nets.</p>
+        <p class="body-text">Amongst the exhibits is the Daddy Longlegs; a bizarre Victorian electric railway that was perched on stilts in the sea. It ran for a few years in the 1890s and was one of the strangest transport inventions in history. It failed, obviously. But it existed — and that's very Brighton.</p>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 PALACE PIER -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎢</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Brighton Palace Pier</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">11</span>
+          <span class="stop-tag">Theme Park Over the Sea</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"During World War II, a section of this pier was deliberately removed to stop the Nazis using it to land troops."</div>
+        <p class="body-text">The pier has survived fires, storms and wartime demolition. In 1940, sections were removed as a precaution against enemy landings. The pier was put back together after the war and is now one of the most visited attractions in the UK.</p>
+        <p class="body-text">The pier lights are iconic. At night, over 60,000 bulbs light up the structure, giving it a magical, fairground glow. Standing at the end, you can see the whole Brighton coastline, the i360 tower, and the ruined West Pier. The pier once had a concert hall. A huge theatre stood at the centre of the pier until the 1970s, hosting famous performers and variety shows, even Laurel &amp; Hardy.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🦅 The Seagull Moment</span>
+Seagulls treat this area like their personal buffet -  they are large, bold and experienced. They watch where food comes from and time their approaches to perfection. You have been warned.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 i360 -->
+  
+
+  <!-- 11 WEST PIER -->
+  
+
+  <!-- 12 VOLKS RAILWAY -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🚃</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Volks Electric Railway</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">12</span>
+          <span class="stop-tag">World's Oldest Electric Railway</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"This is the oldest operating electric railway in the world. It is older than the London Underground's electric lines."</div>
+        <p class="body-text">Magnus Volk was a Brighton engineer and inventor who opened this line in 1883, essentially as an experiment, but it was so popular it never closed. Most inventors would have been satisfied with building the world's first electric railway but Volk was just getting started. He then went on to build the 'Daddy Long Legs'; a bizarre electric tramway which stood on four 23-foot-long stilts and traversed the shallow waters of the English Channel between Brighton and Rottingdean.  Concrete sleepers from the trackbed remain visible at low tide, serving as a reminder of this eccentric Victorian engineering marvel.</p>
+        <p class="body-text">The trains run on a very unusual gauge. The track is 2 ft 8½ in wide ; a rare measurement used almost nowhere else. It’s run by enthusiasts and volunteers. Local engineers and railway fans help maintain the trains, tracks and stations.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">❗ SURPRISING FACT</span>
+Due to its operation in the sea, the 'Daddy Long Legs' was required by law to be piloted by a qualified sea captain and was equipped with lifeboats and lifebelts.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 BRIGHTON MUSEUM -->
+  
+
+  <!-- 14 SEA LIFE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🦈</div>
+      <div class="stop-title-block">
+        <div class="stop-name">SEA LIFE Brighton</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">13</span>
+          <span class="stop-tag">World's Oldest Aquarium</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"This is the oldest operating aquarium in the world. It was built below street level using Victorian engineering, and the inside looks more like a cathedral than a fish tank."</div>
+        <p class="body-text">SEA LIFE Brighton opened in 1872, before the Palace Pier existed, before electric light was widespread, before most of the seafront as you see it today had been built. The architect designed soaring arched ceilings and ornate brickwork that were completely over-the-top for a building designed to hold fish. It was built below street level because that was the only way to keep the tanks cool without refrigeration.</p>
+        <p class="body-text">There is also, for reasons that are not entirely obvious in a seaside aquarium, a rainforest section — snakes, frogs and giant leafcutter ants. Conservation is a big focus. SEA LIFE Brighton runs breeding programmes for seahorses, rays and other vulnerable species.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">❗ SURPRISING FACT</span>
+Seahorses are one of the few species where the male carries and gives birth to the young. Brighton, being Brighton, arguably chose the right mascot.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /section -->
+
+<!-- TECHNIQUES SECTION -->
+<div class="section" style="padding-top: 0">
+  <div class="section-label">Brighton-Specific Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+  <p class="section-intro">A few approaches particularly well-suited to Brighton's energy and character.</p>
+
+  
+
+  
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">╰•➤</span>
+    <h3>The "Before and After" Frame</h3>
+    <p>Brighton's transformation from fishing village to royal playground to LGBTQ+ capital to creative hub, is one of the fastest identity shifts of any British city. At each stop, briefly sketch what was here before. "This was a swamp. This was a stable. This was a battlefield." The contrast between what a place was and what it is now is always fascinating and teaches students something real about how cities change.</p>
+  </div>
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">🙋</span>
+    <h3>The Running Vote</h3>
+    <p>Brighton is a city of strong opinions. At each major stop, put a quick question to a hand-vote: "Should the West Pier be demolished or preserved?" "Was George IV brilliant or ridiculous?" "Would you live here?"</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<div class="footer-inner">
+  <div class="footer-logo">Churchill House Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Brighton Walking Tour</div>
+</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+
+</body></html>

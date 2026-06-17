@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oxford Walking Tour - Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --cream: #FDFAF4;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 12vw, 80px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.9; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  /* ── INTRO BAND ── */
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  /* ── SECTION ── */
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  /* ── IDEA CARDS ── */
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal); position: relative;
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  /* ── ACCORDION STOPS ── */
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-box strong { color: var(--mustard-dark); font-weight: 600; }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">📚 🎓 🏰</div>
+  <h1>Oxford</h1>
+  <div class="hero-sub"></div>
+  <div class="hero-badges">
+    <span class="hero-badge">Harry Potter Hooks</span>
+    <span class="hero-badge">Famous Alumni</span>
+    <span class="hero-badge">Storytelling Frames</span>
+    <span class="hero-badge">Student Activities</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Links &amp; Information</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=1RoXk5JH4_awAa2WDBqB1PTbMbvvIJzg&amp;usp=sharing" target="_blank">Oxford walking tour map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1i8sE1YuOLf4mc_4opoiQmT_Pxu0Z4hnEyT-Cj5ljnZk/edit?tab=t.0#heading=h.3zidqqnhbf7g" target="_blank">Oxford guide with photos</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">Public toilets are located at Magdalen Street East (near the coach point) and Market Street (covered market). Make sure students use them on the way back to the coach.</span></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>Oxford's Secret Superpower — and How to Use It</h2>
+  <p>Here's the problem. You're standing in front of a 500-year-old building with a group of fourteen-year-olds from Mexico, and their faces are blank. Old stone is old stone. History is just a word. They didn't necessarily choose to be here, and nothing about medieval architecture is speaking to them — yet. Your job, before you lose them entirely, is to find the hook. Fortunately, Oxford has several.</p>
+  <p>Many students already have Oxford in their heads, they just might not be aware of it: Harry Potter. The Crown. His Dark Materials. Downton Abbey, were all filmed here. Students who don't care about history often care deeply about this. They  are always fascinated by famous people who walked the same streets they're walking now and Oxford's alumni list is astonishing. The Oxford English Dictionary,(OED), the most famous dictionary in the world, was born here. That's your way in, and from there, you can take them somewhere much more interesting.</p>
+</div>
+</div>
+
+<!-- BIG PICTURE -->
+<div class="section">
+  <div class="section-label">Big Picture</div>
+  <div class="section-title">Overarching Story Frames</div>
+  <p class="section-intro">Give the whole tour a spine — a single thread students can follow from the first stop to the last.</p>
+
+  
+
+  
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">🏆</span>
+    <h3>"The Alumni Game"</h3>
+    <p>Oxford has produced an almost absurd number of famous people; Prime Ministers, Nobel laureates, authors, scientists, musicians, actors. At every stop, reveal which famous person studied or worked there and ask: "What were they like as a student?" Wilde was flamboyant and decorated his rooms with lilies. Tolkien invented entire languages in his spare time. Boris Johnson got expelled from the debating society. The pattern of extraordinary people in mythical surroundings is endlessly compelling.</p>
+  </div>
+
+  
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <h3>The Golden Rule for Oxford</h3>
+  <p>Oxford's traditions are so ancient and bizarre they sound made up. And the weirder the tradition, the better: The Bodleian isn't just a beautiful library; you have to swear an oath not to set it on fire. Latin Grace said before formal dinner in college halls. “Oxford Time” where events are often scheduled to start roughly 10–15 minutes later than the official clock time, which is very on‑brand for students.</p>
+  <p>None of this is a performance for tourists, it's everyday life in Oxford. Your goal is to make them feel they know something the tourists snapping photos beside them don't. Not a history lesson.</p>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section">
+  <div class="section-label">Opening Overview</div>
+  <div class="section-title">Reimagining the Intro Facts</div>
+  <p class="section-intro"></p>
+
+  <div class="idea-card"><div class="card-accent accent-navy"></div>
+      <span class="idea-card-icon">💡</span>
+      <h3>The Thing That Confuses Most People</h3>
+      <p>Oxford isn't one university — it's 39 of them. Each college is essentially its own institution, with its own buildings, its own dining hall, its own rules, its own personality, and yes, its own fierce sense of superiority over the others. Students live, eat and study within their college. They have their own sports teams, their own traditions, their own gossip.</p>
+      </div><div class="idea-card">
+    <span class="idea-card-icon">🏛️</span>
+    <h3>"Oxford is Older Than..."</h3>
+    <p>Oxford University is older than The Aztec Empire, the printing press and even the English language as they know it. It is one of the two oldest universities still operating in the world "Which is the oldest?" (Bologna, Italy).</p>
+  </div>
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">⚔️</span>
+    <h3>Lead With the Violence</h3>
+    <p>The Town vs Gown riots when students and locals were literally killing each other in the streets, should open the tour, not sit buried in a bullet point. "In 1355, a dispute in a pub escalated into two days of fighting between students and local people. 63 students and 30 locals were killed. The university won and the town was forced to pay compensation every year for the next 470 years. In the Middle Ages, scholars were legally allowed to carry weapons for protection. Imagine going to lectures armed.</p>
+  </div>
+
+  
+
+  
+</div>
+
+<!-- STOPS -->
+<div class="section" style="padding-top:0">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Landmark</div>
+  <p class="section-intro">Tap any stop to expand the hook, story and activity. Designed for quick reference on mobile during the tour.</p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏛️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Ashmolean Museum</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">Unlikely Objects</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The world's first public museum hid a Guy Fawkes lantern for 400 years."</div>
+      <p class="body-text">The Ashmolean's founding idea was that anyone, regardless of wealth or class, should be able to see extraordinary things was radical in 1683. Reframe this: "Before this building, the only way to see rare objects was to be rich enough to own them or know someone who was. This building changed that." Ask students: "What would you put in a museum if you were founding one today?"</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🔦 The Guy Fawkes Lantern</span>
+The lantern allegedly used by Guy Fawkes during the Gunpowder Plot of 1605 is inside. "This lantern was meant to light the fuse that blew up the British Parliament. Instead, it ended up in a museum. The plan failed so dramatically that Britain still celebrates its failure every year with fireworks." For international students who don't know Bonfire Night, this is a genuinely bizarre piece of national culture.</div>
+    </div></div>
+  </div>
+
+  <!-- 02 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏰</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Balliol College</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">Power &amp; Politics</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Balliol has educated more UK prime ministers than almost any other college."</div>
+      <p class="body-text">The college was founded to give scholarships to students too poor to afford university. The most powerful institution in Oxford was built for the least powerful people. Balliol has educated an extraordinary number of world leaders: UK Prime Ministers, international heads of state, philosophers and Nobel winners.  Its traditions are more spirited than stuffy, and its students famously unafraid to challenge anyone or anything. It’s a college with history in its stones and rebellion in its bloodstream — a combination that gives it a personality all of its own.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🗣️ The Debate Culture Hook</span>
+Balliol has a centuries-long reputation for argument and independence. Students here are encouraged to challenge everything — their tutors, each other, even long‑held academic traditions. Oxford’s tutorial system puts you one‑to‑one with an expert for an hour each week, where your job is to defend your ideas, not quietly agree with theirs. Ask: "Would you find that exciting or terrifying?" </div>
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)"><div class="stop-header">
+    <div class="stop-icon">🧑‍🎓</div>
+    <div class="stop-title-block">
+      <div class="stop-name">Trinity College</div>
+      <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">College wars</span></div>
+    </div><div class="stop-chevron">▾</div></div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The site of one of the longest-running feuds in academic history."</div>
+      <p class="body-text">For centuries, Trinity has been locked in a hilarious, petty, and sometimes intense rivalry with its neighbour, Balliol College. Legend has it that students used to throw "objects" over the wall at each other, and Balliol students even have a specific song dedicated to how much they dislike Trinity. It’s the perfect way to show that even in a place this prestigious, student life has always been about "us versus them."</p>
+      
+      <div class="tip-box"><span class="tip-label-inline">👨 The Birthplace of Giants</span>
+Beyond the pranks, Trinity is a literal powerhouse of human progress. If your students use a computer, read modern literature, or believe in the laws of physics, they owe a debt to Trinity’s alumni. This isn't just a school; it’s the place where the "Inklings" (the writing group of J.R.R. Tolkien and C.S. Lewis) hung out, and where minds like Francis Bacon revolutionised how we see the universe.</div>
+    </div></div></div>
+
+  <!-- 03 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">📖</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Blackwell's Bookshop</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">Underground World</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"One of the most famous academic bookshops in the world."</div>
+      <p class="body-text">Blackwell’s is as iconic as the Radcliffe Camera or the Bodleian. For many visitors, a trip to Oxford isn’t complete without stepping inside. The Norrington Room, hidden beneath the shop and stretching under Trinity College's lawn, is one of Oxford's great hidden spaces. "There's a room nearby that once held the world record for the largest single room of book sales. It's invisible from the street. It runs for three miles under the garden of one of Oxford's oldest colleges." </p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📚 The Relevance Question</span>
+"Blackwell's has been family-owned for nearly 150 years, in a world where Amazon exists. Why do students still come here?" This is a genuine question with interesting answers: community, serendipity, the physical experience of books, trust.</div>
+    </div></div>
+  </div>
+
+  <!-- 04 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎭</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Sheldonian Theatre</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">Christopher Wren's First</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The man who built St Paul's Cathedral started here with this building."</div>
+      <p class="body-text">Christopher Wren designed the Sheldonian before he was famous. Frame it as an origin story: "This is where one of Britain's greatest architects proved himself. He'd never built a major building before. He based it on a Roman theatre he'd only seen in books, because he hadn't been to Rome yet."</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎓 The Ceremony Hook</span>
+The Sheldonian Theatre is Oxford’s grand ceremonial stage. Every Oxford student begins their time here in this theatre dressed in a gown and formally admitted in a ceremony that has barely changed in centuries. And they end it here too, at graduation.</div>
+    </div></div>
+  </div>
+
+  <!-- 05 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">📚</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Radcliffe Camera</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">The Forbidden Library</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The Building That Has Nothing to Do with Photography."</div>
+      <p class="body-text">From the Latin camera, meaning “chamber” or “room.” Tourists often assume it has something to do with photography. The building is named after Dr John Radcliffe, a hugely successful doctor to King William III. When he died, he left a fortune to the University of Oxford, and part of that money funded this purpose‑built science library.</p>
+      <p class="body-text">The Radcliffe Camera appears in almost every photo of Oxford, on every postcard and establishing shot. And yet only Bodleian card-holders can enter. Lean into that exclusivity: "Every tourist photographs it. Only students study in it. From the outside it's just a beautiful dome. Inside, it's a perfect circle of books, with warm air rising from tunnels in the floor - heating technology installed in the 1740s."</p><div class="tip-box">
+        <span class="tip-label-inline">🎬 Film Connection</span>
+Radcliffe Square appears constantly in Oxford-set films and TV because it looks like the perfect image of a university. "Every time you see 'classic Oxford' in a film or TV show, you're probably looking at this square, even if the story is set somewhere else entirely."</div>
+    </div></div>
+  </div>
+
+  <!-- 06 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">📜</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Bodleian Library</div>
+        <div class="stop-meta-line"><span class="stop-num">07</span><span class="stop-tag">The Oath &amp; The Rules</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"To use this library, you must promise not to set it on fire."</div>
+      <p class="body-text">The oath is the single best hook at this stop. Deliver it slowly: "Before you can borrow a library card, you must swear an oath. Out loud. In person." Pause. "You promise not to kindle any fire or flame within the library." Then: "Because in the 1600s, when this library opened, that was a real concern. And they've never updated the wording." The mixture of ancient ritual and modern absurdity is perfect.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎬 Hogwarts Was Here</span>
+Duke Humfrey's Library and the Divinity School were used as Hogwarts interiors in the Harry Potter films.  The Divinity School’s fan‑vaulted ceiling appears in multiple hospital‑wing scenes across the early films  "The designers of Hogwarts looked around the entire world for what a magical school should look like, and they came here." For students who grew up with Harry Potter, standing here is genuinely emotional. Use it.</div>
+    </div></div>
+  </div>
+
+  <!-- 07 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌉</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Bridge of Sighs</div>
+        <div class="stop-meta-line"><span class="stop-num">08</span><span class="stop-tag">Beautiful Lie</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It's not named after Venice's Bridge of Sighs. The comparison is completely wrong."</div>
+      <p class="body-text">The "Bridge of Sighs" name is technically inaccurate. Oxford's version is closer to bridges in northern Italy, not Venice, but students called it that and it stuck. Use this as a small lesson in how history actually works: "Names, legends and nicknames spread because they feel right, not because they're accurate. Oxford's most famous bridge is famous for a comparison that isn't even correct." Ask: "Can you think of other famous names or phrases that are actually wrong?"</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 08 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🧑‍🏫</div>
+      <div class="stop-title-block">
+        <div class="stop-name">All Souls College</div>
+        <div class="stop-meta-line"><span class="stop-num">09</span><span class="stop-tag">Most Exclusive</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">" It’s the most exclusive college in Oxford but has no students. Just the best academics in the world."</div>
+      <p class="body-text">All Souls is genuinely baffling to people who've never heard of it. No undergraduates. No freshers' week. No student union. Just a small group of elected scholars who are, in the college's estimation, among the most exceptional minds alive. With no undergraduates and a small number of fellows, All Souls feels peaceful and contemplative, almost monastic compared to the bustle of nearby colleges.</p>
+      <p class="body-text">It’s rarely open to the public. All Souls is one of the hardest colleges to visit. Its limited opening hours add to its air of mystery, making it a special treat when students get to peek inside.</p><div class="tip-box">
+        <span class="tip-label-inline">✍️ The hardest exam in the world</span>
+For centuries, the All Souls entrance exam included a "one-word essay." Candidates were given a single word, for example, Justice, Miracles, Water. They had three hours to write about it. The exam has changed, but the college’s reputation for intellectual rigour remains.</div>
+    </div></div>
+  </div>
+
+  <!-- 09 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🦌</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Magdalen College</div>
+        <div class="stop-meta-line"><span class="stop-num">10</span><span class="stop-tag">Oscar Wilde's College</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Everyone gets the pronunciation wrong."</div>
+      <p class="body-text">Challenge students how to pronounce Magdalen. Offer a prize if anyone gets it right. They won't. It's pronounced "Maud‑lin". The college takes its name from Mary Magdalen, and in the Middle Ages the pronunciation of her name was anglicised to "maudlin". Spelling reverted to the Latin/Greek "Magdalen" form, but the medieval pronunciation stuck. Nearby Magdalen Church keeps the 'g' sound, highlighting the college-specific tradition.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🦌 The Deer Park Surprise</span>
+"This college has a deer park. Not a garden, a deer park. With real deer. In the middle of a city." The contrast between ancient stone buildings and grazing animals is photogenic and memorable. "Students who live here walk past deer every morning on the way to lectures."</div>
+    </div></div>
+  </div>
+
+  <!-- 10 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">💍</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Merton College</div>
+        <div class="stop-meta-line"><span class="stop-num">11</span><span class="stop-tag">Tolkien's Oxford</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The man who invented Middle-earth taught here for decades."</div>
+      <p class="body-text">J.R.R. Tolkien was a professor at Merton for years. The Lord of the Rings has sold 150 million copies. It was voted the greatest book of the 20th century in a BBC poll. Tolkien wrote most of it within walking distance of the medieval quad he taught in every day.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">⛓️ The Chained Books</span>
+The library is the oldest continuously used academic library in the English‑speaking world.  Founded in the 14th century, Merton’s library still has its original medieval fittings, including chained books and oak stalls. It’s like stepping into a time capsule of early scholarship.</div>
+    </div></div>
+  </div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🚣</div>
+      <div class="stop-title-block">
+        <div class="stop-name">River Cherwell</div>
+        <div class="stop-meta-line"><span class="stop-num">12</span><span class="stop-tag">Alice in Wonderland</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It’s Oxford’s quieter, more peaceful river."</div>
+      <p class="body-text">While the Thames (called the Isis in Oxford) gets most of the attention, the Cherwell is narrower, calmer and perfect for relaxed punting and riverside walks.  It runs right beside Magdalen College, cuts through Christ Church Meadow and even forms natural boundaries for St Hilda’s and St Catherine’s. Students often say it feels like the river is part of college life.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🌿 Alice Was Real</span>
+Addison's Walk, the circular path along the Cherwell at Magdalen, was where C.S. Lewis and J.R.R. Tolkien had the conversation that convinced Lewis that myths could point toward truth — a moment that led, indirectly, to both The Chronicles of Narnia and The Lord of the Rings. "Two of the most famous fantasy worlds in history were partially imagined on this riverbank."</div>
+    </div></div>
+  </div>
+
+  <!-- 11 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌳</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Watcher Tree</div>
+        <div class="stop-meta-line"><span class="stop-num">13</span><span class="stop-tag">Secret Oxford</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It’s one of Oxford’s best secret landmarks."</div>
+      <p class="body-text">The Watcher Tree isn’t famous like the Radcliffe Camera — it’s a local curiosity tucked away in the University Parks. A natural knot in the trunk has formed a shape that resembles a human face, complete with a brow ridge and eye socket. It looks eerily like it's watching you, and once you see it, you can’t unsee it. Send students to find the face themselves, without pointing it out.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 12 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛪︎</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Christ Church</div>
+        <div class="stop-meta-line"><span class="stop-num">14</span><span class="stop-tag">Harry Potter HQ</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Oxford’s grandest college, where royalty, religion and Harry Potter collide."</div>
+      <p class="body-text">Christ Church is unique: it’s the only Oxford college that also contains a cathedral. The bell tower, “Tom Tower,” was designed by Sir Christopher Wren, the architect of St Paul’s Cathedral. At 9:05 pm, the Great Tom bell rings 101 times, originally one for each of the college’s first scholars. It’s one of Oxford’s most charming traditions.</p>
+      <p class="body-text">It’s also the Oxford college most closely linked to Harry Potter, thanks to its spectacular dining hall and grand staircase - the high tables, portraits and hammer‑beam roof directly inspired the design of Hogwarts’ Great Hall. The real filming happened on the staircase just inside the main entrance, where Professor McGonagall welcomes the first‑years in Philosopher’s Stone. </p><div class="tip-box">
+        <span class="tip-label-inline">🌀 Alice Lives Here Too</span>
+Lewis Carroll taught at Christ Church, and Alice Liddell, the real Alice, was the daughter of the Dean. She grew up in the college. The small door in the garden inspired the tiny door Alice falls through in Wonderland. "One of the most recognisable images in children's literature - a girl too big for a door was inspired by a real door, in this garden, that a real child tried to get through."</div>
+    <div class="tip-box"><span class="tip-label-inline">🌐 Father of The WWW</span>
+Tim Berners‑Lee didn’t arrive at Christ Church as a student in need of tutorials — he came back decades later as the man who had already invented the World Wide Web. By the time he became a professor of Computer Science with a fellowship at Christ Church, every essay, meme and late‑night Wikipedia spiral was already partly his fault. For students, there’s something surreal about it: the person who helped wire the modern world into existence walking through the same quads where they’re doom‑scrolling on phones his ideas made possible. Christ Church has seen its share of powerful figures, but Berners‑Lee is the one who quietly changed how everyone, everywhere, thinks, learns and wastes time online.</div></div></div>
+  </div>
+
+  <!-- 13 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🍝</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Covered Market</div>
+        <div class="stop-meta-line"><span class="stop-num">15</span><span class="stop-tag">Perfect Lunchbreak Stop</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Oxford’s oldest indoor maze of food, colour and chaos."</div>
+      <p class="body-text">One of the oldest continuously operating markets in the UK. Stepping inside feels like a literal step back into the 18th century; the narrow, winding passages, original timber shopfronts, and intricate ironwork offer a rustic, atmospheric charm that makes modern shopping malls feel incredibly dull by comparison. Whether you’re grabbing a legendary Ben's Cookie, a thick milkshake, or a steaming bowl of Thai noodles, it offers an authentic taste of Oxford life that is as affordable as it is historic.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 14 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🗼</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Carfax Tower</div>
+        <div class="stop-meta-line"><span class="stop-num">16</span><span class="stop-tag">The Centre of Everything</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The tower that marks the exact centre of Oxford."</div>
+      <p class="body-text">Carfax has been a meeting point, a market, a site of riots and a landmark for over a thousand years. The quarterjacks, the mechanical figures that strike the bell, are replicas because the originals were worn out. "These mechanical soldiers have been hitting this bell since the 14th century."</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 15 -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">St Michael at the North Gate</div>
+        <div class="stop-meta-line"><span class="stop-num">17</span><span class="stop-tag">The Oldest Stones</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The oldest surviving building in Oxford."</div>
+      <p class="body-text">The tower dates to around 1040 — pre-Norman, pre-university, pre-almost-everything. St Michael’s stood beside the north gate of Oxford, which is how it got its name. The tower acted as a lookout point, watching over the main road into the city.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🏔️ The View</span>
+The tower is climbable and offers a panorama of central Oxford. "From up there you can see the 'dreaming spires' that Matthew Arnold wrote about — the skyline that's been legally protected so no building can be taller than the historic towers." </div>
+    </div></div>
+  </div>
+
+  <!-- 16 -->
+  
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0">
+  <div class="section-label">Oxford-Specific Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+  <p class="section-intro">A few approaches particularly suited to Oxford's character — ancient, layered and full of living tradition.</p>
+
+  <div class="idea-card">
+    <span class="idea-card-icon">🎓</span>
+    <h3>Traditions Or Relics Of The Past?</h3>
+    <p>Oxford has genuinely bizarre traditions — wearing subfusc to exams, swearing oaths not to set libraries on fire, 500-year-old choir rituals, students being pelted with confetti at graduation. At each stop, reveal one tradition and ask students to rank it: Brilliant / Bizarre / Should Be Abolished. </p>
+  </div>
+
+  
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">🔍</span>
+    <h3>The "Hidden Oxford" Photo Challenge</h3>
+    <p>Oxford is full of things invisible until you look: gargoyles at strange angles, hidden courtyards glimpsed through gates, coats of arms above doorways, the shift in stone colour between medieval and Victorian buildings. Assign students a specific visual hunt for each stop — not "take a photo of the building" but "find something in this street that is unusual and different." The best photo at the end of the tour wins.</p>
+  </div>
+
+  
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Oxford Walking Tour </div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Covent Garden - Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --cream: #FDFAF4;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 12vw, 80px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.9; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">🏛️🎭🎼</div>
+  <h1>Covent Garden</h1>
+  <div class="hero-sub"></div>
+  <div class="hero-badges">
+    <span class="hero-badge">Street Performance</span>
+    <span class="hero-badge">Music History</span>
+    <span class="hero-badge">Hidden Courtyards</span>
+    <span class="hero-badge">Student Activities</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Links &amp; Information</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=1l_ukreY3rRfdUMkI9utFy6JPJrhx1Hk&amp;usp=sharing" target="_blank">Covent Garden map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1_CcSp9sL1-Qac4UmxLnoeiE4j6kOdet0IiGK6muqIoc/edit?tab=t.0" target="_blank">Covent Garden guide with photos</a></div><div class="link-row"><span class="link-icon">🚻</span><a href="https://www.toiletmap.org.uk/" target="_blank">Toilets map</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">No free public toilets in Covent Garden. Tell students to use restaurant or shop. Nearest free toilets at Charing Cross station</span></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>Monastic Plots, Midnight Vice, and Market Chaos</h2>
+  <p>Covent Garden has been a great many things. A monastic vegetable garden. London's most chaotic fruit and flower market. A red-light district full of taverns and gambling houses. The neighbourhood that nearly got demolished in the 1970s and was saved by the people who lived and worked in it. It's now one of the most visited parts of the city.</p>
+  <p>What makes it interesting for students isn't any single landmark, it's the layering. Almost every street here has been something completely different in living memory. The flower market is a transport museum. The brothel district is now boutique cafés. The street that was London's Tin Pan Alley still has original punk graffiti in the walls. The history isn't behind glass here. It's in the brickwork.</p>
+</div>
+</div>
+
+<!-- BIG PICTURE -->
+<div class="section">
+  <div class="section-label">Big Picture</div>
+  <div class="section-title">Overarching Story Frames</div>
+  <p class="section-intro"></p>
+
+  
+
+  
+
+  
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">🎭</span>
+    <h3>The Performance Thread</h3>
+    <p>Covent Garden has more stage history per square metre than almost anywhere in London. The Royal Opera House has been hosting world-class spectacles on this exact spot since 1732, but the drama here isn’t just for the elite. In 1662, Samuel Pepys stood in this square and recorded the first-ever performance of Punch and Judy. Today, buskers audition for coveted spots. By using the "stage" as your connecting thread, the route becomes a timeline of how Londoners have entertained themselves for 400 years; shifting from the rough-and-tumble of street puppets to the high-stakes precision of the opera and the raw energy of live music.</p>
+  </div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <h3>The Golden Rule for Covent Garden</h3>
+  <p>Almost everything here is famous - the Piazza, the street performers, the Opera House. The detail that cuts through is always the one that doesn't fit. The sundials that tell the wrong time. The column that was removed because criminals used it as a meeting point. The street performers who had to audition to be there. The building where Mozart stayed as a child, next door to where the Sex Pistols rehearsed three centuries later.</p>
+  
+</div>
+
+<!-- STOPS -->
+<div class="section">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Stop</div>
+  <p class="section-intro">Tap any stop to expand. </p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 COVENT GARDEN PIAZZA -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏛️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Covent Garden Piazza</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">Monks' Garden to London's Living Room</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The name 'Covent Garden' is a corruption of 'Convent Garden'. This was a vegetable patch belonging to Westminster Abbey."</div>
+      <p class="body-text">The ground students are standing on was the kitchen garden of a medieval monastery. After that, Inigo Jones designed the piazza in the 1630s, the first open public square of its kind in London, modelled on Italian piazzas Jones had seen on his travels. It then became a fruit and vegetable market for over 300 years, before the market moved out in the 1970s. At its height, the market moved 1,000 tonnes of fruit and vegetables every single day - the weight of two Boeing 747s being carried through these narrow streets by hand and horse-cart every morning.</p>
+      <p class="body-text">The cobblestones underfoot are original and worn smooth by centuries of market barrows. The Apple Market inside still carries the name of what it used to sell; now it holds handmade crafts, jewellery and art. The street performers who fill the piazza today must audition for their spot; one of the only places in the UK where that's the case.</p>
+      
+      
+    <div class="tip-box"><span class="tip-label-inline">📢  1970s Protest</span>
+In 1971, the Greater London Council published a plan to redevelop Covent Garden. The fruit and vegetable market was moving out and the counil came up with a plan to demolish large parts of Covent Garden and replace them with modern roads, offices and new developments. The people who lived and worked there said no. What followed was one of the most significant grassroots campaigns in London's planning history. People occupied threatened buildings, organised public meetings, produced their own alternative plans and lobbied every politician they could reach. By 1974 the demolition plan was abandoned. Two hundred and fifty buildings in the area were listed for preservation in a single decision, one of the largest conservation listings in British history. The Covent Garden visited by millions of tourists today exists because ordinary people refused to let it disappear. </div></div></div>
+  </div>
+
+  <!-- 02 ST PAUL'S CHURCH -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">St Paul's Church</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">The Actors' Church</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This church has memorials to performers rather than politicians or generals because the people who worked in this neighbourhood for 400 years were actors, acrobats and musicians."</div>
+      <p class="body-text">St Paul's was designed by Inigo Jones and built as part of the original piazza in the 1630s. It became the parish church of the theatre and entertainment community that grew up around Covent Garden over the following centuries, and now contains memorials to hundreds of famous performers. It's known as the Actors' Church, not as a nickname, but as a genuine description of what it is and who it serves.</p>
+      <p class="body-text">The portico, the covered entrance facing the piazza, is where the first recorded performance of Punch and Judy took place in 1662. Samuel Pepys wrote about it in his diary, describing it as extraordinary. That same spot has had street performers in front of it, almost continuously, for over 350 years. </p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📖 The Pepys Connection</span>
+Samuel Pepys was one of the great diarists of the 17th century.  His account of London life between 1660 and 1669 is one of the most important historical documents from the period. "He stood more or less exactly where you're standing now, watching a puppet show, and went home and wrote about it. His diary is still in print. The puppet show tradition is still running.</div>
+    </div></div>
+  </div>
+
+  <!-- 03 ROYAL OPERA HOUSE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎼</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Royal Opera House</div>
+        <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">Third Time Lucky</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This is the third theatre on this site. The first two burned down. The current building opened in 1858 and has survived everything since."</div>
+      <p class="body-text">The first theatre here opened in 1732. It burned down in 1808. Its replacement burned down in 1856. The current Royal Opera House opened two years later and has been the home of both the Royal Opera and the Royal Ballet ever since. The auditorium inside is Victorian glamour at its most concentrated: red velvet seats, gold decoration, chandeliers, and an orchestra pit large enough to hold around 90 musicians.</p>
+      <p class="body-text">The building is open during the day without a ticket. Students can walk into the foyer, café and atrium and get a sense of the scale without buying a seat. The costume department works on site, producing hand-stitched tutus and elaborate opera gowns.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🤔 Discussion Question</span>
+"Opera tickets here can cost hundreds of pounds. The street performers outside in the piazza are free. Both are professional performers who trained for years. What's the difference — and does the price change the experience?"</div>
+    </div></div>
+  </div>
+
+  <!-- 04 LONDON TRANSPORT MUSEUM -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🚇</div>
+      <div class="stop-title-block">
+        <div class="stop-name">London Transport Museum</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">The Flower Market That Became a Museum</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The world's first underground railway opened in 1863. You can see the original steam trains inside a Victorian flower market."</div>
+      <p class="body-text">The museum occupies the old Covent Garden Flower Market; a cast-iron and glass building from 1871 that sold flowers to London's florists until the market moved out in the 1970s. Inside, it tells the story of how London learned to move: from horse-drawn buses to the Metropolitan Railway, opened in 1863 as the first underground railway anywhere in the world. "Every city in the world that has a metro system is, in some way, copying what started here."</p>
+      <p class="body-text">Harry Beck's 1933 Tube map, designed using the logic of electrical circuit diagrams rather than geographical accuracy, is one of the most influential pieces of graphic design ever produced and has been copied by transport networks worldwide. Students can sit inside historic vehicles including the original Routemaster bus, try the Tube driving simulator, and see early experimental ideas for London's transport network including river buses and early monorail proposals that never happened.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🗺️ The Map Detail</span>
+Show students the Tube map and ask: "What's wrong with this?" Most won't immediately notice that it bears almost no relationship to the actual geography of London. Stations are evenly spaced regardless of real distance, the Thames is straightened, and zones are compressed or stretched for clarity. "Beck's insight was that when you're underground, you don't need to know where you are geographically. You just need to know which line you're on and how many stops to go." </div>
+    </div></div>
+  </div>
+
+  <!-- 05 SEVEN DIALS -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🕰️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Seven Dials</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">The Sundials That Tell the Wrong Time</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Seven Dials is a lie: the column has six faces, the sundials tell the wrong time, and the stone itself is a replica.."</div>
+      <p class="body-text">Seven Dials was designed in the 1690s by Thomas Neale as an elegant residential area; six streets radiating from a central column, intended to attract wealthy Londoners.  The sundials were designed for the original street layout, which was slightly different, so they never aligned correctly.</p>
+      <p class="body-text">Within decades it had become one of London's most notorious slums: taverns, gambling dens, overcrowding and crime. Charles Dickens described it as chaotic and dangerous. The original column was taken down in the 18th century because locals believed criminals were using it as a rendezvous point. The current column was rebuilt in 1989.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 06 NEAL'S YARD -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌈</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Neal's Yard</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">One Man Transformed a  Back Alley</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Fifty years ago, this was a literal rubbish dump. One person with a few buckets of paint turned it into London’s brightest alley"</div>
+      <p class="body-text">Nicholas Saunders took over the derelict space in the 1970s and opened a wholefoods shop, then a dairy, a bakery and a natural remedies store, all focused on sustainability and natural living, decades before those ideas became mainstream. The colourful painted buildings, bright blues, yellows, oranges and greens, transformed a forgotten back alley into one of London's most distinctive and photographed courtyards. Neal's Yard Remedies, which began here in 1981, now has shops around the world.</p>
+      
+      
+    </div></div>
+  </div>
+
+  <!-- 07 JUBILEE MARKET HALL -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Jubilee Market Hall</div>
+        <div class="stop-meta-line"><span class="stop-num">07</span><span class="stop-tag">A Market That Changes Every Day</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The market runs a different theme every day of the week — antiques on Monday, general market Tuesday to Friday, arts and crafts at the weekend."</div>
+      <p class="body-text">Built in 1904, the Jubilee Market Hall was originally a flower market and part of the same Covent Garden complex that supplied London's florists for over a century. The Victorian cast-iron and glass roof is original, flooding the interior with natural light. Today the stalls are run largely by independent traders and local craftspeople, with the stock varying entirely depending on the day.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 08 CECIL COURT -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">📚</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Cecil Court</div>
+        <div class="stop-meta-line"><span class="stop-num">08</span><span class="stop-tag">Mozart's Street, Britain's First Film Mile</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This is the real Diagon Alley. Before the movies, this 400-year-old gas-lit street was the global headquarters of the early film industry."</div>
+      <p class="body-text">When the Mozart family visited London in 1764 to 1765, eight-year-old Wolfgang Amadeus stayed in a house on Cecil Court. Over a century later, in the 1890s, the same street became a hub for Britain's earliest cinema companies. There were 40 based in this one tiny alley. It was the original Hollywood, condensed into 100 metres of pavement. Now it's known as Booksellers' Row, lined with rare bookshops, antique map dealers and specialist stores in first editions, children's literature and occult texts.</p>
+      <p class="body-text">Many people note that Cecil Court resembles what J. K. Rowling described as Diagon Alley — the narrow street, the old shopfronts, the specialist and slightly magical-feeling merchandise. Rowling has never confirmed this as a source of inspiration. The street's hand-painted signs and old-fashioned lettering give it a quality that makes the comparison easy to understand regardless.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 09 DENMARK STREET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎸</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Denmark Street</div>
+        <div class="stop-meta-line"><span class="stop-num">09</span><span class="stop-tag">Bowie, The Stones, The Pistols — One Street</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This 100-metre alley is the birthplace of British Rock. The Rolling Stones recorded their first album here, and the Sex Pistols lived and rehearsed here."</div>
+      <p class="body-text">Denmark Street is 100 metres long and has more music history per square metre than anywhere else in the world. It was the place where music publishers gathered, where songwriters came to sell their work, and where studios produced the sound of British popular music. The Rolling Stones recorded early tracks at Regent Sound Studio at number 4. David Bowie lived in a flat above a music shop in the late 1960s and wrote songs here before he became globally known.</p>
+      <p class="body-text">The Sex Pistols' rehearsal room at number 6 still has original punk graffiti on the walls. "In one building on this street, you can find graffiti left by one of the most influential bands of the 1970s, preserved inside the wall of what is now a guitar shop." The street is still packed with vintage guitar shops, rare amps and boutique music equipment.</p>
+      
+      
+    <div class="tip-box"><span class="tip-label-inline">🎹 Backstory - From Office Boy to Global Superstar</span>
+In 1965, a 16-year-old named Reginald Dwight got a job as a weekend errand boy for a music publisher on Denmark Street. He made tea, ran messages between offices and occasionally swept up. He had been playing piano since he was three and could play almost anything by ear, but he had no original songs, no contacts and no particular reason to believe any of that would change. One day, he answered an advert in the New Musical Express placed by a music publisher looking for songwriters. He was given a stack of lyrics written by a guy called Bernie Taupin, whom he had never met. He sat down and set them to music. The combination worked immediately. Over the next three years, Reginald Dwight changed his name, signed a record deal and released his first album. By 1973 he was one of the most famous musicians on earth. Elton John has sold over 300 million records. He has had at least one top-forty hit in every decade from the 1970s to the 2020s. His career began on this street, carrying tea between offices and doing odd-jobs.</div></div></div>
+  </div>
+
+  <!-- 10 LONDON FILM MUSEUM -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎬</div>
+      <div class="stop-title-block">
+        <div class="stop-name">London Film Museum</div>
+        <div class="stop-meta-line"><span class="stop-num">10</span><span class="stop-tag">The Only Film Museum in the UK</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This is the only museum in the UK dedicated entirely to film and it works directly with studios, so the objects inside are the real ones."</div>
+      <p class="body-text">The London Film Museum was founded by film producer Jonathan Sands to preserve and celebrate British filmmaking. Unlike museum sections in larger institutions, everything here is focused exclusively on cinema; props, costumes, sets and behind-the-scenes material, sourced directly from studios rather than through secondary collections. The museum previously hosted the world's largest James Bond exhibition, displaying real cars, gadgets, costumes and props from every Bond film including the Aston Martin DB5.</p>
+      
+    </div></div>
+  </div>
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0">
+  <div class="section-label">Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+  <p class="section-intro"></p>
+
+  
+
+  
+
+  
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">📖</span>
+    <h3>The One-Person Story</h3>
+    <p>The most effective moments on this route all involve a single person in a specific place. Mozart as a child on Cecil Court. Elton John carrying messages on Denmark Street. Nicholas Saunders turning a rubbish-strewn alley into Neal's Yard. Samuel Pepys watching a puppet show outside St Paul's Church and going home to write about it. At each stop, find the one-person story and tell it before the broader context. A single human being in a specific place is always more memorable than a general historical fact.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Covent Garden — Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+</body></html>

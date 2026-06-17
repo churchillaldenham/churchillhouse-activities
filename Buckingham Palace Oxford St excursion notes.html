@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buckingham Palace &amp; Oxford Street — Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 9vw, 62px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.95; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(15px, 4vw, 22px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">👑🏰🛍️</div>
+  <h1>Buckingham Palace &amp; Oxford Street</h1>
+  <div class="hero-sub"></div>
+  <div class="hero-badges">
+    <span class="hero-badge">Royal London</span>
+    <span class="hero-badge">Shopping Bonanza</span>
+    <span class="hero-badge">Hidden Details</span>
+    <span class="hero-badge">Student Activities</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Links &amp; Information</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=123vc3zvVF6xf54z9Wj5q7O23g7herLs&amp;usp=sharing" target="_blank">Buckingham Palace &amp; Oxford Street map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1KzWJdC9QRQo-7jaVq7ppBpdkekTNVl_RDneh9Ae_D_g/edit?tab=t.0" target="_blank">Buckingham Palace &amp; Oxford Street guide with photos</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://www.toiletmap.org.uk/" target="_blank">Toilets map</a></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>Two Londons in One Day</h2>
+  <p>This excursion covers two very different sides of the city. One runs on tradition, the other runs on credit cards. The first half consisting of the Palace, The Mall, St James's Park, is ceremonial London: designed to impress, unchanged for generations, built around the slow rhythms of monarchy. The second half of Bond Street, Carnaby Street, Oxford Street, is commercial London: fast, loud and constantly reinventing itself.</p>
+  
+</div>
+</div>
+
+<!-- BIG PICTURE FRAMES -->
+<div class="section">
+  <div class="section-label">Big Picture</div>
+  <div class="section-title">Overarching Story Frames</div>
+  <p class="section-intro">Pick one thread and run it all day. The best frames give students a reason to pay attention at every stop, not just the famous ones.</p>
+
+  <div class="idea-card"><div class="card-accent accent-navy"></div>
+      <span class="idea-card-icon">🏰</span>
+      <h3>Lead with the contrast, not the facts</h3>
+      <p>"This morning you're going to stand in front of a glorified office that 800 people go to work in every day. You will walk past one of the most famous hotels in the world where 'afternoon tea' was popularised. This afternoon you're going to walk a road that Romans built, that prisoners walked to their executions, and that now has 300,000 shoppers on it daily."</p>
+      </div>
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">🎬</span>
+    <h3>"You've Already Been Here"</h3>
+    <p>This route is one of the most filmed stretches in London. The Mall has appeared in The King's Speech, various Bond films and The Crown. Carnaby Street defined the visual language of the 1960s in film and photography. The Beatles' rooftop gig on Savile Row is one of the most watched concert recordings in history. At each stop, ask students if they know of a film or music reference for that landmark.</p>
+  </div>
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">⏳</span>
+    <h3>Before and After</h3>
+    <p>Every stop on this route has a dramatically different "before." Oxford Street was a Roman road, then a route to the gallows. St James's Park was a swamp, then a deer park. The Ritz site was an open courtyard. Carnaby Street was a jazz basement. At each stop, briefly say what was there before.</p>
+  </div>
+
+  
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <h3>The Golden Rule for This Route</h3>
+  <p>Almost everything on this route is famous. The Palace. The Mall. Oxford Street. The Ritz. Students arrive with a pre-existing image of all of it — from films, from news coverage, from social media. That familiarity is the biggest obstacle of the day.</p>
+  <p>The answer is to find the thing that doesn't fit the postcard. The pelicans that have lived in the park since 1664. The battleship hidden inside a department store. The road painted red for a reason most people walk straight past. The last concert nobody knew was coming, on a roof above a tailoring street. Lead with the interesting details. Let the famous landmark be the background.</p>
+</div>
+
+<!-- STOPS -->
+<div class="section">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Stop</div>
+  <p class="section-intro">Tap any stop to expand. Stops follow the route order from the source notes.</p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 CHANGING OF THE GUARD -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">💂</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Changing of the Guard</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">Real Soldiers, Theatrical Setting</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This is not a show put on for tourists. It would happen whether anyone was watching or not."</div>
+      <p class="body-text">The Changing of the Guard is the military equivalent of a shift handover at a hospital; completely routine, completely necessary, except someone decided to add a brass band and bearskin hats. It represents the formal transfer of responsibility for guarding Buckingham Palace from one unit to another. The soldiers are fully trained, active-duty troops from the British Army, many with operational deployments behind them. Everything they do has a practical origin, even when it now looks theatrical.</p>
+      <p class="body-text">The bearskin hats are about 45cm tall and weigh around 1.5kg each and originally designed to make soldiers look taller and more imposing on the battlefield. Different regiments have tiny differences in their uniforms: button arrangements, collar badges, plume colours. The band plays traditional military marches but often includes film themes and pop songs. The rifles are real working weapons, not props.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📍 Quietist Viewing</span>
+Arriving at Wellington Barracks by 10:25 gives a close view of the New Guard forming up, their inspection, the Colours being handed over, and the band playing before they step off at 10:43. Then cross St James's Park to The Mall to see the Household Cavalry ride past at 11:37, followed by the St James's Palace detachment marching up The Mall at 11:45. Far less crowded than the front of the Palace, and you see more.</div>
+      
+    </div></div>
+  </div>
+
+  <!-- 02 BUCKINGHAM PALACE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">👑</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Buckingham Palace</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">Office Block With a Balcony</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Buckingham Palace is basically a big office. The King and Queen actually live in nearby Clarence House and Windsor Castle.</div>
+      <p class="body-text">Buckingham Palace has been the official London residence of the monarch since 1837, but it functions primarily as an administrative headquarters. Private secretaries, archivists, chefs, footmen, police officers and dozens of other staff fill its 775 rooms daily. There are 78 bathrooms, 52 royal and guest bedrooms, 188 staff bedrooms and 92 offices. There's a post office, a doctor's surgery, a cinema and a kitchen capable of serving hundreds at state banquets.</p>
+      <p class="body-text">The famous balcony is reserved for major national moments such as coronations, royal weddings, jubilees and Trooping the Colour. In most years it's used just once. The garden behind the building is the largest private garden in London, with a lake, beehives and a tennis court and completely invisible from the street.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🚩 The Flag</span>
+The flags on the roof are basically the King’s WhatsApp Status. If the Royal Standard is up, he’s inside. If it’s the Union Jack, he’s away or out of the office.</div>
+      
+    <div class="tip-box"><span class="tip-label-inline">📖 Backstories - Palace Intruder</span>
+Buckingham Palace looks like one of the most secure buildings on Earth. Armed police, guards, security cameras, high walls and gates. Which makes what happened in July 1982 even more extraordinary.  A 32-year-old unemployed decorator called Michael Fagan climbed over the Palace railings in the middle of the night and wandered inside. Not only did he get in, he spent time exploring the building completely unnoticed. He reportedly sat on a throne, drank wine and roamed corridors before eventually finding himself in the private royal apartments. Then he walked into Queen Elizabeth II's bedroom. The Queen woke up to find a complete stranger sitting at the end of her bed. She remained remarkably calm and tried to keep him talking while discreetly calling for assistance. Security systems failed, alarms were ignored and help took several minutes to arrive. The story caused national embarrassment and triggered major changes to Palace security. </div></div></div>
+  </div>
+
+  <!-- 03 VICTORIA MEMORIAL -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">𓀚</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Victoria Memorial</div>
+        <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">Monument at the Crossroads</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It was designed in 1901, unveiled in 1911, and not finished until 1924 — Victoria died before a single stone was laid."</div>
+      <p class="body-text">The Victoria Memorial took over two decades to complete, funded by public subscription and contributions from across the British Empire. The central figure of Victoria faces down The Mall — looking toward Parliament and the city rather than toward the Palace she spent much of her reign in. At the four corners: bronze figures representing Peace, Progress, Agriculture and Manufacture — a portrait of what Victorian Britain believed it stood for.</p>
+      <p class="body-text">The dedication ceremony in 1911 was attended by King George V and his first cousin Kaiser Wilhelm II of Germany — two senior grandsons of Victoria, who would be on opposite sides of a world war just three years later.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 04 ST JAMES'S PARK -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🦢</div>
+      <div class="stop-title-block">
+        <div class="stop-name">St James's Park</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">Swamp to Royal Garden — Via Paris</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This was a swamp. Henry VIII drained it. Charles II came back from exile in France and decided it wasn't Parisian enough — so he redesigned it."</div>
+      <p class="body-text">St James's Park is London's oldest Royal Park, but its current form dates to the 17th century, when Charles II returned from years in France and wanted long avenues, ornamental water and elegant views — a piece of Paris in the middle of London. Before that it was marshland used for grazing. Before Henry VIII it was simply wet. "Every layer of this park reflects what the reigning monarch most wanted London to look like."</p>
+      <p class="body-text">The lake has had a colony of pelicans since 1664, when the Russian ambassador gifted a pair to Charles II. Today's pelicans are fed fresh fish every afternoon. The park also has ring-necked parakeets — bright green tropical birds that escaped from captivity decades ago and now thrive in the park. "London has a wild population of tropical parrots. They've been here long enough that they're now considered a local species."</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📸 The Blue Bridge View</span>
+Stand in the centre of the Blue Bridge. Face one way: Buckingham Palace framed by trees. Face the other: the London Eye and Whitehall. "This is one of the most photographed views in the city, and it looks entirely accidental — but every tree, every sightline, every angle was deliberately designed." </div>
+    </div></div>
+  </div>
+
+  <!-- 05 THE MALL -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏳️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Mall</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">London's Ceremonial Red Carpet</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The road is painted red on purpose — so it acts as a giant red carpet leading to the Palace."</div>
+      <p class="body-text">The Mall was redesigned by King Edward VII in the early 1900s to create a grand, Paris-style ceremonial boulevard. The red surface was a deliberate design choice. Every state visit, coronation procession and major royal parade travels this route. When a foreign head of state visits Britain, their country's flags line the full length of The Mall from Admiralty Arch to the Victoria Memorial.</p>
+      
+      <div class="tip-box">
+        <span class="tip-label-inline">🎬 Film Connection</span>
+The Mall has appeared in numerous films, most memorably in The King's Speech and the closing scene. . You’ve probably also seen it used for high-speed chases in Fast &amp; Furious 6, as the landing strip for a helicopter in Mission: Impossible Fallout, and as the site of a massive military stand-off in 28 Days.</div>
+      <div class="tip-box">
+        <span class="tip-label-inline">📸 Photo Challenge</span>
+Stand in the middle of The Mall and shoot toward Buckingham Palace with the avenue of trees on both sides creating a natural corridor. "This is the shot that appears on every state occasion — the official visual language of British ceremony."</div>
+    </div></div>
+  </div>
+
+  <!-- 06 THE RITZ -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🫖</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Ritz</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">London's First Hotel With a Bathroom Per Room</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Walking into The Ritz in jeans is the London equivalent of showing up to a wedding in a tracksuit. They will be polite about it. You will still be leaving"</div>
+      <p class="body-text">The Ritz was genuinely revolutionary when it opened — not just luxurious but technically advanced, offering private bathrooms, electric lifts and central heating at a time when most of the city had none of these. The gap between what happened inside these walls and what London looked like outside them was almost incomprehensible.</p>
+      <p class="body-text">The hotel has its own dress code: no jeans, no trainers. It is one of the last places in London where dressing up remains a genuine requirement rather than a suggestion. Most hotels employ a wine sommelier. The Ritz is the only hotel in the UK with a tea sommelier; a person whose entire role is pairing tea with food. Afternoon tea is booked months in advance and costs £95; More than the price of many flights to European cities.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎬 Film Connection</span>
+The Ritz has appeared in Notting Hill, Bridget Jones's Diary and Layer Cake, among many others. It's become a shorthand in British film for a certain kind of aspirational glamour and the place characters go when they want to feel, or appear, transformed.</div>
+    </div></div>
+  </div>
+
+  <!-- 07 BOND STREET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">💎</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Bond Street</div>
+        <div class="stop-meta-line"><span class="stop-num">07</span><span class="stop-tag">300 Years at the Top</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"A street that was originally a muddy track for hunting ducks and is now a gold-plated runway for every luxury brand in existence."</div>
+      <p class="body-text">Since the 1700s, Bond Street has been where London's aristocrats, artists and royalty came to spend money. Some of the jewellers and tailors here hold Royal Warrants, meaning they have supplied the Royal Family for generations. A few businesses on this street can trace their relationship with the monarchy back further than some countries can trace their independence. "Most shops are proud if a celebrity visits once. Some Bond Street shops have been dressing kings and queens for over 200 years."</p>
+      <p class="body-text">Many of the world's wealthiest people shop here because Bond Street offers something increasingly rare: privacy. The most expensive purchases are often made behind closed doors in private rooms upstairs, away from cameras and crowds. "The truly rich don't queue outside shops. The shop quietly opens another door. If you do spot someone famous, the correct British response is to pretend you haven't."</p><div class="tip-box">
+        <span class="tip-label-inline">🤔 Discussion Question</span>
+"Bond Street has some of the most expensive retail space in the world and only a handful of brands can afford to be here. What does it say about a city that it reserves its most central streets for its most expensive shops? Does your city do the same, or does it work differently?"</div>
+    </div></div>
+  </div>
+
+  <!-- 08 BEATLES PLAQUE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎸</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Beatles Rooftop, Savile Row</div>
+        <div class="stop-meta-line"><span class="stop-num">08</span><span class="stop-tag">The Last Concert Nobody Knew Was Coming</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"On 30 January 1969, The Beatles climbed onto this roof and played a gig. Nobody in the street below knew it was coming. It was their last ever public performance."</div>
+      <p class="body-text">The rooftop concert at 3 Savile Row lasted 42 minutes before the police arrived to shut it down. Office workers stopped in the street below. Traffic came to a standstill. It was unannounced, unplanned as a public event, and completely spontaneous in feel, though in reality it was filmed for the Let It Be documentary. John Lennon wore a fur coat; Ringo Starr wore his wife's red raincoat. "One of the most iconic concert recordings in history happened on an ordinary London Tuesday lunchtime, above a street better known for bespoke tailoring."</p>
+      <p class="body-text">Apple Corps, the company the Beatles founded here in the late 1960s, still exists today and manages the band's music, films and legacy from the company they set up more than 50 years ago. The building looks entirely ordinary from the street, which is part of what makes it worth stopping at: some of the most significant moments in music history happened in places that give nothing away from the outside.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎬 Watch The famous Concert</span>
+The now legendary rooftop concert footage with John in his fur coat, Paul grinning at the camera, police arriving and asking them politely to stop, is on YouTube and worth encouraging the students to watch. It has racked up more than half a billion views.</div>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎶 Music Connection</span>
+Play the opening of "Get Back", one of the tracks they performed on the roof. "This song was recorded in the building behind you and performed for the last time directly above your head." For students who know the Beatles, it lands immediately. For students who don't, the story of a band climbing onto a roof for an unannounced gig that stopped traffic and had to be shut down by police is interesting entirely on its own terms.</div>
+    </div></div>
+  </div>
+
+  <!-- 09 REGENT STREET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏨</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Regent Street</div>
+        <div class="stop-meta-line"><span class="stop-num">09</span><span class="stop-tag">The World's First Shopping Destination</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"That curve isn't just beautiful — it was engineered to hide the less glamorous streets behind it."</div>
+      <p class="body-text">Regent Street was designed in the early 1800s by John Nash — created specifically as a fashionable promenade lined with high-end shops, at a time when "shopping as leisure" barely existed. The sweeping curve is one of the most recognisable street shapes in Europe, and it wasn't accidental: it was calculated to screen the view of the less prosperous streets to the east, keeping the experience of the street deliberately curated. "The architecture was doing the same job as a shop window — showing you what it wanted you to see and hiding everything else."</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎬 Film Connection</span>
+Regent Street's dramatic curve and its glowing shopfronts at night make it one of the most used London backdrops in film. It has appeared in Sherlock Holmes adaptations, various Bond films and countless period dramas. "Whenever a director needs 'classic London high street,' this is usually where they come." Ask students if they can recall seeing this exact curve in something they've watched — the Christmas lights sequence in particular is frequently used.</div>
+    </div></div>
+  </div>
+
+  <!-- 10 CARNABY STREET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🕺</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Carnaby Street</div>
+        <div class="stop-meta-line"><span class="stop-num">10</span><span class="stop-tag">Where the 1960s Happened</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"In the early 1960s this was a quiet backstreet of jazz clubs and small shops. Within five years it was the most fashionable street in the world."</div>
+      <p class="body-text">Carnaby Street gave birth to 'fast fashion' and 'streetwear'. It's where rebellious teenagers gathered to tear up the rulebook of traditional fashion. This narrow alleyway is the original home of the 'boutique'. It's where the miniskirt was popularised by Mary Quant and the mod movement brought in sharp suits. All of a sudden, The Beatles, The Rolling Stones and Jimi Hendrix were all coming here for clothes. This tiny 150 metre-long street changed what young people looked like across most of the Western world. In the 1960s, parents hated what was happening here. Which is usually a reliable sign that young people were enjoying themselves.</p>
+      <p class="body-text">The Kinks' 1966 track "Dedicated Follower of Fashion" was directly inspired by the Carnaby scene — the flamboyant regulars, the constant one-upmanship of style, the sense that what you wore was a statement about who you were. "A song written about this street, in 1966, is still used in advertising and films today. The street it describes barely exists anymore but the idea it captured turned out to be permanent."</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🤔 Discussion Question</span>
+"Carnaby Street turned a backstreet into a global phenomenon in just a few years — through music, fashion and word of mouth, with no social media. Is there a street, neighbourhood or city in your country that's done something similar; become famous for a subculture or scene? What made it spread?"</div>
+    <div class="tip-box"><span class="tip-label-inline">💀 Plague to Pop:</span>
+This fashion mecca is built directly on top of a 17th-century Plague Pit. Underneath the neon signs and the expensive sneakers are the remains of thousands of people who died in the Great Plague of 1665. London literally built its most vibrant, "coolest" street on top of its darkest graveyard</div></div></div>
+  </div>
+
+  <!-- 11 LIBERTY LONDON -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛵</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Liberty London</div>
+        <div class="stop-meta-line"><span class="stop-num">11</span><span class="stop-tag">Built From Warships</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"You're looking at a department store built from old battleships."</div>
+      <p class="body-text">Liberty's famous mock-Tudor façade was constructed in the 1920s using wood salvaged from HMS Impregnable and HMS Hindustan. The ship timber gives the building its distinctive dark beams and creaking wooden floors. Founder Arthur Liberty designed the interior to feel like a stylish London townhouse rather than a shop — wooden staircases, small interconnected rooms, fireplaces, unexpected galleries. "He wanted customers to feel like they were wandering through someone's home, not browsing a retail floor. The layout still works exactly as he intended."</p>
+      <p class="body-text">In its early years, Liberty imported rare birds, fabrics and curiosities from around the world — closer in spirit to a Victorian curiosity shop than a department store. The Liberty print fabrics it became famous for have been used by designers from high street to haute couture. Some are so recognisable they've become part of the visual language of British design.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 12 OXFORD STREET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🛍️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Oxford Street</div>
+        <div class="stop-meta-line"><span class="stop-num">12</span><span class="stop-tag">Roman Road to the Gallows to 300,000 Shoppers a Day</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This was a Roman road. Then it was the route prisoners walked to their execution at the Tyburn gallows. Now 300,000 people walk it every day to go shopping."</div>
+      <p class="body-text">Oxford Street was known for centuries as Tyburn Road — the route along which condemned prisoners were transported from Newgate Prison to the Tyburn gallows at what is now Marble Arch. Executions were public events and drew enormous crowds. A small stone at Marble Arch still marks the site. "The busiest shopping street in Europe is built on a road that was famous, for centuries, for death." The Tyburn stream still flows beneath the street — visible in the basement of Grays Antique Centre nearby.</p>
+      <p class="body-text">The street changes character as you walk it. The west end, near Marble Arch, is more upmarket; the east end, near Tottenham Court Road, has more budget shops and souvenir stalls. The original HMV store on Oxford Street played a key role in The Beatles' story. Their demo tape impressed staff there, leading to the introduction to producer George Martin that launched their career.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">⏳ The Before and After</span>
+This is the ideal stop to close the "Before and After" frame if you've been running it all day. "This morning we stood where soldiers have guarded a palace for 400 years. This afternoon we're on a Roman road that became an execution route that became the busiest shopping street in Europe. London doesn't erase its history — it builds on top of it, and the layers are still there if you know what to look for." It's a natural closing thought for the day.</div>
+    </div></div>
+  </div>
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0">
+  <div class="section-label">Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+  <p class="section-intro">This is a long route with two very different halves. These approaches help maintain energy and connection across the whole day.</p>
+
+  
+
+  
+
+  <div class="idea-card"><div class="card-accent accent-navy"></div>
+      <span class="idea-card-icon">🔍</span>
+      <h3>The Hidden Detail</h3>
+      <p>This route rewards looking up and into corners in a way most tourists never do. The different regimental details hidden in plain sight on the guards' uniforms. The deliberately red surface of The Mall, invisible until someone points it out. The flower beds near the Palace that are planted twice a year in colours specifically chosen to match the Royal Standard. The Victoria Memorial that has four allegorical figures at its corners. At each stop, give students one specific thing to find rather than a general instruction to look around.</p>
+      </div>
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">❓</span>
+    <h3>The Comparison Question</h3>
+    <p>This route is particularly good for cross-cultural comparison because everything on it has an equivalent somewhere else — or conspicuously doesn't. Does your country have a ceremonial road like The Mall? A luxury shopping street like Bond Street? A street that defined a global music or fashion movement? A building made from recycled warships? The questions reveal different relationships to ceremony, commerce and cultural memory.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Buckingham Palace &amp; Oxford Street — Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natural History Museum &amp; Knightsbridge — Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 9vw, 64px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.95; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(15px, 4vw, 22px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">🦕 🐋🛍️ </div>
+  <h1>Natural History Museum &amp; Knightsbridge</h1>
+  <div class="hero-sub">Story hooks &amp; ideas for every stop</div>
+  <div class="hero-badges">
+    <span class="hero-badge">80 Million Specimens</span>
+    <span class="hero-badge">Luxury &amp; History</span>
+    <span class="hero-badge">Albertopolis</span>
+    <span class="hero-badge">Hidden Details</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Useful Links</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=1YIZEhaBHnkbZlCxN8X_fgWQfH45d-Dc&amp;usp=sharing" target="_blank">Natural History Museum &amp; Knightsbridge map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1raQgAgUYKlV-9HFRrmvxC4yuXZJ30aqEhfVfq6BsXUU/edit?tab=t.0" target="_blank">Natural History Museum &amp; Knightsbridge guide with photos</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">Public toilets located in the museum. Make sure students use them before leaving.</span></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>The District Prince Albert Built</h2>
+  <p>Prince Albert was often mocked by the British press. He was seen as a foreigner, an outsider and "the Queen's husband". Yet after the success of the Great Exhibition of 1851, he pushed for the profits to be used to create an entire district dedicated to science, education and culture. After his death, the area surrounding the museum grew into what became known as Albertopolis. Today millions of people visit institutions created by his vision every year. The person newspapers laughed at ended up reshaping an entire district of London.</p>
+  
+</div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <h3>The Golden Rule for This Route</h3>
+  <p>The Natural History Museum contains 80 million specimens. Only a fraction is on display. The risk is the same as any great museum — students try to see everything and remember nothing specific.</p>
+  <p>The detail that cuts through is always the one that doesn't fit the expected scale. Darwin's actual pigeons, preserved in the research collection. The carved animals hiding in the building's own walls — a stone zoo that most visitors walk straight past. The blue whale skeleton suspended overhead, which is larger than any dinosaur. </p>
+</div>
+
+<!-- STOPS -->
+<div class="section">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Stop</div>
+  <p class="section-intro">Tap any stop to expand. All content comes directly from the source notes.</p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 NATURAL HISTORY MUSEUM -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🦕</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Natural History Museum</div>
+        <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">A Cathedral Built for Nature</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"The building was designed to look like a cathedral, because the architect wanted nature to be celebrated with the same grandeur usually reserved for God."</div>
+      <p class="body-text">Opened in 1881, the museum's Romanesque arches, towers and long central nave were a deliberate choice. Architect Alfred Waterhouse wanted the building itself to make a statement: that the natural world deserved the same reverence as religion. Look closely at the terracotta tiles covering the walls; they're decorated with hundreds of carved plants and animals, from monkeys and owls to species that were already extinct when the building opened.</p>
+      <p class="body-text">The museum holds over 80 million specimens including insects, fossils, minerals, preserved animals, meteorites. Only a tiny fraction is on display; the rest sits in vast research collections used by scientists around the world. Imagine a library where 99% of the books are kept in the basement and a team of scientists is quietly reading them. Researchers based here study everything from microplastics to new species and they discover previously unknown species every year. Darwin bred pigeons to study evolution, and some of his original specimens are still held in the collection. "This isn't just a museum. It's one of the world's major scientific research institutions, and it happens to be free to enter."</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🦖 Backstory - The Bone Wars</span>
+Long before the Natural History Museum became the stunning tourist hotspot it is today, it was the battlefield for one of the most toxic, unhinged academic feuds in human history. The main character was Sir Richard Owen, the brilliant but notoriously ruthless scientist who actually invented the word "Dinosaur". Owen was desperate to be recognised as the undisputed king of science, but he had a massive problem: a country doctor named Gideon Mantell kept discovering cooler, more significant dinosaur fossils first. Instead of collaborating, Owen launched a systematic campaign to completely destroy Mantell. He used his immense political power and high society connections to steal credit for Mantell’s ground-breaking discoveries, blocked Mantell from publishing his scientific papers, and successfully got him kicked out of prestigious academic societies. Driven to financial ruin and physical poverty, Mantell eventually passed away. But Owen's pettiness didn't stop at the grave. He used his position to write a brutally savage, anonymous obituary mocking his dead rival, and even took a section of Mantell's preserved spine to store in his museum warehouse like a trophy. You are about to walk through a monument built by a man who conducted a lifelong, real-world smear campaign that makes modern celebrity online drama look incredibly tame.</div>
+      
+      <div class="tip-box">
+        <span class="tip-label-inline">🐋 Backstory - Hope the Blue Whale</span>
+In March 1891, a blue whale washed up dead on a beach in Ireland. She was 25 metres long. Getting her from that beach to London was not straightforward: the carcass was dissected on site, the bones boiled, cleaned and shipped across to the Natural History Museum, where they were assembled and put on display in 1934. She spent the next 83 years lying on her side in a side gallery, largely ignored. In 2017, the museum made a decision. The dinosaur skeleton that had stood in the central hall since 1979 was moved out, and the whale was brought in. The museum named her Hope, and hung her from the ceiling of Hintze Hall, the vast entrance nave, where she now floats above every visitor who walks through the door. The choice was deliberate and pointed. The museum wanted its most prominent specimen to be not something extinct, but something alive and critically endangered. Blue whales were hunted almost to extinction during the 20th century. At their lowest point, fewer than 400 remained in the southern hemisphere. Conservation efforts have brought numbers back, slowly, but they remain vulnerable. Hope is the largest animal known to have existed on Earth. Larger than any dinosaur. Her heart, when she was alive, was roughly the size of a small car. She could produce sounds loud enough to be heard from 1,600 kilometres away. </div>
+    </div></div>
+  </div>
+
+  <!-- 02 HARRODS -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🛍️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Harrods</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">Tea Shop to Lion Cubs</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It started as a small tea and grocery shop in 1849. By the 1960s it was selling lions and elephants."</div>
+      <p class="body-text">Harrods grew from a single-room grocery into one of the most famous stores in the world. It has over one million square feet of retail space, roughly the equivalent of 16 football pitches. Its Victorian motto was "All Things for All People, Everywhere," and it took that seriously: the exotic pets department once sold elephants, alligators and lion cubs.</p>
+      <p class="body-text">The Food Halls are decorated with ornate original Victorian tiles and tiling. Many visitors describe them as feeling like a museum of food rather than a shop. The Egyptian Escalator inside is an extravagant surprise for first-time visitors. Harrods is one of the few department stores in the world where visitors can be turned away for wearing swimwear, cycling shorts or anything “unsuitable.” It  even refused entrance to Justin Bieber because he was wearing baggy overalls and a cap.</p>
+      
+    <div class="tip-box"><span class="tip-label-inline">🦁 Backstory - Christian the Lion</span>
+In 1969, two young Australians living in London walked into Harrods and bought a lion cub; a tiny ball of fur in a cage, priced at 250 guineas. They named him Christian, raised him in their Chelsea flat and exercised him in local parks. As he grew, however, it became obvious: a fully grown lion weighing over 180 kilograms is not an ideal flatmate. A friend arranged for him to be taken to Kenya, where wildlife conservationist George Adamson would rehabilitate him into the wild. Rendall and Berg said goodbye and went back to their lives. A year later, they flew to Kenya to find him. Everyone told them it was pointless as he was now a powerful adult lion. When they found him, Christian looked up, recognised them and immediately ran towards them. For a few nervous seconds it looked as though he might attack. Instead, he leapt onto them, wrapped his paws around their shoulders and embraced them like old friends. The footage of the reunion became one of the most famous animal videos ever recorded, viewed by millions around the world. Not many department stores can claim to have sold a future internet celebrity. Harrods is one of them.
+</div></div></div>
+  </div>
+
+  <!-- 03 HARVEY NICHOLS -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">👗</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Harvey Nichols</div>
+        <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">The Shop That Launched British Fashion</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It began as a linen shop in 1831. In the 1980s it helped turn London into a global fashion capital."</div>
+      <p class="body-text">Harvey Nichols built its reputation on championing young British designers before they were famous. In the 1980s and 1990s, when London's fashion scene was beginning to attract international attention, Harvey Nichols was one of the first major retailers to stock emerging British talent. That decision helped establish the credibility of a generation of designers and contributed to London's reputation as a global fashion capital.</p>
+      <p class="body-text">While Harrods is known for tradition and grandeur, Harvey Nichols built its reputation on being sleek, modern and fashion‑forward — a favourite of stylists, celebrities and trend‑hunters.  The challenge is identifying which ones won’t look silly in five years time. The store is known for bold, artistic window designs that often feel more like modern art installations than shop displays.</p><div class="tip-box">
+        <span class="tip-label-inline">🎬 The Ab Fab Connection</span>
+The British comedy series Absolutely Fabulous, in which the characters' obsession with "Harvey Nics" became a running joke, gave the store a second layer of cultural identity that spread its fame internationally. </div>
+    </div></div>
+  </div>
+
+  <!-- 04 LONDON ORATORY -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🕍</div>
+      <div class="stop-title-block">
+        <div class="stop-name">London Oratory</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">Rome in Knightsbridge</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It was built to look like a Roman church because the congregation wanted to feel like they were in Rome without leaving London."</div>
+      <p class="body-text">Built in the Italianate Baroque style and opened in 1884, the London Oratory is one of the largest Catholic churches in the UK. The interior, with its marble columns, side chapels, domes, ornate altars, is a deliberate transplant of Roman ecclesiastical grandeur into a South Kensington street. The Oratory Fathers have been in London since 1849, following the community founded in 16th-century Rome by St Philip Neri, whose emphasis on music, prayer and community life remains central to the church's identity today.</p>
+      <p class="body-text">The choir and organ are world-class. Recordings made here include parts of film soundtracks for The Lord of the Rings and Harry Potter. The dramatic interior has also been used as a filming location for The Crown and various other film productions.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 05 ROYAL COLLEGE OF MUSIC -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎻</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Royal College of Music</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">The Shortest Commute to a Concert Stage</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Students here rehearse in rooms named after famous composers and often walk across the road to perform at the Royal Albert Hall."</div>
+      <p class="body-text">The Royal College of Music was founded in 1882 by the future King Edward VII, who wanted Britain to have a world-class conservatoire to rival the great music schools of Europe. It was deliberately positioned opposite the Royal Albert Hall so that students could train in one building and perform in the other. Inside, rehearsal rooms are named after composers such as the Elgar Room and the Britten Room. The museum holds over 15,000 instruments, manuscripts and portraits, including rare violins, early keyboards and instruments that exist nowhere else.</p>
+      <p class="body-text">The college has its own instrument-making workshop where specialists repair and restore everything from violins to harpsichords. Hundreds of concerts take place here each year, many of them free, making it one of London's most consistent places to hear high-quality live music performed by young musicians at the beginning of their careers.</p>
+      
+    </div></div>
+  </div>
+
+  <!-- 06 IMPERIAL COLLEGE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🔬</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Imperial College London</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">Built From Three Colleges</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"It was formed in 1907 by merging three separate institutions — and some of the buildings still carry their original names."</div>
+      <p class="body-text">Imperial was formed in 1907 by combining the Royal College of Science, the Royal School of Mines and the City &amp; Guilds College. That’s why some buildings still carry their old names. The campus sits at the heart of Albertopolis, surrounded by museums and cultural institutions that were all part of the same Victorian vision. Students run their own TV and radio stations.  Imperial College Television (ICTV) is one of the oldest student‑run TV stations in the world, and the student radio station broadcasts across campus.
+</p>
+      
+    </div></div>
+  </div>
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0">
+  <div class="section-label">Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+
+  <div class="idea-card">
+    <span class="idea-card-icon">🔍</span>
+    <h3>The Hidden Detail Hunt</h3>
+    <p>The Natural History Museum's exterior is the best starting point on the whole programme for a detail hunt. Ask students to find as many carved animals as they can in the terracotta tiles before going inside Inside, the same approach works in reverse: most students go straight for the famous specimens and miss the extraordinary details around them. Darwin's pigeon collection, the wildlife garden outside; all worth pointing to specifically rather than leaving students to find them by chance.</p>
+  </div>
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">📏</span>
+    <h3>The Scale Comparison</h3>
+    <p>This route deals in numbers that need to be made physical. Eighty million specimens which is more than ten times the entire human population of London. One million square feet of Harrods; the size of 16 football pitches. A blue whale skeleton longer than two double-decker buses end to end. Students who hear a number alongside something they can picture carries far more meaning.</p>
+  </div>
+
+  
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">🌍</span>
+    <h3>The Comparison Question</h3>
+    <p>Albertopolis is unusual because it was planned. Most great districts of culture — Montmartre, Greenwich Village, Soho — grew accidentally. Ask; "Does your city have a district like this — designed to bring museums, universities and cultural institutions together in one place?" </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Natural History Museum &amp; Knightsbridge — Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+</body></html>

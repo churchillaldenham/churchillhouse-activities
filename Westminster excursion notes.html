@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Westminster Walking Tour — Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --cream: #FDFAF4;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%;
+    opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--mustard);
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .hero-icon {
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 16px;
+    position: relative;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 12vw, 80px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 0.9;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px;
+    border-radius: 100px;
+  }
+
+  /* ── INTRO BAND ── */
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .intro-band-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--teal-dark);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 36px 16px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .section + .section {
+    padding-top: 0;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  /* ── IDEA CARDS ── */
+  .idea-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 22px 22px 22px 26px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal);
+    position: relative;
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.65;
+    margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  /* ── ACCORDION STOPS ── */
+  .stop-card {
+    background: var(--white);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+  .stop-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon {
+    font-size: 28px;
+    line-height: 1;
+    min-width: 36px;
+    text-align: center;
+  }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+  .stop-meta-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .stop-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--mustard);
+    letter-spacing: 0.04em;
+  }
+  .stop-tag {
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+  }
+  .stop-chevron {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+
+  .stop-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease;
+  }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner {
+    padding: 20px 20px 22px;
+    border-top: 1px solid var(--light-border);
+  }
+
+  .hook-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--dark);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .body-text {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--dark);
+    margin-top: 14px;
+  }
+  .tip-box strong { color: var(--mustard-dark); font-weight: 600; }
+  .tip-label-inline {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .expand-row {
+    text-align: right;
+    margin-bottom: 12px;
+  }
+  .expand-btn {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal);
+    background: none;
+    border: 1px solid var(--teal);
+    border-radius: 100px;
+    padding: 5px 14px;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark);
+    padding: 28px 24px;
+    color: white;
+    text-align: left;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .band-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--mustard);
+    margin-bottom: 10px;
+  }
+  .band p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.82);
+    margin: 0 0 10px;
+  }
+  .band p:last-child { margin-bottom: 0; }
+
+  .footer {
+    background: var(--teal-dark);
+    padding: 32px 24px;
+    text-align: center;
+    border-top: 2px solid var(--mustard);
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .footer-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--mustard);
+    margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px;
+    background: var(--mustard);
+    margin: 12px auto;
+    border-radius: 2px;
+  }
+  .footer-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">🏛️ 👑 🎡</div>
+  <h1>Westminster</h1>
+  <div class="hero-sub"></div>
+  <div class="hero-badges">
+    <span class="hero-badge">Power &amp; Politics</span>
+    <span class="hero-badge">Storytelling Frames</span>
+    <span class="hero-badge">Pop Culture Hooks</span>
+    <span class="hero-badge">Student Activities</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Links &amp; Information</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=1SJHAWZ2xnzr-TEDvyooTqYX6LIPXHmU&amp;usp=sharing" target="_blank">Westminster walking tour map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1dYEEGfouWsJLYJAYgybHpmn2GwViX4RCv_SfI4swkfE/edit?usp=sharing" target="_blank">Westminster guide with photos</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">Public toilets (paid) located in St James Park and Trafalgar Square. Free public toilets are located in Charing Cross Station and Leicester Sq. (add 15 mins). Make sure students use them before returning to the coach.</span></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div class="intro-band-inner">
+  <h2>The Greatest Power Walk in the World</h2>
+  <p>Westminster isn't a neighbourhood — it's a stage set for British history, still in use. Parliament meets here. The King lives nearby. Prime ministers appear at that famous black door. In a single 5km walk, students pass the places where wars were declared, laws were written, kings were crowned and revolutions were narrowly avoided.</p>
+  <p>The challenge is making it feel alive rather than monumental. The landmarks are so famous they risk feeling like postcards rather than places. The guide's job is to get behind the stone and find the strange, human, often absurd stories that make Westminster genuinely extraordinary — not just impressive.</p>
+</div>
+</div>
+
+<!-- BIG PICTURE -->
+<div class="section">
+  <div class="section-label">Big Picture</div>
+  <div class="section-title">Overarching Story Frames</div>
+  <p class="section-intro">Give the whole tour a spine — a single thread students can follow from the first stop to the last.</p>
+
+  
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">🎬</span>
+    <h3>"You've Already Been Here"</h3>
+    <p>Westminster is one of the most filmed places on Earth. Countless James Bond films. The King's Speech. Paddington 2. The Crown. Numerous Doctor Who episodes. Daily news broadcasts. At each stop, reveal where students have already seen this location — not as a tourist attraction, but as a film set.</p>
+    <p>Works especially well with international students, who often arrive with a strong pre-existing image of London that's almost entirely built from film and television.</p>
+  </div>
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">⚔️</span>
+    <h3>"The Rules No One Follows"</h3>
+    <p>Westminster runs on tradition — and tradition is full of rules that sound absurd until you know the story behind them. The King is banned from the House of Commons. The cat at Downing Street is a government employee. The central arch at Admiralty Arch only opens for royalty. Parliament can be recalled by ringing a bell in a pub. At every stop, reveal the strangest rule  and ask: "Why do you think this rule exists?"</p>
+    
+  </div>
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">𓀤</span>
+    <h3>The Statues Game</h3>
+    <p>Westminster has an extraordinary collection of statues, including Nelson Mandela, Mahatma Gandhi and Abraham Lincoln alongside British monarchs and generals. At Parliament Square, give students 90 seconds to find the most surprising person in the square and explain why they're there. </p>
+  </div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+<div class="band-inner">
+  <h3>The Golden Rule for Westminster</h3>
+  <p>Westminster suffers from over-familiarity. Students arrive thinking they already know Big Ben, Parliament and Buckingham Palace because they've seen them a thousand times in photos, films and news coverage. That familiarity is the your biggest obstacle.</p>
+  <p>The solution is always the same: find the detail that doesn't fit. The crack in the bell. The penny on the pendulum. The cat with the job title. The arch that only opens for kings. One wrong-fitting detail shatters the postcard and makes students look again. Lead with the detail; let the famous building be the background.</p>
+</div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section">
+  <div class="section-label">Opening Overview</div>
+  <div class="section-title">Reimagining the Intro Facts</div>
+  <p class="section-intro">Westminster Bridge is the starting point. Here's how to open with maximum impact before the tour begins.</p>
+
+  
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">💣</span>
+    <h3>Lead With the Bomb</h3>
+    <p>In 1605, a man called Guy Fawkes hid 36 barrels of gunpowder in the cellars of Parliament and tried to blow up the King and every MP during the State Opening. He was caught the night before. Every year since, the Yeomen of the Guard ceremonially search the cellars before the State Opening — just in case. "That tradition is 420 years old. Britain's response to a terrorist plot was to create a theatrical performance that's still running today." </p>
+  </div>
+
+  
+</div>
+
+<!-- STOPS -->
+<div class="section" style="padding-top:0">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Landmark</div>
+  <p class="section-intro">Tap any stop to expand the hook, story and activity. </p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 WESTMINSTER BRIDGE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌉</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Westminster Bridge</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">01</span>
+          <span class="stop-tag">Colour-Coded Democracy</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"This bridge has a secret colour code."</div>
+        <p class="body-text">Don't explain the green/red bridge system straight away. Instead, point across the Thames at Lambeth Bridge (visible in the distance) and ask: "Why is that bridge red and this one green?" Let students speculate. Only then reveal that the colours match the seating in the two chambers of Parliament. A detail hiding in plain sight that Londoners themselves rarely know.</p>
+        
+        <div class="tip-box">
+          <span class="tip-label-inline">🎬 Pop Culture Hook</span>
+Westminster Bridge has appeared in countless films, most memorably in the 2016 film 28 Days Later (a deserted London at sunrise). It has also featured in a number of James Bond sequences.<em>28 Days Later</em> (a deserted London at sunrise) and multiple James Bond sequences. For a more recent connection: the bridge featured in the 2017 terrorist attack that's now part of its living history, memorialised at the southern end. "This bridge is both a film set and a place where real, recent history happened. That tension is very Westminster."
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 BIG BEN -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🕰️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Big Ben</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">02</span>
+          <span class="stop-tag">The Tower With the Wrong Name</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"Almost everything you know about this is wrong."</div>
+        <p class="body-text">Big Ben is the bell inside the tower, not the tower itself. The tower is called the Elizabeth Tower. The 13.5-tonne Great Bell cracked shortly after it was installed in 1859 and engineers simply rotated it and used a lighter hammer. That's why it has the distinctive slightly irregular tone you hear on BBC Radio. "The most famous sound in British broadcasting comes from a broken bell." And it's been ringing that way for over 160 years.</p>
+        
+        <div class="tip-box">
+          <span class="tip-label-inline">❗ SURPRISING FACT</span>
+The penny-on-the-pendulum fact is genuinely jaw-dropping when told as a story: One of the most accurate clocks in the world, the clock that the BBC broadcasts live across the planet, is regulated using a handful of copper coins. It stays accurate to within two seconds through a remarkably low-tech method: engineers add or remove old pennies from the pendulum to adjust the swing speed. One penny changes the timing by 0.4 seconds per day."</div>
+        <div class="tip-box">
+          <span class="tip-label-inline">🤫 SECRET INSIDER</span>
+Point out the small lantern above the clock face. "When that light is on, Parliament is sitting. MPs are inside, debating laws. When it's off, they've gone home." It's one of the simplest and most overlooked details on the whole tour. Students can check it right now and know, in real time, whether British democracy is currently in session.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 PALACE OF WESTMINSTER -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏛️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Palace of Westminster</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">03</span>
+          <span class="stop-tag">Medieval Façade, Victorian Interior</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"This looks medieval, but it’s basically a Victorian cosplay of a medieval building."</div>
+        <p class="body-text">The current building burned down in 1834 and was rebuilt in the 1840s in a deliberately medieval-Gothic style, specifically chosen to suggest deep historical legitimacy. "The most powerful legislature in the English-speaking world chose to look backward rather than forward, at a moment when Britain was the most advanced industrial nation on Earth." Ask: why would they do that?</p>
+        <p class="body-text">Inside is Westminster Hall, built in 1097, which actually did survive the fire. It's one of the largest medieval halls in Europe and has hosted coronation banquets, the trials of Charles I and Thomas More, and a lying-in-state for Queen Elizabeth II.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🏗️ Surprising Detail</span>
+The "division bell" system: when MPs need to vote, bells ring in pubs, restaurants and offices within an eight-minute walk of Parliament. There are even flashing lights in some nearby restaurants to alert MPs mid-meal. "One of the most famous democracies calls its members back to vote by ringing a bell in a pub."</div>
+        <div class="tip-box">
+          <span class="tip-label-inline">👑 The King Is Banned</span>
+The monarch is legally forbidden from entering the House of Commons. The last monarch who tried, Charles I, in 1642, was attempting to arrest five MPs. Parliament won that confrontation, then won the Civil War, then executed the King. Every year at the State Opening by the King, a door is ceremonially slammed in the face of the King's representative, just to remind everyone who's in charge. Meanwhile,  before the King sets foot in Westminster, a Member of Parliament is ceremonially taken "prisoner" and held at Buckingham Palace to ensure the monarch’s safe return.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 PARLIAMENT SQUARE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">𓀤</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Parliament Square</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">04</span>
+          <span class="stop-tag">The World's Greatest Group Photograph</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"In one 360° turn you can see Big Ben, Westminster Abbey, the Supreme Court and statues of Nelson Mandela, Gandhi and Churchill."</div>
+        <p class="body-text">Parliament Square is one of the few places where you can see statues of world leaders from multiple continents standing together: Gandhi, Mandela, Lincoln, Churchill, Smuts. Their presence here tells a complicated story about who Britain chose to honour, when, and why. Not all of those choices are without controversy. </p>
+        <p class="body-text">The square is also a major protest site, because you can't get closer to Parliament than this without a permit. Demonstrations, vigils, climate protests and hunger strikes have all taken place here. The right to protest is embedded in the square's geography: stand here and Parliament has to walk past you.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🤔 The 90-Second Challenge</span>
+"You have 90 seconds. Find the most controversial person in this square. Be ready to say why. "Which figure from your country's history would you put here?"</div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 WESTMINSTER ABBEY -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Westminster Abbey</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">05</span>
+          <span class="stop-tag">A Thousand Years of Ceremony</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"This is where every major royal moment happens: coronations, weddings, funerals."</div>
+        <p class="body-text">The Coronation Chair has been used for nearly every coronation since 1308. It's one of the most important objects in British history. And it's covered in graffiti — names scratched by Westminster schoolboys who used to sleep in the Abbey during the 18th century. "The most sacred piece of furniture in the British monarchy has been defaced by bored teenagers. It's still used. Nobody has cleaned it up."</p>
+        <p class="body-text">The Abbey contains over 3,000 people, buried or commemorated inside the same walls. It's basically  the world's most overcrowded celebrity graveyard. Newton and Darwin are here, despite the fact that Darwin's theory of evolution horrified the Church of England when he published it. "The institution that found his ideas threatening eventually gave him a funeral inside their most sacred building."</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">👑 Royal Wedding Moment</span>
+Prince William and Catherine married here in 2011, watched by an estimated 2 billion people. The seating plan placed world leaders, celebrities and royalty in strict order of protocol - a precise hierarchy of global importance, decided by the Abbey's officials.</div>
+        <div class="tip-box">
+          <span class="tip-label-inline">🎶 Music Connection</span>
+The choir at Westminster Abbey has sung at every coronation, royal wedding and major state funeral for centuries. Handel's Zadok the Priest, played at every coronation since 1727, was written specifically for this building. Play 10 seconds of it. "That piece of music has been performed in this building for nearly 300 years without interruption. Every British monarch since George II has been crowned to that exact opening chord."<em>Zadok the Priest</em> — played at every coronation since 1727 — was written specifically for this building. Play 10 seconds of it. "That piece of music has been performed in this building for nearly 300 years without interruption. Every British monarch since George II has been crowned to that exact opening chord."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 DOWNING STREET -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🚪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Downing Street</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">06</span>
+          <span class="stop-tag">The Door That Opens From the Inside</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"That famous black door isn't wood. It's blast-proof metal and it can only be opened from the inside."</div>
+        <p class="body-text">The door was replaced after an IRA mortar attack in 1991. The replacement looks identical to the original: traditional, Georgian, understated, but it's actually a reinforced steel structure.</p>
+        <p class="body-text">Behind the modest façade is a warren of over 100 rooms including offices, meeting rooms, the Cabinet Room where the most important decisions in British politics are made. "From the street it looks like someone's house. Behind that door, wars have been declared, prime ministers have resigned in tears and the fate of the country has been decided at 3am." And the street is named after a spy: Sir George Downing, who built the houses in the 1680s and was considered deeply untrustworthy by his own contemporaries.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🐱 Larry the Cat</span>
+Larry has been Chief Mouser to the Cabinet Office since 2011 and has served under multiple Prime Ministers. He has his own official job title, a Wikipedia page, a Twitter following and a biography. When a new PM moves in, Larry stays. He belongs to the building, not the politician. "Larry has outlasted five Prime Ministers. He is arguably the most stable figure in British politics."</div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 HORSE GUARD'S PARADE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🐴</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Horse Guards Parade</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">07</span>
+          <span class="stop-tag">Real Soldiers, Ceremonial Roles</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"These guards are real soldiers. They’ve served overseas. And now they stand here while tourists try to make them laugh."</div>
+        <p class="body-text">The Household Cavalry mounted sentries are fully trained combat soldiers — not actors or ceremonial extras. Many have seen active service overseas. The ceremonial role is part of their military career, not instead of it. They're trained to hold their position completely still regardless of what happens in front of them, but they can and will shout a warning if someone gets too close to the horses.</p>
+        <p class="body-text">Horse Guards is the official entrance to the Royal Household. It's historically more important than Buckingham Palace. Before the Palace became the royal residence, monarchs lived at St James's Palace, and this was their formal gateway. The mounted guards are there because that's where they've always been.</p>
+        
+        <div class="tip-box">
+          <span class="tip-label-inline">🏗️ Surprising Detail</span>
+This is where Trooping the Colour takes place — the King's Birthday Parade, one of the largest military ceremonies in the world. Over 1,400 soldiers, 200 horses and 400 musicians perform here each June. "Every square metre of this parade ground has been choreographed and rehearsed for centuries. It used to be a jousting ground."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 ST JAMES'S PARK -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🦢</div>
+      <div class="stop-title-block">
+        <div class="stop-name">St James's Park</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">08</span>
+          <span class="stop-tag">Swamp to Royal Garden</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"This is the oldest royal park and the only one with pelicans. Yes, pelicans. In central London."</div>
+        <p class="body-text">Pelicans have lived in St James's Park for over 360 years, ever since the Russian ambassador gifted a pair to Charles II. The colony has been maintained ever since and fed fresh fish every afternoon at the same spot.</p>
+        <p class="body-text">Stand on the Blue Bridge in the middle of the park. Face one way: Buckingham Palace framed by trees. Face the other: the London Eye, the Shard and Whitehall. It's one of the most photographed views in the city, and it looks entirely accidental, but it was meticulously designed. Charles II brought in French garden designers after returning from exile in Paris; he wanted London to feel European.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🦜 Wildlife Surprise</span>
+The park has a colony of ring-necked parakeets — bright green tropical birds that escaped from captivity decades ago and now thrive across London. "London has a wild population of tropical parrots. They've been here long enough that they're now considered a local species." This always surprises students, and the birds are usually visible in the trees. Ask: what animal in your country is there because of human accident or release?</div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 BUCKINGHAM PALACE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">👑</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Buckingham Palace</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">09</span>
+          <span class="stop-tag">The King Doesn't Live Here</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"The most famous royal residence in the world, but the King doesn't actually live there."</div>
+        <p class="body-text">King Charles III lives at Clarence House, a short walk away, and at Windsor Castle. Buckingham Palace functions as an office building, ceremonial venue and tourist attraction, but not a home. "The building everyone associates with the British Royal Family is essentially a very grand place of work." George III bought it as a "small suburban house" in 1761, to the mockery of his contemporaries. The front façade that students are looking at was added much later.</p>
+        <p class="body-text">The balcony is Britain's most watched outdoor stage: coronations, weddings, jubilees, VE Day — every national moment ends with the family stepping out above the crowd. Over 700 rooms sit behind the façade, but only a small section opens to the public for a few weeks each summer. The rest is permanently off-limits.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🚩 The Flag Code</span>
+"Look at the flagpole. What flag is flying?" If the Royal Standard is up, the King is inside. If it's the Union Flag, he's elsewhere." The Palace has its own post office, doctor's surgery and swimming pool. The staff don't need to leave the building for most things.</div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 VICTORIA MEMORIAL -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">👸</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Victoria Memorial</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">10</span>
+          <span class="stop-tag">Monument at the Crossroads</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"Queen Victoria ruled over a quarter of the world's population. This memorial took 23 years to finish, and she never saw it."</div>
+        <p class="body-text">Designed in 1901 and unveiled in 1911 but not completed until 1924, the Victoria Memorial marks the point where The Mall meets Buckingham Palace — the ceremonial axis of British royal London. Victoria herself died before work began. The central figure of Victoria faces down The Mall, looking away from the Palace she lived in for much of her reign.</p>
+        <p class="body-text">Victoria became Queen at 18, reigned for 63 years, had nine children and outlived her husband Albert by 40 years. Her reign saw the expansion of the British Empire to its greatest extent, the invention of the railways, photography, the telephone and the beginnings of democracy as most people now understand it. The world her subjects were born into looked nothing like the one they died in.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">📏 Scale Moment</span>
+The memorial is made of Pentelic marble, the same material used for the Parthenon in Athens. The total weight of marble used is extraordinary. "Stand at its base and look up: this structure was designed to be seen from the end of The Mall."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 THE MALL -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🥁</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The Mall</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">11</span>
+          <span class="stop-tag">Britain's Red Carpet</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"The road is painted red on purpose, so it looks like a giant red carpet leading to the Palace."</div>
+        <p class="body-text">The Mall was redesigned by King Edward VII in the early 1900s to create a grand, Paris-style processional boulevard, deliberately modelled on the Champs-Élysées. The red surface is part of the design: from the air, or from the top of the Victoria Memorial, the effect is striking. Every state visit, coronation procession and royal parade travels this route. "When a foreign leader visits Britain, this is the road they drive down. The flags of their country line the route from Admiralty Arch to the Palace."</p>
+        <p class="body-text">On normal days, students can walk straight down the centre. On ceremonial days, the same route becomes one of the most watched streets in the world. The transformation from everyday road to global stage happens in hours. Ask: has any student ever watched a royal event on this road on television?</p>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 ST JAMES'S PALACE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏰</div>
+      <div class="stop-title-block">
+        <div class="stop-name">St James's Palace</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">12</span>
+          <span class="stop-tag">The Official Palace Nobody Talks About</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"Officially, this is still the royal residence, even though the monarch hasn't lived here in 200 years."</div>
+        <p class="body-text">Even today, official royal announcements are issued "from the Court of St James's." Foreign ambassadors are formally accredited to the Court of St James's, not Buckingham Palace. When a new monarch comes to the throne, the proclamation is read from this palace's gatehouse. "Buckingham Palace gets all the attention, but St James's is technically still in charge." </p>
+        <p class="body-text">Built by Henry VIII in the 1530s on the site of a leper hospital, this is the oldest working royal palace in London. Henry VIII, Mary I, Charles II, James II and Mary II were all born here, or spent significant time here. Anne Boleyn spent her last nights in this building before her execution. "The most dramatic moments of Tudor history happened behind these walls."</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">💂 Starting Point</span>
+The Changing of the Guard actually begins here, not at Buckingham Palace. The Old Guard forms up in the courtyard, then marches down The Mall to the Palace.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 ADMIRALTY ARCH -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏟️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Admiralty Arch</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">13</span>
+          <span class="stop-tag">The Arch That Only Opens for Kings</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"The central arch has never been used by ordinary traffic. It opens only for royal processions."</div>
+        <p class="body-text">Admiralty Arch has three openings. The two side arches carry normal traffic and pedestrians. The central arch is reserved exclusively for royal and state processions: coronations, state visits, military parades. In the years between such events, it stays closed.</p>
+        <p class="body-text">Completed in 1912, the arch was commissioned by Edward VII as a memorial to his mother, Queen Victoria. " For most of the 20th century, it housed government offices. Naval Lords worked in rooms above the arch. The building has been converted into a private hotel, meaning tourists now sleep inside what was once the gateway to royal London.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🏗️ The Hidden Detail</span>
+Look for a small nose protruding from the inner wall of the north arch at around shoulder height. It's been there for decades and no one is entirely sure who put it there or why. Some say it's a tribute to Wellington (whose nose was famously prominent), others that it's a joke by a bored stonecutter. "In one of the most important ceremonial buildings in Britain, someone hid a nose in the wall. It's still there. Go find it."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14 TRAFALGAR SQUARE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🦁</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Trafalgar Square</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">14</span>
+          <span class="stop-tag">The Fountains Were Built to Control You</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"The grand square built by the establishment to celebrate imperial victory,  quickly became the ultimate birthplace of British protest."</div>
+        <p class="body-text">The square commemorates the Battle of Trafalgar (1805), when Admiral Nelson defeated Napoleon’s navy. Nelson’s Column in the centre honours him. The four bronze lions at the base of Nelson's Column weigh around 7 tonnes each. Their sculptor, Sir Edwin Landseer, had never observed a real lion up close so he used a dead lion from London Zoo, which had been decomposing for several days by the time it arrived. The paws look like they were based on a domestic cat.</p>
+        <p class="body-text">In the 1840s, the government was nervous about the revolutionary mood spreading across Europe. Trafalgar Square was a natural gathering point, close to Parliament and government buildings. The solution: add fountains to physically reduce the usable space. "Every beautiful public fountain in this square is a piece of crowd-control architecture. The square has been the site of protests and demonstrations ever since — the design failed in its original purpose, spectacularly."</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🎨  It’s a major gathering place</span>
+New Year celebrations, sports victory parties, protests, cultural festivals and public screenings all take place here. It’s one of the city’s most important civic spaces. It’s also the official centre of London.  
+Distances to and from London are traditionally measured from Charing Cross, right next to the square.</div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- 15 NATIONAL GALLERY -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🖼️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">National Gallery</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">15</span>
+          <span class="stop-tag">The World's Art in Public Hands</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"This building was put here to make sure poor people could see great art."</div>
+        <p class="body-text">When the National Gallery opened in 1824, it was deliberately placed in Trafalgar Square, the most public square in London, so that rich and poor Londoners would have to share the same entrance. The founding principle was radical at the time: great art belongs to everyone. The collection now covers 700 years of art, from medieval altarpieces to Post-Impressionism.</p>
+        <p class="body-text">The paintings are not behind glass unless absolutely necessary which means you can get close enough to see actual brushstrokes, cracks in the paint and the texture of centuries-old canvas.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🤔 Discussion Question</span>
+"Many of the paintings in this gallery were collected during the British Empire — some were purchased, some were gifts, some were acquired in more 'complicated ways'. Should they stay here, or be returned to the countries they came from?"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16 LONDON EYE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎡</div>
+      <div class="stop-title-block">
+        <div class="stop-name">London Eye</div>
+        <div class="stop-meta-line">
+          <span class="stop-num">16</span>
+          <span class="stop-tag">The Temporary Attraction That Never Left</span>
+        </div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body">
+      <div class="stop-body-inner">
+        <div class="hook-label">Story Hook</div>
+        <div class="hook-title">"It was built to stay for five years. That was in 2000. It became so popular that London simply kept it."</div>
+        <p class="body-text">The London Eye was a Millennium project; a temporary structure built to celebrate the year 2000 and scheduled for removal in 2005. It was the world's tallest observation wheel when it opened at 135 metres. It became so embedded in the city's identity that it was made permanent. It was also assembled horizontally on the Thames, laid flat like a giant bicycle wheel on floating platforms, then raised upright using cables and cranes over several days.</p>
+        <p class="body-text">Each of the 32 passenger capsules represents one of London's 32 boroughs. There is no capsule 13; the pods are numbered 1–33, skipping 13 for luck. The Eye moves at just 0.9 km/h which is slow enough that it doesn't stop for passengers to board. A full rotation takes 30 minutes.</p>
+        <div class="tip-box">
+          <span class="tip-label-inline">🗺️ Navigation Challenge</span>
+Challenge students to identify as many visible landmarks as possible in 60 seconds: the Shard, St Paul's, Wembley Stadium, the Gherkin, the Walkie-Talkie building. "On a clear day you can see Windsor Castle — 40 kilometres away."  It teaches students the geography of London in a way that maps never quite manage.</div>
+        <div class="tip-box">
+          <span class="tip-label-inline">🏗️ Engineering Detail</span>
+The capsules are mounted on the outside of the wheel and not through the structure. They rotate independently to stay level as the wheel turns. "You're not riding in a gondola attached to the spokes. You're in a pod clipped to the outside of the rim, spinning to keep itself upright." The sensation is described as floating rather than riding.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /section -->
+
+<!-- TECHNIQUES SECTION -->
+<div class="section" style="padding-top: 0">
+  <div class="section-label">Westminster-Specific Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+  <p class="section-intro">A few approaches particularly suited to Westminster's character — grand, layered and full of hidden absurdity.</p>
+
+  
+
+  
+
+  <div class="idea-card red">
+    <span class="idea-card-icon">🎭</span>
+    <h3>The "Serious vs. Absurd" Frame</h3>
+    <p>Westminster constantly oscillates between enormous gravity and complete absurdity. The most powerful legislature in the world rings pub bells when it needs MPs to vote. The Prime Minister's door can only be opened from the inside. The cat has a job title. Parliament has a resident spider called Arachne. The King is banned from a building where he technically has supreme authority. Use the absurdity intentionally: every ridiculous detail makes the serious ones land harder.</p>
+  </div>
+
+  <div class="idea-card dark">
+    <span class="idea-card-icon">🌍</span>
+    <h3>The Comparison Technique</h3>
+    <p>Westminster is at its most interesting when held up against other systems. At every stop, ask: "How does your country do this?". How is your head of state chosen? Is the ceremony public or private? Can citizens walk past the equivalent building? Do you have a national square for protest? International students find British traditions less strange when they have their own traditions to contrast them with, and they find their own traditions more interesting when they explain them to others.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<div class="footer-inner">
+  <div class="footer-logo">Summer School Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Westminster Walking Tour — Excursion Guide<br>Created for the Activity Team</div>
+</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+
+</body></html>

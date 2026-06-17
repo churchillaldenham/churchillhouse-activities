@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windsor - Excursion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8A800;
+    --mustard-dark: #C48F00;
+    --mustard-light: #FFF3CC;
+    --teal: #1A7A7A;
+    --teal-dark: #115555;
+    --teal-light: #E0F2F2;
+    --cream: #FDFAF4;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --light-border: rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e8e8;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  .hero {
+    background: var(--teal);
+    padding: 52px 24px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+  }
+  .hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.18;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%; opacity: 0.12;
+  }
+  .hero-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mustard); margin-bottom: 10px; position: relative;
+  }
+  .hero-icon {
+    font-size: 56px; line-height: 1; margin-bottom: 16px;
+    position: relative; display: flex; gap: 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 12vw, 80px);
+    font-weight: 900; color: var(--white);
+    line-height: 0.9; margin-bottom: 8px; position: relative;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4.5vw, 24px);
+    font-weight: 300; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 28px; position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    position: relative; justify-content: center;
+  }
+  .hero-badge {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 13px; border-radius: 100px;
+  }
+
+  .intro-band {
+    background: var(--mustard);
+    padding: 36px 24px;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .intro-band h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--teal-dark); margin-bottom: 16px;
+  }
+  .intro-band p {
+    font-size: 14.5px; line-height: 1.65;
+    color: var(--teal-dark); margin-bottom: 12px; font-weight: 500;
+  }
+  .intro-band p:last-child { margin-bottom: 0; }
+
+  .section { padding: 36px 16px; max-width: 720px; margin: 0 auto; }
+  .section + .section { padding-top: 0; }
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700; color: var(--dark);
+    margin-bottom: 8px; line-height: 1.1;
+  }
+  .section-intro {
+    font-size: 14px; color: var(--mid);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .idea-card {
+    background: var(--white); border-radius: 14px;
+    padding: 22px 22px 22px 26px; margin-bottom: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--teal); position: relative;
+  }
+  .idea-card.gold { border-left-color: var(--mustard); }
+  .idea-card.red  { border-left-color: #C0392B; }
+  .idea-card.dark { border-left-color: #2c3e50; }
+  .idea-card-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .idea-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+  .idea-card p {
+    font-size: 13.5px; color: #444;
+    line-height: 1.65; margin-bottom: 7px;
+  }
+  .idea-card p:last-child { margin-bottom: 0; }
+
+  .stop-card {
+    background: var(--white); border-radius: 16px;
+    margin-bottom: 12px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+  }
+  .stop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .stop-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; cursor: pointer;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    background: var(--teal);
+  }
+  .stop-icon { font-size: 28px; line-height: 1; min-width: 36px; text-align: center; }
+  .stop-title-block { flex: 1; min-width: 0; }
+  .stop-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; margin-bottom: 3px;
+  }
+  .stop-meta-line { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .stop-num { font-size: 11px; font-weight: 700; color: var(--mustard); letter-spacing: 0.04em; }
+  .stop-tag { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.75); }
+  .stop-chevron {
+    font-size: 18px; color: rgba(255,255,255,0.7);
+    transition: transform 0.3s ease;
+    min-width: 20px; text-align: center; flex-shrink: 0;
+  }
+  .stop-card.open .stop-chevron { transform: rotate(180deg); }
+  .stop-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .stop-card.open .stop-body { max-height: 2000px; }
+  .stop-body-inner { padding: 20px 20px 22px; border-top: 1px solid var(--light-border); }
+
+  .hook-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 6px;
+  }
+  .hook-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    font-style: italic; color: var(--dark);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .body-text { font-size: 13.5px; line-height: 1.65; color: #333; margin-bottom: 10px; }
+  .body-text:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--mustard-light);
+    border-left: 3px solid var(--mustard);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px; font-size: 13px;
+    line-height: 1.55; color: var(--dark); margin-top: 14px;
+  }
+  .tip-label-inline {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--mid); display: block; margin-bottom: 4px;
+  }
+
+  .expand-row { text-align: right; margin-bottom: 12px; }
+  .expand-btn {
+    font-size: 12px; font-weight: 600;
+    color: var(--teal); background: none;
+    border: 1px solid var(--teal); border-radius: 100px;
+    padding: 5px 14px; cursor: pointer; letter-spacing: 0.03em;
+  }
+  .expand-btn:hover { background: var(--teal-light); }
+
+  .band {
+    background: var(--teal-dark); padding: 28px 24px;
+    color: white; text-align: left;
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .band h3 {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 10px;
+  }
+  .band p { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,0.82); margin: 0 0 10px; }
+  .band p:last-child { margin-bottom: 0; }
+
+  .footer {
+    background: var(--teal-dark); padding: 32px 24px;
+    text-align: center; border-top: 2px solid var(--mustard);
+    max-width: 720px; margin: 0 auto; border-radius: 16px;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 700; color: var(--mustard); margin-bottom: 6px;
+  }
+  .footer-divider {
+    width: 40px; height: 2px; background: var(--mustard);
+    margin: 12px auto; border-radius: 2px;
+  }
+  .footer-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  .useful-links {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    max-width: 720px;
+    margin: 16px auto;
+  }
+  .useful-links h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px; font-weight: 700;
+    color: #1A1A1A; margin-bottom: 12px;
+  }
+  .link-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 13.5px;
+  }
+  .link-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .link-row a { color: #1A7A7A; font-weight: 600; text-decoration: none; }
+  .link-row a:hover { text-decoration: underline; }
+  .link-icon { font-size: 20px; min-width: 28px; }</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+  <div class="hero-label">Churchill House Excursion Guide</div>
+  <div class="hero-icon">👑 🏰 🎺</div>
+  <h1>Windsor</h1>
+  <div class="hero-sub"></div>
+  <div class="hero-badges">
+    <span class="hero-badge">Royal History</span>
+    <span class="hero-badge">Real Soldiers</span>
+    <span class="hero-badge">Student Activities</span>
+    <span class="hero-badge">Hidden Details</span>
+  </div>
+</div>
+</div><div style="max-width: 720px; margin: 16px auto;"><div class="useful-links"><h3>Useful Links</h3>
+    <div class="link-row"><span class="link-icon">🔗</span><a href="https://www.google.com/maps/d/u/0/edit?mid=1dGUfa9Yw4CafhqoMtnKy0U6AYxyAbhg&amp;usp=sharing" target="_blank">Windsor map</a></div><div class="link-row"><span class="link-icon">🔗</span><a href="https://docs.google.com/document/d/1A5BN5Op34omHOAwgHt_qAHiKi3Ac4ndaIULy9Y1I5Ck/edit?tab=t.0" target="_blank">Windsor guide with photos</a></div><div class="link-row"><span class="link-icon">🚻</span><span style="color:#1a1a1a">Free public toilets are located in the train station and the Castle.</span></div><div class="link-row"><span class="link-icon">🧺</span><span style="color:#1a1a1a">Good picnic spots: Alexandra Gardens – Right by the River Thames, just a few minutes’ walk from the High Street and the castle. It has grassy lawns, benches, and a bandstand, plus nice views of the river and the castle. The Long Walk (the grand avenue leading up to the castle).</span></div><div class="link-row"><span class="link-icon">🚶</span><span style="color:#1a1a1a">There are several picturesque walks if you don't want so much free time in the afternoon (Riverside loop, Eton walkway, Great Park loop).</span></div></div></div>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+<div>
+  <h2>A Castle That Named a Dynasty</h2>
+  <p>Windsor is unlike most places students visit. The castle isn't a ruin or a museum, it's a working royal residence where the King stays regularly, guards change every Saturday, and ancient ceremonies are carried out as they have been for nearly a thousand years. The challenge isn't making it impressive; it's making it feel real rather than just grand.</p>
+  <p>The key is always the same: find the detail that surprises. The flag that tells you whether the King is home. The bearskin hats that weigh more than a newborn. The dolls' house plumbing that actually works. The royal family who borrowed their name from this town in 1917 to sound less German. One specific, human detail cuts through the grandeur every time.</p>
+</div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section">
+  <div class="section-label">Opening Overview</div>
+  <div class="section-title">Setting the Scene</div>
+  <p class="section-intro">Before the first stop, give students something to hold on to. These are the facts worth dramatising.</p>
+
+  <div class="idea-card"><div class="card-accent accent-navy"></div>
+      <span class="idea-card-icon">🚶🏻‍➡️</span>
+      <h3>The Long Walk</h3>
+      <p>The path leading to the castle is 2.6 miles (4.2km) long and perfectly straight. It’s the length of about 40 football fields laid end-to-end. Tell the students it would take the average person about 50 to 60 minutes just to walk from the gate to the front door—and that’s their "driveway."</p>
+      </div><div class="idea-card">
+    <span class="idea-card-icon">👑</span>
+    <h3>The Town That Named the Royal Family</h3>
+    <p>In 1917, Britain was fighting Germany in the First World War. Across the country, anti-German feeling was growing. German cities were being bombed, British soldiers were dying on the Western Front, and even German-sounding street names and businesses were attracting suspicion.</p>
+  <p>Unfortunately, Britain's Royal Family had a problem. Their official family name was Saxe-Coburg-Gotha. Unmistakably German. It came from Prince Albert's family and had been the royal house name since Queen Victoria's time. Under normal circumstances nobody paid much attention to it. During a war with Germany, however, it was suddenly very awkward. Newspapers started pointing out that the King's family appeared to share part of its name with the enemy and his cousin was the supreme German military commander.  George V's solution was straightforward to the point of being almost comic. He looked at where he was living and issued a royal proclamation. The House of Saxe-Coburg-Gotha became the House of Windsor on the 17th July 1917. The name has never changed since. Rebranding has never been done at quite that scale, or quite that speed.</p></div>
+
+  
+
+  
+
+  
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <h3>Know Your Flags!</h3>
+  <p>As soon as students arrive in sight of the castle, point to the flagpole. "What flag is flying?" If the Royal Standard is up, the King is inside the castle right now. If it's the Union Jack Flag, he's elsewhere.</p>
+<p>The Royal Standard takes precedence over all other flags, including the Union Flag.  
+It's the personal flag of the Sovereign, flown only when the monarch is present at a residence or official location, and is never flown at half-mast to symbolise the uninterrupted continuity of the monarchy. In contrast, the Union Flag is the national flag of the United Kingdom, used by the government and public on ceremonial days such as Coronation Day, Remembrance Day, and the birthdays of royal family members.</p></div>
+
+<!-- STOPS -->
+<div class="section">
+  <div class="section-label">Stop by Stop</div>
+  <div class="section-title">Ideas for Every Landmark</div>
+  <p class="section-intro">Tap any stop to expand the hook, story and activity.</p>
+
+  <div class="expand-row">
+    <button class="expand-btn" onclick="toggleAll()">Expand All</button>
+  </div>
+
+  <!-- 01 WINDSOR CASTLE -->
+  <div class="stop-card" onclick="toggleCard(this)"><div class="stop-header">
+    <div class="stop-icon">🫅</div>
+    <div class="stop-title-block">
+      <div class="stop-name">Windsor Town</div>
+      <div class="stop-meta-line"><span class="stop-num">01</span><span class="stop-tag">The King's Backyard</span></div>
+    </div><div class="stop-chevron">▾</div></div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"A town that has been 'home' for forty generations"</div>
+      <p class="body-text">When you walk the streets of Windsor, you’re walking through a 1,000-year-old medieval maze designed long before cars, where the roads twist and slope at odd angles and timber-framed buildings lean so heavily they look like they’re about to tip over.</p>
+      <p class="body-text">If the Castle is the crown, the Great Park is the emerald. Spanning over 4,800 acres—which is basically larger than many small towns—it’s a massive expanse of ancient woodland and riverside paths where red deer have roamed for centuries. This was the late Queen’s "real" home;  Locals grew used to the surreal sight of the world’s most famous monarch driving herself around the park or out for a morning horse ride.</p>
+      
+    </div></div></div><div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏰</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Windsor Castle</div>
+        <div class="stop-meta-line"><span class="stop-num">02</span><span class="stop-tag">Oldest Inhabited Castle in the World</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"William the Conqueror built it to control the River Thames. It was never meant to be a palace — it was a weapon."</div>
+      <p class="body-text">Windsor Castle was founded around 1070, not for ceremony or comfort, but to command a strategically vital river crossing. The site was chosen for military power. What students see today, the towers, the state apartments, the chapel, is the result of nearly a thousand years of monarchs gradually turning a fortress into something that also needed to look magnificent. "Every generation added something. The result is a building that contains almost the entire history of England inside one set of walls."</p>
+      <p class="body-text">The castle has its own post office, police force and clockmaker. It functions almost like a small town, with staff who live and work inside the walls. The 1992 fire destroyed over 100 rooms; the restoration took five years and used traditional hand-carved stone and woodwork throughout.</p>
+      
+      <div class="tip-box">
+        <span class="tip-label-inline">🎬 Famous Film Spotting</span>
+Filmmakers rarely get permission to film inside the castle but the nearby park has featured; Harry Potter (The Deathly Hallows) - Windsor Great Park was used for the forest scenes when Harry, Ron, and Hermione are camping in the woods while on the run. World War Z - The Brad Pitt zombie epic used parts of the Windsor estate for some of its large-scale outdoor sequences.  Cinderella (2015)
+- used the Great Park for the scenes where Ella meets the Prince in the forest.</div>
+    </div></div>
+  </div>
+
+  <!-- 02 CHANGING OF THE GUARD -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎺</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Changing of the Guard</div>
+        <div class="stop-meta-line"><span class="stop-num">03</span><span class="stop-tag">Saturdays, 11am</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"These are real soldiers. Many have served in active combat. Right now they're marching through a tourist town to swap shifts."</div>
+      <p class="body-text">The guards are fully trained soldiers from the Household Division — not actors or ceremonial staff. The ceremony is a genuine military handover: the Old Guard transfers responsibility for protecting the castle to the New Guard. It's not a performance put on for visitors; visitors are watching something that would happen regardless.</p>
+      <p class="body-text">Windsor's ceremony is often less crowded than Buckingham Palace, which means students get a much closer view of the soldiers, the band and the formations. The guards march from Victoria Barracks, through Windsor's streets, and into the castle so the spectacle starts before the castle gates. The band sometimes plays film themes and pop songs alongside military marches.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🎩 The Bearskin Hat</span>
+Each bearskin hat weighs about 1.5 kg and stands nearly 45 cm tall. They were originally designed to make soldiers look taller and more intimidating in battle. "Imagine marching in summer heat wearing a fur hat the weight of a bag of sugar, balanced on your head." The guards are trained to stand still for long periods but are permitted to stamp their feet or adjust position — they're not statues, and they will react if someone gets too close... which naturally encourages tourists to spend the entire morning trying.</div>
+      
+    </div></div>
+  </div>
+
+  <!-- 03 ST GEORGE'S CHAPEL -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">⛪</div>
+      <div class="stop-title-block">
+        <div class="stop-name">St George's Chapel</div>
+        <div class="stop-meta-line"><span class="stop-num">04</span><span class="stop-tag">Where Kings Are Buried</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Henry VIII is buried under the floor in the Chapel. So is Charles I — who was executed. And Queen Elizabeth II."</div>
+      <p class="body-text">St George's Chapel is the final resting place of ten monarchs and one of the most important royal burial sites in Britain. Henry VIII is buried in St George’s Chapel next to wife number three, Jane Seymour.  Wives one, two, four, five and six are buried elsewhere, which is probably best  because that many exes in one crypt would be a bit awkward. Unlike most ancient churches it is still a working place of worship - daily services are open to the public, and visitors can attend Evensong and hear the choir for free.</p>
+      <p class="body-text">Prince Harry and Meghan Markle married here in 2018, watched by an estimated 1.9 billion people worldwide. They chose it because it offered a more 'personal' feel than the Westminster Abbey or St Pauls. "Nothing says 'personal' like airing your vows to 1.9 billion strangers in a historic chapel."</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">👸🏻 Backstory - Resting Place of Elizabeth II</span>
+On the 8th September 2022, Queen Elizabeth II died at Balmoral Castle in Scotland, aged 96. She had been Queen for 70 years; longer than any British monarch in history. What followed was ten days that brought London to a near standstill. Four billion people watched the state funeral globally. Two hundred and fifty world leaders and heads of state arrived in the city. The queue to see her lying in state at Westminster Hall stretched four miles along the Thames, with waiting times of up to 24 hours. People joined it anyway. At the end of those ten days, her coffin was brought here, to Windsor, for the committal service. She is buried in the King George VI Memorial Chapel, just off the main nave, alongside her husband Prince Philip, her father and her mother. There is no grand monument, no effigy. Just a stone floor and a name.</div>
+      <div class="tip-box">
+        <span class="tip-label-inline">🪓 Backstory - The Beheaded King</span>
+King Charles I believed something very simple: kings were chosen by God and should not have to answer to Parliament. The disagreement exploded into the English Civil War, a conflict that divided the country for years. When the war ended, Charles was captured and imprisoned. Instead of negotiating with him or sending him into exile, Parliament decided to put the King on trial. In January 1649  England did the unthinkable; Charles I was found guilty of treason against his own people and sentenced to death. A few days later, outside the Banqueting House in London, he stepped onto a scaffold and was publicly executed. For the first time in English history, a reigning monarch had been tried and executed by his own subjects. His body was later brought here to St George's Chapel and buried in a vault beneath the floor alongside the coffin of Henry VIII.</div>
+    </div></div>
+  </div>
+
+  <!-- 04 QUEEN MARY'S DOLLS' HOUSE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🏡</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Queen Mary's Dolls' House</div>
+        <div class="stop-meta-line"><span class="stop-num">05</span><span class="stop-tag">The Most Famous Dolls' House in the World</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Everything inside it works. The taps run water. The toilets flush. The lights switch on. And it took three years to build."</div>
+      <p class="body-text">Built in the early 1920s, Queen Mary's Dolls' House was designed not as a toy but as a perfect miniature record of British life — a tiny time capsule. Over 1,500 artists, designers and craftspeople contributed. The house has running water, working electric lights, a functioning lift, a garage with miniature cars, and a wine cellar stocked with real (miniature) wine. Some pieces were constructed using microscopes. </p>
+      <div class="tip-box">
+        <span class="tip-label-inline">📚 The Library</span>
+The dolls' house library contains hundreds of miniature books written specifically for it by famous authors of the time, including Sir Arthur Conan Doyle and A. A. Milne. Each book is fully written and printed — not blank pages in a tiny cover. "The man who created Sherlock Holmes sat down and wrote a miniature story, in miniature handwriting, for a dolls' house." </div>
+      <div class="tip-box">
+        <span class="tip-label-inline">🤔 Would You Rather</span>
+"Would you rather live in an enormous crumbling castle with draughty rooms and no central heating — or a tiny, perfect house where everything works flawlessly?" It sounds like a silly question, but it opens up a genuine conversation about what people actually value in where they live. Windsor Castle, for most of its history, had neither reliable heating nor running water.</div>
+    </div></div>
+  </div>
+
+  <!-- 05 STATE APARTMENTS -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🖼️</div>
+      <div class="stop-title-block">
+        <div class="stop-name">The State Apartments</div>
+        <div class="stop-meta-line"><span class="stop-num">06</span><span class="stop-tag">Designed to Impress &amp; Intimidate</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"Every room was designed to make visitors feel smaller. It's architecture as a power move."</div>
+      <p class="body-text">The State Apartments were rebuilt after the 17th-century Civil War to demonstrate that the monarchy had returned and was firmly in charge. As you move deeper into the apartments, the rooms become progressively grander; a deliberate design to build anticipation and awe before reaching the monarch.  The same rooms are still used today for state banquets, diplomatic receptions and investitures.</p>
+      
+      
+    <div class="tip-box"><span class="tip-label-inline">🔥 Windsor Castle Fire</span>
+On the morning of November 20, 1992, a single spotlight inside the Queen's Private Chapel was left pushed against a heavy curtain. Within minutes, the fabric ignited, sparking a furious blaze that threatened to wipe out nine hundred years of British history. As over two hundred firefighters fought the roaring inferno, Royal staff and military personnel formed a desperate human chain. Passing priceless masterpieces, historic armour, and irreplaceable Da Vinci drawings hand-to-hand out of the burning rooms. While over one hundred rooms were damaged or completely destroyed, the heroic human chain saved almost the entire Royal Collection. The restoration took five years. Craftspeople used traditional skills and materials to recreate ceilings, carvings and decorative details that had been lost. The project became one of the largest conservation efforts in modern British history.</div></div></div>
+  </div>
+
+  <!-- 06 EAST TERRACE LAWN -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🌿</div>
+      <div class="stop-title-block">
+        <div class="stop-name">East Terrace Lawn</div>
+        <div class="stop-meta-line"><span class="stop-num">07</span><span class="stop-tag">The Royal Back Garden</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"For most of its history, the public were not allowed in this area. This was the royal family's private back garden."</div>
+      <p class="body-text">The East Terrace Lawn sits directly below the State Apartments and was redesigned in the 1840s by Prince Albert, who transformed it into a formal Victorian garden with geometric flowerbeds, fountains and clipped hedges. It was completely off-limits to the public for decades and has only occasionally opened in recent years. Queen Elizabeth II regularly walked her corgis here — one of her favourite quiet spaces, out of public view.</p>
+      
+    <div class="tip-box"><span class="tip-label-inline">✏️ Photo Opportunity</span>
+The views are spectacular.  Standing on the terrace, you can see across the gardens, the Long Walk and deep into Windsor Great Park. It also has one of the best views of the Castle with its immaculate lawns. Many official portraits and family photos have been taken here because the terrace offers privacy, perfect light and a dramatic castle backdrop.
+</div></div></div>
+  </div>
+
+  <!-- 07 ETON COLLEGE -->
+  <div class="stop-card" onclick="toggleCard(this)">
+    <div class="stop-header">
+      <div class="stop-icon">🎓</div>
+      <div class="stop-title-block">
+        <div class="stop-name">Eton College</div>
+        <div class="stop-meta-line"><span class="stop-num">08</span><span class="stop-tag">20 Prime Ministers &amp; Their Own Sports</span></div>
+      </div>
+      <div class="stop-chevron">▾</div>
+    </div>
+    <div class="stop-body"><div class="stop-body-inner">
+      <div class="hook-label">Story Hook</div>
+      <div class="hook-title">"This school has its own vocabulary, its own sports that no one else plays, and has produced 20 British Prime Ministers, including Boris Johnson"</div>
+      <p class="body-text">Founded in 1440 by King Henry VI, Eton has been teaching students for nearly 600 years. Students are called "boys", teachers are "beaks", and the school year is divided into "halves" instead of terms. Older students still wear the famous black tailcoat daily. The school has its own sports that exist nowhere else such as the Eton Wall Game, played against an ancient brick wall, is so complicated that even many students struggle to explain the rules. Eton also has a private island on the Thames used for rowing and outdoor activities.</p>
+      <div class="tip-box">
+        <span class="tip-label-inline">🤔 Would You Rather: History Edition</span>
+"Would you rather be a student at Eton in 1900 — tailcoat, Latin lessons, cold dormitories and caning — or a student at your own school today?" Then flip it: "Would you rather be a student at Eton today, knowing you'll probably spend your life in the same circles as future prime ministers, or at a different school where you make your own path?"</div>
+      <div class="tip-box">
+        <span class="tip-label-inline">📸 Spot the School</span>
+You can see Eton College clearly from Windsor Castle. Just 0.5 miles (800m) across the River Thames, Eton is visible from the castle's ramparts, towers, and Round Tower, offering sweeping views of its distinctive perpendicular gothic chapel and school yard.</div>
+    </div></div>
+  </div>
+
+</div>
+
+<!-- TECHNIQUES -->
+<div class="section" style="padding-top:0">
+  <div class="section-label">Windsor-Specific Techniques</div>
+  <div class="section-title">Tools That Work Especially Well Here</div>
+  <p class="section-intro"></p>
+
+  <div class="idea-card">
+    <span class="idea-card-icon">❓</span>
+    <h3>The Comparison Question</h3>
+    <p>Windsor prompts natural comparisons to students' own countries. At each stop, one question: "Does your country have an equivalent; a building this old that's still in daily use? A school that's been running for 600 years? A ceremony this unchanged?"</p>
+  </div>
+
+  <div class="idea-card gold">
+    <span class="idea-card-icon">🔱</span>
+    <h3>The Scale Test</h3>
+    <p>Windsor deals in numbers that sound impressive but mean nothing until they're made physical. The Great Park covers 4,800 acres — bigger than many small towns. The castle has been lived in for 1,000 years. The State Dining Room table is nearly 50 meters long. If you were sat at one end and tried to talk to someone at the other, you wouldn't be heard. Abstract numbers become memorable the moment they're made concrete.</p>
+  </div>
+
+  
+
+  
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Churchill House Summer Excursions</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">Windsor Excursion Guide</div>
+</div>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  var allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    var cards = document.querySelectorAll('.stop-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].classList.toggle('open', allOpen);
+    }
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse All' : 'Expand All';
+  }
+</script>
+
+
+</body></html>
